@@ -1,0 +1,22 @@
+.landing-body{
+    padding: 10vw;
+    padding-top: 130px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.first-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    height: 60vh;
+}
+
+.second-section{
+    
+}
