@@ -1,4 +1,4 @@
-import "./app.css";
+import "./App.css";
 import Routing from "./routes";
 import { HelmetProvider } from "react-helmet-async";
 
