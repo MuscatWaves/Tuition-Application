@@ -1,6 +1,6 @@
 import React from "react";
 import TopNavigation from "../../components/TopNavigation";
-import { Button } from "antd";
+import { Button } from "primereact/button";
 import "./landingpage.css";
 
 const LandingPage = () => {
@@ -11,12 +11,13 @@ const LandingPage = () => {
         <div className="first-section">
           <div className="flex-gap-column-2">
             <div>
-              <div className="text primary-text-colour boldest big-text">
+              <h1 className="text primary-text-colour boldest big-text">
                 Ready to learn
-              </div>
+              </h1>
             </div>
             <div className="primary-text-colour middile-text">
-              You've got the will. We've got the way.
+              You've got the will. We've got the way. We will help you towards
+              your victory
             </div>
             <div>
               <Button type="primary" size="large" shape="round">

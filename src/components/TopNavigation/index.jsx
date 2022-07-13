@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "antd";
+import { Button } from "primereact/button";
 import "./topnavigation.css";
 
 function TopNavigation() {
@@ -26,8 +26,12 @@ function TopNavigation() {
         <div>Cabbie</div>
       </div>
       <div className="flex-small-gap">
-        <Button type="primary">Login</Button>
-        <Button type="primary">SignUp</Button>
+        <Button type="primary" className="p-button-sm">
+          Login
+        </Button>
+        <Button type="primary" className="p-button-sm">
+          SignUp
+        </Button>
       </div>
     </div>
   );
