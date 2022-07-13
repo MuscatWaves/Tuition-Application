@@ -12,9 +12,8 @@ const LandingPage = () => {
           <div className="flex-gap-column-2">
             <div>
               <div className="text primary-text-colour boldest big-text">
-                Ready to
+                Ready to learn
               </div>
-              <div className="boldest big-text text-blue text">learn?</div>
             </div>
             <div className="primary-text-colour middile-text">
               You've got the will. We've got the way.
