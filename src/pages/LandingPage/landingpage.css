@@ -13,9 +13,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 1.5rem;
     height: 60vh;
-    width: 65vw;
+    width: 70vw;
+}
+
+.iframe{
+    width: 28vw;
+    height: 330px;
+}
+
+.videoWrapper{
+    position: relative;
+    display: flex;
+    z-index: 10;
+}
+
+.videoWrapper::before{
+    content: '';
+    background: url("../../images/brush.webp");
+    position: relative;
+    width: 150px;
+    height: 170px;
+    left: 50px;
+    bottom: -165px;
+    z-index: -8;
+    opacity: 0.8;
+}
+
+.videoWrapper::after{
+    content: '';
+    background-color: #3B82F6;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    position: absolute;
+    width: 300px;
+    height: 280px;
+    /* left: -10vw; */
+    top: -20px;
+    right: -70px;
+    /* right: 120px; */
+    z-index: -8;
+    opacity: 0.8;
 }
 
 /* .second-section{

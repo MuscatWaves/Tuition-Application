@@ -25,16 +25,14 @@ const LandingPage = () => {
               </Button>
             </div>
           </div>
-          <div>
+          <div className="videoWrapper">
             <iframe
               className="iframe"
-              width="600"
-              height="340"
               src="https://www.youtube.com/embed/sUwD3GRPJos?controls=0"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
         </div>
