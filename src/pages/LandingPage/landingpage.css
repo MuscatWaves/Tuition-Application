@@ -73,7 +73,7 @@
 
 .card-pack{
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(3, auto);
     align-items: center;
     text-align: center;
     grid-gap: 3rem;
@@ -86,7 +86,7 @@
     background-color: #d5ceb3;
     border-radius: 20px;
     overflow: hidden;
-    transition: 0.3s;
+    transition: 0.5s;
     width: 300px;
 }
 

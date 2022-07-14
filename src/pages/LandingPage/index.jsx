@@ -9,10 +9,6 @@ const LandingPage = () => {
     card1: false,
     card2: false,
     card3: false,
-    card4: false,
-    card5: false,
-    card6: false,
-    card7: false,
   });
 
   return (
@@ -70,10 +66,6 @@ const LandingPage = () => {
                     card1: false,
                     card2: false,
                     card3: false,
-                    card4: false,
-                    card5: false,
-                    card6: false,
-                    card7: false,
                     [`card${card.id}`]: true,
                   })
                 }
@@ -82,10 +74,6 @@ const LandingPage = () => {
                     card1: false,
                     card2: false,
                     card3: false,
-                    card4: false,
-                    card5: false,
-                    card6: false,
-                    card7: false,
                   });
                 }}
               >
@@ -94,7 +82,7 @@ const LandingPage = () => {
                   {!cards[`card${card.id}`] && <div>{card.name}</div>}
                   {cards[`card${card.id}`] && (
                     <div className={"card-description secondary-text-colour"}>
-                      <div>{card.name}</div>
+                      <div className="bolder">{card.name}</div>
                       <div>{card.description}</div>
                     </div>
                   )}
