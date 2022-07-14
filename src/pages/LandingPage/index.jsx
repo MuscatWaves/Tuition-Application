@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import TopNavigation from "../../components/TopNavigation";
 import { Button } from "primereact/button";
 import { cardList } from "./constants.ts";
 import "./landingpage.css";
 
 const LandingPage = () => {
+  const [cards, setCards] = useState({
+    card1: false,
+    card2: false,
+    card3: false,
+    card4: false,
+    card5: false,
+    card6: false,
+    card7: false,
+  });
+
   return (
     <div>
       <TopNavigation />
@@ -48,11 +58,46 @@ const LandingPage = () => {
           </div>
           <div className="card-pack">
             {cardList.map((card) => (
-              <div className="each-card" key={card.key}>
+              <div
+                className={
+                  cards[`card${card.id}`]
+                    ? "each-card each-card--active"
+                    : "each-card"
+                }
+                key={card.id}
+                onMouseEnter={() =>
+                  setCards({
+                    card1: false,
+                    card2: false,
+                    card3: false,
+                    card4: false,
+                    card5: false,
+                    card6: false,
+                    card7: false,
+                    [`card${card.id}`]: true,
+                  })
+                }
+                onMouseLeave={() => {
+                  setCards({
+                    card1: false,
+                    card2: false,
+                    card3: false,
+                    card4: false,
+                    card5: false,
+                    card6: false,
+                    card7: false,
+                  });
+                }}
+              >
                 <div></div>
                 <div>
-                  <div>{card.name}</div>
-                  <div>{card.description}</div>
+                  {!cards[`card${card.id}`] && <div>{card.name}</div>}
+                  {cards[`card${card.id}`] && (
+                    <div className={"card-description secondary-text-colour"}>
+                      <div>{card.name}</div>
+                      <div>{card.description}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

@@ -76,15 +76,18 @@
     grid-template-columns: repeat(4, auto);
     align-items: center;
     text-align: center;
-    grid-gap: 2rem;
+    grid-gap: 3rem;
     padding: 1rem;
     margin-top: 2rem;
 }
 
 .each-card{
+    position: relative;
     background-color: #d5ceb3;
     border-radius: 20px;
     overflow: hidden;
+    transition: 0.3s;
+    width: 300px;
 }
 
 .each-card > div:nth-child(1){
@@ -92,4 +95,18 @@
     background-repeat:no-repeat;
     background-position: center center;
     height: 250px;
+}
+
+.each-card--active{
+    transform: scale(1.10);
+}
+
+.card-description{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.603);
+    height: 100%;
+    top: 0px;
+    color: #fff;
+    animation: card-description-animation 0.5s;
+    padding: 20px;
 }

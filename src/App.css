@@ -346,3 +346,12 @@ h1{
         transform: translateY(0);
     }
 }
+
+@keyframes card-description-animation {
+    0%{
+        transform: translateY(100px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
