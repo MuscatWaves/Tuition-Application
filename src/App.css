@@ -14,6 +14,7 @@ h1{
     min-height: 100vh;
     scroll-behavior: smooth;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* Global Styles used */
@@ -44,6 +45,10 @@ h1{
 
 .primary-text-colour{
     color: #00003b;
+}
+
+.secondary-text-colour{
+    color: #3B82F6;
 }
 
 .text-grey{
@@ -79,7 +84,11 @@ h1{
 }
 
 .big-text{
-    font-size: 45px;
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.primary-font{
     font-family: 'Quicksand';
 }
 
@@ -87,6 +96,10 @@ h1{
     font-size: 20px;
     font-weight: 500;
     text-overflow: wrap;
+}
+
+.larger-text{
+    font-size: 25px;
 }
 
 .large-text{

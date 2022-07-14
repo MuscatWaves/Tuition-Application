@@ -9,13 +9,16 @@
     box-sizing: border-box;
 }
 
+.first-section, .second-section{
+    width: 70vw;
+}
+
 .first-section{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     height: 60vh;
-    width: 70vw;
 }
 
 .iframe{
@@ -57,6 +60,36 @@
     opacity: 0.8;
 }
 
-/* .second-section{
-    
-} */
+.second-section{
+    padding: 2rem;
+}
+
+.second-section-header{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.card-pack{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    align-items: center;
+    text-align: center;
+    grid-gap: 2rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.each-card{
+    background-color: #d5ceb3;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.each-card > div:nth-child(1){
+    background: url("../../images/learning.webp");
+    background-repeat:no-repeat;
+    background-position: center center;
+    height: 250px;
+}
