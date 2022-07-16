@@ -21,7 +21,7 @@ function TopNavigation() {
     >
       <div className="bolder text-black large-text">Tution</div>
       <div className="flex-gap">
-        <div>Home</div>
+        <div className="bolder">Home</div>
         <div>Services</div>
         <div>Cabbie</div>
       </div>

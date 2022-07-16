@@ -19,30 +19,6 @@ h1{
 
 /* Global Styles used */
 
-.header-log-out-btn{
-    animation: zoom-in 0.8s;
-    font-weight: 600;
-}
-
-.header-log-out-btn:after {
-    content: '';
-    position: absolute;
-    font-weight: 600;
-    opacity: 0;  
-    transition: 0.5s;
-}
-
-.header-log-out-btn:hover{
-    padding-right: 64px;
-    padding-left : 8px;
-  }
-  
-.header-log-out-btn:hover:after {
-    content: 'Log Off';
-    opacity: 1;
-    right: 10px;
-}
-
 .primary-text-colour{
     color: #00003b;
 }
@@ -84,7 +60,7 @@ h1{
 }
 
 .big-text{
-    font-size: 60px;
+    font-size: 55px;
     font-weight: 700;
 }
 
@@ -95,7 +71,7 @@ h1{
 .middile-text{
     font-size: 20px;
     font-weight: 500;
-    text-overflow: wrap;
+    text-align: justify;
 }
 
 .larger-text{

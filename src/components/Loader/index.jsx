@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ojimage from "../../images/oj.png";
+import ojimage from "../../images/brush.webp";
 import "./loader.css";
 import { ProgressSpinner } from "primereact/progressspinner";
 
