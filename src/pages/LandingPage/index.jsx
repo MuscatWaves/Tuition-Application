@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import TopNavigation from "../../components/TopNavigation";
 import { Button } from "primereact/button";
 import { cardList } from "./constants.ts";
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import bannerImage from "../../images/banner-image.webp";
 import "./landingpage.css";
+import Footer from "../../components/Footer";
 
 const LandingPage = () => {
   const [cards, setCards] = useState({
@@ -13,30 +14,68 @@ const LandingPage = () => {
     card3: false,
   });
 
+  const inViewVariant = {
+    zoomView: {
+      scale: 1,
+      opacity: 1,
+      transition: { stiffness: 40, type: "spring", damping: 20 },
+    },
+    zoomHidden: { scale: 0.85, opacity: 0 },
+    leftViewVariant: {
+      x: "0",
+      opacity: 1,
+      transition: { stiffness: 40, type: "spring", damping: 10 },
+    },
+    leftViewHidden: {
+      x: "-100px",
+      opacity: 0,
+    },
+    rightViewVariant: {
+      x: "0",
+      opacity: 1,
+      transition: { stiffness: 40, type: "spring", damping: 20 },
+    },
+    rightViewHidden: {
+      x: "5vw",
+      opacity: 0,
+    },
+    slideTopView: {
+      y: "0",
+      opacity: 1,
+      transition: { stiffness: 40, type: "spring", damping: 20 },
+    },
+    slideTopHidden: {
+      y: "5vh",
+      opacity: 1,
+      transition: { stiffness: 40, type: "spring", damping: 20 },
+    },
+  };
+
   return (
     <div>
       <LazyMotion features={domAnimation}>
         <TopNavigation />
-        <m.div className="landing-body">
-          <m.div
-            className="first-section"
-            animate={{ scale: 1, opacity: 1 }}
-            initial={{ scale: 0.7, opacity: 0 }}
-            transition={{ stiffness: 40, type: "spring", damping: 20 }}
-          >
-            <div className="flex-gap-column-2">
+        <m.div className="landing-body" variants={inViewVariant}>
+          <m.div className="first-section">
+            <m.div
+              className="flex-gap-column-2"
+              variants={inViewVariant}
+              whileInView={"leftViewVariant"}
+              initial={"leftViewHidden"}
+              viewport={{ once: true }}
+            >
               <m.div>
                 <div className="text primary-font primary-text-colour big-text">
                   Company
                 </div>
               </m.div>
-              <div className="text-grey middile-text">
+              <m.div className="text-grey middile-text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                 sit amet molestie est, vel condimentum lorem. Quisque porta
                 scelerisque tellus nec faucibus.In erat lacus, pellentesque eget
                 ornare eu, vulputate ac enim. Proin malesuada.
-              </div>
-              <div className="flex-small-gap">
+              </m.div>
+              <m.div className="flex-small-gap">
                 <Button
                   type="outlined"
                   size="large"
@@ -52,15 +91,20 @@ const LandingPage = () => {
                   shape="round"
                   label="Learn More"
                 />
-              </div>
-            </div>
-            <div className="videoWrapper">
+              </m.div>
+            </m.div>
+            <m.div
+              className="videoWrapper"
+              variants={inViewVariant}
+              animate={"zoomView"}
+              initial={"zoomHidden"}
+            >
               <img
                 src={bannerImage}
                 className={"banner-image"}
                 alt={"banner"}
               />
-            </div>
+            </m.div>
           </m.div>
           <m.div
             className="second-section"
@@ -92,13 +136,10 @@ const LandingPage = () => {
           </m.div>
           <m.div
             className="second-section"
-            animate={{ scale: 1, opacity: 1 }}
-            initial={{ scale: 0.7, opacity: 0 }}
-            transition={{
-              stiffness: 40,
-              type: "spring",
-              damping: 20,
-            }}
+            variants={inViewVariant}
+            whileInView={"zoomView"}
+            initial={"zoomHidden"}
+            viewport={{ once: true }}
           >
             <div className="second-section-header">
               <div className="secondary-text-colour bolder">
@@ -141,19 +182,33 @@ const LandingPage = () => {
                       {card.name}
                     </div>
                   )}
-                  {cards[`card${card.id}`] && (
-                    <div className={"card-description secondary-text-colour"}>
-                      <div className="bolder large-text">{card.name}</div>
-                      <div className="horizontal-line"></div>
-                      <div className="medium-text">{card.description}</div>
-                    </div>
-                  )}
+                  <AnimatePresence>
+                    {cards[`card${card.id}`] && (
+                      <m.div
+                        key={card.id}
+                        className={"card-description secondary-text-colour"}
+                        animate={{ y: 0 }}
+                        initial={{ y: "120px" }}
+                        transition={{
+                          stiffness: 70,
+                          type: "spring",
+                          damping: 10,
+                        }}
+                        exit={{ y: "120px", opacity: 0 }}
+                      >
+                        <div className="bolder large-text">{card.name}</div>
+                        <div className="horizontal-line"></div>
+                        <div className="medium-text">{card.description}</div>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
           </m.div>
         </m.div>
       </LazyMotion>
+      <Footer />
     </div>
   );
 };

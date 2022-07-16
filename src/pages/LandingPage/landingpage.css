@@ -95,14 +95,13 @@
 
 .each-card{
     position: relative;
-    background-color: #d5ceb3;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px;
     overflow: hidden;
     transition: 0.5s;
     background-repeat:no-repeat;
     background-position: center center;
-    height: 250px;
+    height: 300px;
 }
 
 .card--inactive{
@@ -131,6 +130,5 @@
     height: 100%;
     top: 0px;
     color: #fff;
-    animation: card-description-animation 0.5s;
     padding: 20px;
 }

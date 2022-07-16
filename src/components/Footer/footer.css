@@ -1,0 +1,17 @@
+.footer-wrapper{
+    background-color: black;
+    color: #fff;
+}
+
+.footer{
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90vw;
+}
+
+.footer-services-flex{
+    display: flex;
+    gap: 2rem;
+}
