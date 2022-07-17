@@ -7,25 +7,26 @@ const Footer = () => {
       <div className="footer">
         <div>Logo</div>
         <div>
-          <div className="large-text bolder primary-font small-margin-bottom">
+          <div className="large-text bolder primary-font small-margin-bottom text-grey">
             Tution
           </div>
-          <div>Grade</div>
-          <div>Subject</div>
-          <div>Services</div>
+          <div className="pointer">Grade</div>
+          <div className="pointer">Subject</div>
+          <div className="pointer">Services</div>
         </div>
         <div>
           <div className="large-text bolder primary-font small-margin-bottom">
             IELTS
           </div>
-          <div>Grade</div>
-          <div>Subject</div>
+          <div className="pointer">Grade</div>
+          <div className="pointer">Subject</div>
+          <div className="pointer">Services</div>
         </div>
         <div>
           <div className="large-text bolder primary-font small-margin-bottom">
             Summer Classes
           </div>
-          <div>Grade</div>
+          <div className="pointer">Grade</div>
         </div>
         <div>
           <div>Contact Us</div>
