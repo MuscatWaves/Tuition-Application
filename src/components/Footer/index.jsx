@@ -45,7 +45,6 @@ const Footer = () => {
             <RiWhatsappFill className="icon-footer whatsapp-icon" />
             <BsFacebook className="icon-footer facebook-icon" />
             <AiFillYoutube className="icon-footer youtube-icon" />
-            {/* <AiOutlineMail /> */}
           </div>
         </div>
       </div>
