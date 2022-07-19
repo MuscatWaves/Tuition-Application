@@ -68,7 +68,6 @@ const LandingPage = () => {
             variants={inViewVariant}
             whileInView={"leftViewVariant"}
             initial={"leftViewHidden"}
-            viewport={{ once: true }}
           >
             <m.div>
               <div className="text primary-font primary-text-colour big-text">
@@ -103,7 +102,7 @@ const LandingPage = () => {
           <m.div
             className="videoWrapper"
             variants={inViewVariant}
-            animate={"zoomView"}
+            whileInView={"zoomView"}
             initial={"zoomHidden"}
           >
             <img src={bannerImage} className={"banner-image"} alt={"banner"} />
@@ -142,7 +141,6 @@ const LandingPage = () => {
           variants={inViewVariant}
           whileInView={"zoomView"}
           initial={"zoomHidden"}
-          viewport={{ once: true }}
         >
           <div className="second-section-header">
             <div className="secondary-text-colour bolder">
