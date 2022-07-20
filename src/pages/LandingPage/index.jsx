@@ -4,8 +4,9 @@ import { Button } from "primereact/button";
 import { cardList } from "./constants.ts";
 import { useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import bannerImage from "../../images/banner-image.webp";
 import "./landingpage.css";
+import logo from "../../images/logo.png";
+import howWeWorkImage from "../../images/how_we_work.svg";
 import Footer from "../../components/Footer";
 
 const LandingPage = () => {
@@ -53,6 +54,40 @@ const LandingPage = () => {
     },
   };
 
+  const logoRevealVariant = {
+    leftShow: {
+      x: "0",
+      transition: { type: "spring", delay: 0.5 },
+    },
+    leftHidden: {
+      x: "10vw",
+    },
+    rightShow: {
+      opacity: 1,
+      transition: { delay: 1, duration: 0.6 },
+    },
+    rightHidden: {
+      opacity: 0,
+    },
+  };
+
+  const howWeVariant = {
+    leftShow: {
+      x: "0",
+      transition: { type: "spring", delay: 0.5 },
+    },
+    leftHidden: {
+      x: "50%",
+    },
+    rightShow: {
+      opacity: 1,
+      transition: { delay: 1, duration: 0.6 },
+    },
+    rightHidden: {
+      opacity: 0,
+    },
+  };
+
   return (
     <m.div
       animate={{ opacity: 1 }}
@@ -60,9 +95,25 @@ const LandingPage = () => {
       transition={{ duration: 0.6 }}
       exit={{ opacity: 0 }}
     >
+      {/* <div className="video-section">
+            <iframe
+              className="iframe"
+              src="https://www.youtube.com/embed/sUwD3GRPJos?controls=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>  */}
       <TopNavigation />
       <m.div className="landing-body" variants={inViewVariant}>
         <m.div className="first-section">
+          <m.div
+            className="photoWrapper"
+            variants={inViewVariant}
+            whileInView={"zoomView"}
+            initial={"zoomHidden"}
+          ></m.div>
           <m.div
             className="flex-gap-column-2"
             variants={inViewVariant}
@@ -70,15 +121,13 @@ const LandingPage = () => {
             initial={"leftViewHidden"}
           >
             <m.div>
-              <div className="text primary-font primary-text-colour big-text">
+              <div className="text primary-font primary-colour primary-header-text">
                 Company
               </div>
             </m.div>
-            <m.div className="text-grey middile-text">
+            <m.div className="text-colour description-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit
-              amet molestie est, vel condimentum lorem. Quisque porta
-              scelerisque tellus nec faucibus.In erat lacus, pellentesque eget
-              ornare eu, vulputate ac enim. Proin malesuada.
+              amet molestie est, vel condimentum lorem.
             </m.div>
             <m.div className="flex-small-gap">
               <Button
@@ -99,45 +148,83 @@ const LandingPage = () => {
               />
             </m.div>
           </m.div>
+        </m.div>
+        <m.div className="second-section-wrapper">
           <m.div
-            className="videoWrapper"
-            variants={inViewVariant}
-            whileInView={"zoomView"}
-            initial={"zoomHidden"}
+            className="second-section"
+            animate={{ scale: 1, opacity: 1 }}
+            initial={{ scale: 0.7, opacity: 0 }}
+            transition={{
+              stiffness: 40,
+              type: "spring",
+              damping: 20,
+              delay: 0.5,
+            }}
           >
-            <img src={bannerImage} className={"banner-image"} alt={"banner"} />
+            <div className="horizontal-line"></div>
+            <div className="larger-text bolder primary-font primary-colour">
+              Wondering who we are?
+            </div>
+            <div className="about-section-desc">
+              <m.div>
+                <m.img
+                  src={logo}
+                  alt="logo"
+                  variants={logoRevealVariant}
+                  whileInView={"leftShow"}
+                  initial={"leftHidden"}
+                ></m.img>
+              </m.div>
+              <m.div
+                className="primary-font large-text bolder secondary-colour"
+                style={{ lineHeight: "1.6" }}
+                variants={logoRevealVariant}
+                whileInView={"rightShow"}
+                initial={"rightHidden"}
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised.
+              </m.div>
+            </div>
+          </m.div>
+        </m.div>
+        <m.div className="third-section">
+          <m.div className="how-we-work-hook">
+            <div className="horizontal-line" style={{ margin: "2rem 0" }}></div>
+            <div className="larger-text bolder primary-font primary-colour">
+              How we work?
+            </div>
+            <div
+              style={{ width: "50%", marginTop: "10px" }}
+              className="primary-font large-text bolder text-colour"
+            >
+              We Work for your sucess Lorem Ipsum is simply dummy text.
+            </div>
+            <img
+              src={howWeWorkImage}
+              className={"stairs-sv"}
+              alt="stairs"
+            ></img>
+          </m.div>
+          <m.div
+            className="how-we-work-image"
+            style={{ lineHeight: "1.6" }}
+            variants={howWeVariant}
+            whileInView={"rightShow"}
+            initial={"rightHidden"}
+          >
+            <div class="video-play-button">
+              <span></span>
+            </div>
           </m.div>
         </m.div>
         <m.div
-          className="second-section"
-          animate={{ scale: 1, opacity: 1 }}
-          initial={{ scale: 0.7, opacity: 0 }}
-          transition={{
-            stiffness: 40,
-            type: "spring",
-            damping: 20,
-            delay: 0.5,
-          }}
-        >
-          <div className="second-section-header">
-            <div className="secondary-text-colour bolder">Lorem Ipsum</div>
-            <div className="larger-text bolder primary-text-colour">
-              How it works?
-            </div>
-          </div>
-          <div className="video-section">
-            <iframe
-              className="iframe"
-              src="https://www.youtube.com/embed/sUwD3GRPJos?controls=0"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </m.div>
-        <m.div
-          className="second-section"
+          className="fourth-section"
           variants={inViewVariant}
           whileInView={"zoomView"}
           initial={"zoomHidden"}

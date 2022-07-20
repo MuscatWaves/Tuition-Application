@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import bannerImage from "../../images/banner-image.webp";
+import bannerImage from "../../images/banner.webp";
 
 const Login = () => {
   return (
