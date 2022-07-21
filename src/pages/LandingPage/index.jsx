@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TopNavigation from "../../components/TopNavigation";
 import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
 import { cardList } from "./constants.ts";
 import { useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
@@ -11,6 +12,7 @@ import Footer from "../../components/Footer";
 
 const LandingPage = () => {
   let navigate = useNavigate();
+  const [showVideo, toggleVideo] = useState(false);
   const [cards, setCards] = useState({
     card1: false,
     card2: false,
@@ -88,14 +90,50 @@ const LandingPage = () => {
     },
   };
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: "100px",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      delay: 0.7,
+      transition: {
+        type: "spring",
+        stiffness: 40,
+        damping: 9,
+      },
+    },
+  };
+
   return (
     <m.div
+      className="main-landing-page-body"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
       exit={{ opacity: 0 }}
     >
-      {/* <div className="video-section">
+      <Dialog
+        // header="Header"
+        className="video-cont"
+        visible={showVideo}
+        style={{ width: "50vw" }}
+        onHide={() => toggleVideo(false)}
+      >
+        {showVideo && (
+          <div className="video-section">
             <iframe
               className="iframe"
               src="https://www.youtube.com/embed/sUwD3GRPJos?controls=0"
@@ -104,7 +142,9 @@ const LandingPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-          </div>  */}
+          </div>
+        )}
+      </Dialog>
       <TopNavigation />
       <m.div className="landing-body" variants={inViewVariant}>
         <m.div className="first-section">
@@ -138,6 +178,7 @@ const LandingPage = () => {
                 iconPos="right"
                 label="Sign Up"
                 onClick={() => navigate("/login")}
+                className={"our-button"}
               />
               <Button
                 type="primary"
@@ -166,21 +207,23 @@ const LandingPage = () => {
               Wondering who we are?
             </div>
             <div className="about-section-desc">
-              <m.div>
+              <div>
                 <m.img
                   src={logo}
                   alt="logo"
                   variants={logoRevealVariant}
                   whileInView={"leftShow"}
                   initial={"leftHidden"}
+                  viewport={{ margin: "-80px" }}
                 ></m.img>
-              </m.div>
+              </div>
               <m.div
                 className="primary-font large-text bolder secondary-colour"
                 style={{ lineHeight: "1.6" }}
                 variants={logoRevealVariant}
                 whileInView={"rightShow"}
                 initial={"rightHidden"}
+                viewport={{ margin: "-80px" }}
               >
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -194,17 +237,31 @@ const LandingPage = () => {
           </m.div>
         </m.div>
         <m.div className="third-section">
-          <m.div className="how-we-work-hook">
-            <div className="horizontal-line" style={{ margin: "2rem 0" }}></div>
-            <div className="larger-text bolder primary-font primary-colour">
+          <m.div
+            className="how-we-work-hook"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ margin: "-250px" }}
+          >
+            <m.div
+              className="horizontal-line"
+              style={{ margin: "2rem 0" }}
+              variants={item}
+            ></m.div>
+            <m.div
+              className="larger-text bolder primary-font primary-colour"
+              variants={item}
+            >
               How we work?
-            </div>
-            <div
+            </m.div>
+            <m.div
               style={{ width: "50%", marginTop: "10px" }}
               className="primary-font large-text bolder text-colour"
+              variants={item}
             >
               We Work for your sucess Lorem Ipsum is simply dummy text.
-            </div>
+            </m.div>
             <img
               src={howWeWorkImage}
               className={"stairs-sv"}
@@ -213,87 +270,96 @@ const LandingPage = () => {
           </m.div>
           <m.div
             className="how-we-work-image"
-            style={{ lineHeight: "1.6" }}
             variants={howWeVariant}
             whileInView={"rightShow"}
             initial={"rightHidden"}
           >
-            <div class="video-play-button">
+            <div
+              className="video-play-button"
+              onClick={() => toggleVideo(true)}
+            >
               <span></span>
             </div>
           </m.div>
         </m.div>
-        <m.div
-          className="fourth-section"
-          variants={inViewVariant}
-          whileInView={"zoomView"}
-          initial={"zoomHidden"}
-        >
-          <div className="second-section-header">
-            <div className="secondary-text-colour bolder">
-              Sharing the light
-            </div>
-            <div className="larger-text bolder primary-text-colour">
-              Our Services
-            </div>
-          </div>
-          <div className="card-pack">
-            {cardList.map((card) => (
-              <div
-                className={
-                  cards[`card${card.id}`]
-                    ? "each-card each-card--active"
-                    : "each-card"
-                }
-                style={{
-                  background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${card.image})`,
-                }}
-                key={card.id}
-                onMouseEnter={() =>
-                  setCards({
-                    card1: false,
-                    card2: false,
-                    card3: false,
-                    [`card${card.id}`]: true,
-                  })
-                }
-                onMouseLeave={() => {
-                  setCards({
-                    card1: false,
-                    card2: false,
-                    card3: false,
-                  });
-                }}
+        <div className="fourth-section">
+          <m.div
+            variants={inViewVariant}
+            whileInView={"zoomView"}
+            initial={"zoomHidden"}
+            viewport={{ margin: "-250px" }}
+          >
+            <div className="second-section-header">
+              <m.div
+                className="horizontal-line"
+                style={{ margin: "2rem 0" }}
+                variants={item}
+              ></m.div>
+              <m.div
+                className="larger-text bolder primary-font primary-colour"
+                variants={item}
               >
-                {!cards[`card${card.id}`] && (
-                  <div className="card--inactive larger-text bolder">
-                    {card.name}
-                  </div>
-                )}
-                <AnimatePresence>
-                  {cards[`card${card.id}`] && (
-                    <m.div
-                      key={card.id}
-                      className={"card-description secondary-text-colour"}
-                      animate={{ y: 0 }}
-                      initial={{ y: "120px" }}
-                      transition={{
-                        stiffness: 70,
-                        type: "spring",
-                        damping: 10,
-                      }}
-                      exit={{ y: "120px", opacity: 0 }}
-                    >
-                      <div className="bolder large-text">{card.name}</div>
-                      <div className="horizontal-line"></div>
-                      <div className="medium-text">{card.description}</div>
-                    </m.div>
+                What we provide?
+              </m.div>
+            </div>
+            <div className="card-pack">
+              {cardList.map((card) => (
+                <div
+                  className={
+                    cards[`card${card.id}`]
+                      ? "each-card each-card--active"
+                      : "each-card"
+                  }
+                  style={{
+                    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6)), url(${card.image})`,
+                  }}
+                  key={card.id}
+                  onMouseEnter={() =>
+                    setCards({
+                      card1: false,
+                      card2: false,
+                      card3: false,
+                      [`card${card.id}`]: true,
+                    })
+                  }
+                  onMouseLeave={() => {
+                    setCards({
+                      card1: false,
+                      card2: false,
+                      card3: false,
+                    });
+                  }}
+                >
+                  {!cards[`card${card.id}`] && (
+                    <div className="card--inactive larger-text bolder">
+                      {card.name}
+                    </div>
                   )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </m.div>
+                  <AnimatePresence>
+                    {cards[`card${card.id}`] && (
+                      <m.div
+                        key={card.id}
+                        className={"card-description secondary-text-colour"}
+                        animate={{ y: 0 }}
+                        initial={{ y: "120px" }}
+                        transition={{
+                          stiffness: 70,
+                          type: "spring",
+                          damping: 10,
+                        }}
+                        exit={{ y: "120px", opacity: 0 }}
+                      >
+                        <div className="bolder large-text">{card.name}</div>
+                        <div className="horizontal-line"></div>
+                        <div className="medium-text">{card.description}</div>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </m.div>
+        </div>
       </m.div>
       <Footer />
     </m.div>

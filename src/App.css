@@ -19,6 +19,19 @@ h1 {
 
 /* Global Styles used */
 
+.our-button {
+  background: #96858f;
+  border: #96858f;
+}
+
+.our-button:hover {
+  background: #96858f !important;
+}
+
+.p-button-outlined {
+  color: #96858f !important;
+}
+
 .primary-colour {
   color: #6d7993;
 }
@@ -84,6 +97,10 @@ h1 {
 
 .larger-text {
   font-size: 30px;
+}
+
+.mid-large-text {
+  font-size: 25px;
 }
 
 .large-text {

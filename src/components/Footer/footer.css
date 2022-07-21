@@ -1,65 +1,71 @@
-.footer-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    color: #fff;
-    padding: 1rem;
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #9099a2;
+  color: #000;
+  padding: 1rem;
 }
 
-.footer{
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 70vw;
+.footer {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-items: center;
+  width: 70vw;
 }
 
-.footer-services-flex{
-    display: flex;
-    gap: 2rem;
+.footer-services-flex {
+  display: flex;
+  gap: 2rem;
 }
 
-.horizontal-line-footer{
-    width: 70vw;
-    height: 2px;
-    background-color: rgba(255, 255, 255, 0.582);
-    margin: 1rem 0;
+.horizontal-line-footer {
+  width: 70vw;
+  height: 2px;
+  background-color: #96858f;
+  margin: 1rem 0;
 }
 
-.footer-last-part{
-    width: 70vw;
+.footer-last-part {
+  width: 70vw;
 }
 
-.icon-footer{
-    transition: 0.3s;
-    font-size: 34px;
-    cursor: pointer;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    padding: 0.2rem;
+.icon-footer {
+  transition: 0.3s;
+  font-size: 34px;
+  cursor: pointer;
+  border: 2px solid #6d7993;
+  border-radius: 50%;
+  padding: 0.2rem;
+  color: #272727;
 }
 
-.icon-footer:hover{
-    transform: scale(1.2);
+.icon-footer:hover {
+  transform: scale(1.2);
 }
 
-.mail-icon:hover{
-    color: #3B82F6;
-    border-color: #3B82F6;
+.mail-icon:hover {
+  color: #3b82f6;
+  border-color: #3b82f6;
 }
 
-.whatsapp-icon:hover{
-    color: #25D366;
-    border-color: #25D366;
+.whatsapp-icon:hover {
+  color: #25d366;
+  border-color: #25d366;
 }
 
-.facebook-icon:hover{
-    color: #3b5998;
-    border-color: #3b5998;
+.facebook-icon:hover {
+  color: #3b5998;
+  border-color: #3b5998;
 }
 
-.youtube-icon:hover{
-    color: #FF0000;
-    border-color: #FF0000;
+.youtube-icon:hover {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+.each-division-service-footer {
+  min-height: 150px;
 }

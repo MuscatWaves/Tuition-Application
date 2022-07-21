@@ -27,10 +27,10 @@ function TopNavigation() {
           <div>Cabbie</div>
         </div>
         <div className="flex-small-gap">
-          <Button type="primary" className="p-button-sm">
+          <Button type="primary" className="p-button-sm our-button">
             Login
           </Button>
-          <Button type="primary" className="p-button-sm">
+          <Button type="primary" className="p-button-sm our-button">
             SignUp
           </Button>
         </div>
