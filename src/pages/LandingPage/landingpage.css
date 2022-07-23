@@ -1,6 +1,6 @@
 .landing-body {
   padding: 10vw;
-  padding-top: 130px;
+  padding-top: 150px;
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  height: 60vh;
+  height: 58vh;
   background-color: #9099a218;
   padding-right: 4rem;
   border-radius: 20px;

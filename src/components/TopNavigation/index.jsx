@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "primereact/button";
+import logo from "../../images/logo-head.png";
+import logoSmall from "../../images/logo-small.png";
+import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
 
 function TopNavigation() {
   const [colorChange, setColorchange] = useState(false);
+  const [firstItem, setFirstItem] = useState(false);
+  const [secondItem, setSecondItem] = useState(false);
+  const [thirdItem, setThirdItem] = useState(false);
   const changeNavbarColor = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 50) {
       setColorchange(true);
     } else {
       setColorchange(false);
@@ -14,17 +20,156 @@ function TopNavigation() {
   window.addEventListener("scroll", changeNavbarColor);
 
   return (
-    <div className="nav-wrapper">
-      <div
+    <m.div
+      className="nav-wrapper"
+      initial={{ y: "-80px" }}
+      animate={{ y: "0px" }}
+      transition={{ type: "spring", stiffness: 50, damping: 6 }}
+    >
+      <m.div
         className={
           colorChange ? "top-navigation-main nav-down" : "top-navigation-main"
         }
       >
-        <div className="bolder text-black large-text">Tution</div>
+        <div>
+          {colorChange && (
+            <m.img
+              animate={{ opacity: 1, y: "0" }}
+              initial={{ opacity: 0, y: "20px" }}
+              transition={{ duration: "0.8" }}
+              src={logoSmall}
+              width={"50px"}
+              height={"50px"}
+            />
+          )}
+          {!colorChange && (
+            <m.img
+              animate={{ opacity: 1, y: "0" }}
+              initial={{ opacity: 0, y: "-20px" }}
+              transition={{ duration: "1.2" }}
+              src={logo}
+              width={"80px"}
+              height={"80px"}
+            />
+          )}
+        </div>
         <div className="flex-gap">
-          <div className="bolder">Home</div>
-          <div>Services</div>
-          <div>Cabbie</div>
+          <m.div
+            onMouseEnter={() => setFirstItem(true)}
+            onMouseLeave={() => setFirstItem(false)}
+          >
+            <div
+              className="primary-colour bold pointer menu-nav"
+              style={{ fontSize: "18px" }}
+            >
+              Tution{" "}
+              <m.i
+                className="pi pi-angle-down"
+                animate={{ rotate: firstItem ? "360deg" : "180deg" }}
+                transition={{ duration: "0.3" }}
+              ></m.i>
+            </div>
+            <AnimatePresence>
+              {firstItem && (
+                <m.div
+                  className="menu-box-wrapper"
+                  animate={{ opacity: 1, y: "0" }}
+                  initial={{ opacity: 0, y: "20px" }}
+                  exit={{ opacity: 0, y: "20px" }}
+                  transition={{ duration: "0.3" }}
+                >
+                  <m.div className="menu-box">
+                    <div className="primary-colour bold pointer menu-nav">
+                      Grade
+                    </div>
+                    <div className="primary-colour bold pointer menu-nav">
+                      Subject
+                    </div>
+                    <div className="primary-colour bold pointer menu-nav">
+                      Services
+                    </div>
+                  </m.div>
+                </m.div>
+              )}
+            </AnimatePresence>
+          </m.div>
+          <m.div
+            className="primary-colour bold pointer menu-nav"
+            onMouseEnter={() => setSecondItem(true)}
+            onMouseLeave={() => setSecondItem(false)}
+          >
+            <div
+              className="primary-colour bold pointer menu-nav"
+              style={{ fontSize: "18px" }}
+            >
+              IELTS{" "}
+              <m.i
+                className="pi pi-angle-down"
+                animate={{ rotate: secondItem ? "360deg" : "180deg" }}
+                transition={{ duration: "0.3" }}
+              ></m.i>
+            </div>
+            <AnimatePresence>
+              {secondItem && (
+                <m.div
+                  className="menu-box-wrapper"
+                  animate={{ opacity: 1, y: "0" }}
+                  initial={{ opacity: 0, y: "20px" }}
+                  exit={{ opacity: 0, y: "20px" }}
+                  transition={{ duration: "0.3" }}
+                >
+                  <m.div className="menu-box">
+                    <div className="primary-colour bold pointer menu-nav">
+                      Subject
+                    </div>
+                    <div className="primary-colour bold pointer menu-nav">
+                      Services
+                    </div>
+                  </m.div>
+                </m.div>
+              )}
+            </AnimatePresence>
+          </m.div>
+          <m.div
+            className="primary-colour bold pointer"
+            onMouseEnter={() => setThirdItem(true)}
+            onMouseLeave={() => setThirdItem(false)}
+          >
+            <div
+              className="primary-colour bold pointer menu-nav"
+              style={{ fontSize: "18px" }}
+            >
+              Summer Activities{" "}
+              <m.i
+                className="pi pi-angle-down"
+                animate={{ rotate: thirdItem ? "360deg" : "180deg" }}
+                transition={{ duration: "0.3" }}
+              ></m.i>
+            </div>
+            <AnimatePresence>
+              {thirdItem && (
+                <m.div
+                  className="menu-box-wrapper"
+                  animate={{ opacity: 1, y: "0" }}
+                  initial={{ opacity: 0, y: "20px" }}
+                  exit={{ opacity: 0, y: "20px" }}
+                  transition={{ duration: "0.3" }}
+                >
+                  <m.div className="menu-box">
+                    <div className="primary-colour bold pointer menu-nav">
+                      Languages
+                    </div>
+                    <div className="primary-colour bold pointer menu-nav">
+                      Music & Art
+                    </div>
+                    <div className="primary-colour bold pointer menu-nav">
+                      Other
+                    </div>
+                  </m.div>
+                </m.div>
+              )}
+            </AnimatePresence>
+          </m.div>
         </div>
         <div className="flex-small-gap">
           <Button type="primary" className="p-button-sm our-button">
@@ -34,8 +179,8 @@ function TopNavigation() {
             SignUp
           </Button>
         </div>
-      </div>
-    </div>
+      </m.div>
+    </m.div>
   );
 }
 
