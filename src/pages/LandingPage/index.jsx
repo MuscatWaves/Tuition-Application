@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import TopNavigation from "../../components/TopNavigation";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
@@ -13,6 +13,7 @@ import Footer from "../../components/Footer";
 const LandingPage = () => {
   let navigate = useNavigate();
   const [showVideo, toggleVideo] = useState(false);
+  const aboutRef = useRef(null);
   const [cards, setCards] = useState({
     card1: false,
     card2: false,
@@ -23,9 +24,12 @@ const LandingPage = () => {
     zoomView: {
       scale: 1,
       opacity: 1,
-      transition: { stiffness: 40, type: "spring", damping: 20 },
+      transition: {
+        duration: 1.25,
+        ease: "easeOut",
+      },
     },
-    zoomHidden: { scale: 0.85, opacity: 0 },
+    zoomHidden: { scale: 0.9, opacity: 0 },
     leftViewVariant: {
       x: "0",
       opacity: 1,
@@ -59,14 +63,14 @@ const LandingPage = () => {
   const logoRevealVariant = {
     leftShow: {
       x: "0",
-      transition: { type: "spring", delay: 0.5 },
+      transition: { type: "spring", delay: 0.25 },
     },
     leftHidden: {
       x: "10vw",
     },
     rightShow: {
       opacity: 1,
-      transition: { delay: 1, duration: 0.6 },
+      transition: { delay: 0.3, duration: 0.5 },
     },
     rightHidden: {
       opacity: 0,
@@ -83,7 +87,7 @@ const LandingPage = () => {
     },
     rightShow: {
       opacity: 1,
-      transition: { delay: 1, duration: 0.6 },
+      transition: { delay: 0.7, duration: 0.6 },
     },
     rightHidden: {
       opacity: 0,
@@ -95,7 +99,7 @@ const LandingPage = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 1,
+        staggerChildren: 0.5,
       },
     },
   };
@@ -116,6 +120,9 @@ const LandingPage = () => {
       },
     },
   };
+
+  const executeScroll = () =>
+    aboutRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
 
   return (
     <m.div
@@ -141,6 +148,7 @@ const LandingPage = () => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              autoPlay={1}
             ></iframe>
           </div>
         )}
@@ -186,6 +194,7 @@ const LandingPage = () => {
                 size="large"
                 shape="round"
                 label="Learn More"
+                onClick={executeScroll}
               />
             </m.div>
           </m.div>
@@ -207,7 +216,7 @@ const LandingPage = () => {
               Wondering who we are?
             </div>
             <div className="about-section-desc">
-              <div>
+              <div ref={aboutRef} className={"image-landing-about-section"}>
                 <m.img
                   src={logo}
                   alt="logo"

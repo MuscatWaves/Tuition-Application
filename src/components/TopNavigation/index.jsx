@@ -4,12 +4,14 @@ import logo from "../../images/logo-head.png";
 import logoSmall from "../../images/logo-small.png";
 import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
+import { useNavigate } from "react-router-dom";
 
 function TopNavigation() {
   const [colorChange, setColorchange] = useState(false);
   const [firstItem, setFirstItem] = useState(false);
   const [secondItem, setSecondItem] = useState(false);
   const [thirdItem, setThirdItem] = useState(false);
+  const navigateTo = useNavigate();
   const changeNavbarColor = () => {
     if (window.scrollY >= 50) {
       setColorchange(true);
@@ -40,6 +42,7 @@ function TopNavigation() {
               src={logoSmall}
               width={"50px"}
               height={"50px"}
+              onClick={() => navigateTo("/")}
             />
           )}
           {!colorChange && (
@@ -50,6 +53,7 @@ function TopNavigation() {
               src={logo}
               width={"80px"}
               height={"80px"}
+              onClick={() => navigateTo("/")}
             />
           )}
         </div>
@@ -61,6 +65,9 @@ function TopNavigation() {
             <div
               className="primary-colour bold pointer menu-nav"
               style={{ fontSize: "18px" }}
+              onClick={() => {
+                navigateTo("/tuition");
+              }}
             >
               Tution{" "}
               <m.i

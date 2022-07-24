@@ -2,50 +2,55 @@
 @import "primereact/resources/primereact.min.css";
 @import "primeicons/primeicons.css";
 
+:root {
+  --primary-color: #6d7993;
+  --secondary-color: #96858f;
+  --ternary-color: #9099a2;
+  --text-color: #576176;
+}
+
 h1 {
   margin: 0;
 }
 
 .App {
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.040), rgba(0, 0, 0, 0.060)), url("./images/main-background.webp"); */
-  /* background: rgb(221,221,221);
-    background: radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(238,238,238,1) 100%); */
   background: #d5d5d5;
   min-height: 100vh;
-  scroll-behavior: smooth;
   box-sizing: border-box;
   overflow: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
 }
 
 /* Global Styles used */
 
 .our-button {
-  background: #96858f;
-  border: #96858f;
+  background: var(--secondary-color);
+  border: var(--secondary-color);
 }
 
 .our-button:hover {
-  background: #96858f !important;
+  background: var(--secondary-color) !important;
 }
 
 .p-button-outlined {
-  color: #96858f !important;
+  color: var(--secondary-color) !important;
 }
 
 .primary-colour {
-  color: #6d7993;
+  color: var(--primary-color);
 }
 
 .secondary-colour {
-  color: #96858f;
+  color: var(--secondary-color);
 }
 
 .ternary-colour {
-  color: #9099a2;
+  color: var(--ternary-color);
 }
 
 .text-colour {
-  color: #576176;
+  color: var(--text-color);
 }
 
 .text-grey {
@@ -54,10 +59,6 @@ h1 {
 
 .text-light-grey {
   color: #9e9fa7;
-}
-
-.text-orange {
-  color: #f07d00;
 }
 
 .text-black {
@@ -158,26 +159,6 @@ h1 {
   color: red;
 }
 
-.slide-in-left-animation {
-  animation: slide-in-left 0.8s;
-}
-
-.slide-in-right-animation {
-  animation: slide-in-right 0.8s;
-}
-
-.slide-in-top-animation {
-  animation: slide-in-top 0.8s;
-}
-
-.slide-in-bottom-animation {
-  animation: slide-in-bottom 0.8s;
-}
-
-.zoom-in-animation {
-  animation: zoom-in 0.8s;
-}
-
 .small-padding-bottom {
   padding-bottom: 1rem;
 }
@@ -211,7 +192,7 @@ h1 {
 .horizontal-line {
   width: 60px;
   height: 5px;
-  background-color: #96858f;
+  background-color: var(--secondary-color);
 }
 
 .flex-small-gap-column {
@@ -232,74 +213,30 @@ h1 {
   gap: 1.5rem;
 }
 
+/* Custom Scrollbar */
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) var(--primary-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  border: 3px solid var(--secondary-color);
+}
+
 /* Custom Animations */
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes zoom-in {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in-left {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in-right {
-  0% {
-    transform: translateX(100px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-top {
-  0% {
-    transform: translateY(50px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-bottom {
-  0% {
-    transform: translateY(-50px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes card-description-animation {
-  0% {
-    transform: translateY(100px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
 
 @keyframes pulse-border {
   0% {
