@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BreadCrumb from "../BreadCrumb";
+import { Button } from "primereact/button";
 import "./services.css";
 import dummyImage from "../../images/grades.svg";
 
@@ -61,8 +62,8 @@ const Services = (
         data: {
           icon: dummyImage,
           innerData: [
-            { id: 6, name: "Grade 6" },
-            { id: 7, name: "Grade 7" },
+            { id: 6, name: "Face to Face tuition" },
+            { id: 7, name: "Topic wise QP & AP" },
             { id: 8, name: "Grade 8" },
             { id: 9, name: "Grade 9" },
           ],
@@ -98,19 +99,36 @@ const Services = (
               </div>
             ))}
           </div>
+          <div className="service-left-section-button">
+            <Button type="primary" className="p-button our-button">
+              Join Now
+            </Button>
+          </div>
         </div>
         <div className="services-right-section">
           {service.menu.map(
             (menu) =>
               activeMenu === menu.id && (
                 <div key={menu.id}>
-                  <div>
-                    <img src={menu.data.icon} />
-                    <div>{menu.name}</div>
+                  <div className="flex-gap">
+                    <img
+                      src={menu.data.icon}
+                      className="services-right-section-image"
+                      alt="menu.id"
+                    />
+                    <div
+                      className="bolder secondary-colour"
+                      style={{ fontSize: "42px" }}
+                    >
+                      {menu.name}
+                    </div>
                   </div>
-                  <div>
+                  <div className="services-right-section-list">
                     {menu.data.innerData.map((inner) => (
-                      <div key={inner.id}>
+                      <div
+                        key={inner.id}
+                        className="services-right-section-card"
+                      >
                         <div>{inner.name}</div>
                       </div>
                     ))}

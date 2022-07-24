@@ -6,6 +6,7 @@
   flex-direction: column;
   gap: 1rem;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 .service-body {
@@ -62,4 +63,40 @@
   height: 6px;
   width: 100%;
   background-color: var(--secondary-color);
+}
+
+.services-right-section {
+  padding: 2rem;
+}
+
+.services-right-section-image {
+  width: 300px;
+  height: 300px;
+}
+
+.services-right-section-list {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.services-right-section-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1.5rem;
+  width: 180px;
+  height: 180px;
+  border-radius: 30px;
+}
+
+.service-left-section-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
 }
