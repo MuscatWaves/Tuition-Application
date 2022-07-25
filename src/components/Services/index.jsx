@@ -1,82 +1,75 @@
 import React, { useState } from "react";
 import BreadCrumb from "../BreadCrumb";
 import { Button } from "primereact/button";
+import { m } from "framer-motion";
 import "./services.css";
-import dummyImage from "../../images/grades.svg";
 
-const Services = (
-  {
-    // service
-  }
-) => {
-  const [activeMenu, setActiveMenu] = useState(1);
-  const service = {
-    nav: [
-      {
-        id: 0,
-        name: "Home",
-        url: "/",
+const Services = ({ service, query }) => {
+  localStorage.removeItem("tabSelected");
+  const [activeMenu, setActiveMenu] = useState(query);
+
+  const leftMenuVariant = {
+    show: {
+      x: "0",
+      opacity: 1,
+      transition: { type: "spring", stiffness: 40, damping: 6 },
+    },
+    hidden: {
+      x: "-100px",
+      opacity: 0,
+    },
+  };
+
+  const heading = {
+    hidden: { opacity: 1, y: "60px" },
+    show: {
+      y: "0",
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 40,
+        damping: 9,
       },
-      {
-        id: 1,
-        name: "Tuition",
-        url: "/tuition",
-        active: true,
+    },
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
       },
-    ],
-    menu: [
-      {
-        id: 1,
-        name: "Grades",
-        data: {
-          icon: dummyImage,
-          innerData: [
-            { id: 1, name: "Grade 1" },
-            { id: 2, name: "Grade 2" },
-            { id: 3, name: "Grade 3" },
-            { id: 4, name: "Grade 4" },
-            { id: 5, name: "Grade 5" },
-            { id: 6, name: "Grade 6" },
-            { id: 7, name: "Grade 7" },
-            { id: 8, name: "Grade 8" },
-            { id: 9, name: "Grade 9" },
-          ],
-        },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: "100px",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      delay: 0.7,
+      transition: {
+        type: "spring",
+        stiffness: 40,
+        damping: 9,
       },
-      {
-        id: 2,
-        name: "Subjects",
-        data: {
-          icon: dummyImage,
-          innerData: [
-            { id: 1, name: "Grade 1" },
-            { id: 2, name: "Grade 2" },
-            { id: 3, name: "Grade 3" },
-            { id: 4, name: "Grade 4" },
-          ],
-        },
-      },
-      {
-        id: 3,
-        name: "Services",
-        data: {
-          icon: dummyImage,
-          innerData: [
-            { id: 6, name: "Face to Face tuition" },
-            { id: 7, name: "Topic wise QP & AP" },
-            { id: 8, name: "Grade 8" },
-            { id: 9, name: "Grade 9" },
-          ],
-        },
-      },
-    ],
+    },
   };
 
   return (
     <div className="services-main-body">
       <BreadCrumb items={service.nav} />
       <div className="service-body">
-        <div className="services-left-section">
+        <m.div
+          className="services-left-section"
+          variants={leftMenuVariant}
+          initial="hidden"
+          animate="show"
+        >
           <div
             className="text-light-grey bold primary-font"
             style={{ fontSize: "3em" }}
@@ -104,13 +97,18 @@ const Services = (
               Join Now
             </Button>
           </div>
-        </div>
+        </m.div>
         <div className="services-right-section">
           {service.menu.map(
             (menu) =>
               activeMenu === menu.id && (
                 <div key={menu.id}>
-                  <div className="flex-gap">
+                  <m.div
+                    className="flex-gap"
+                    variants={heading}
+                    animate="show"
+                    initial="hidden"
+                  >
                     <img
                       src={menu.data.icon}
                       className="services-right-section-image"
@@ -122,17 +120,23 @@ const Services = (
                     >
                       {menu.name}
                     </div>
-                  </div>
-                  <div className="services-right-section-list">
+                  </m.div>
+                  <m.div
+                    className="services-right-section-list"
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                  >
                     {menu.data.innerData.map((inner) => (
-                      <div
+                      <m.div
                         key={inner.id}
                         className="services-right-section-card"
+                        variants={item}
                       >
                         <div>{inner.name}</div>
-                      </div>
+                      </m.div>
                     ))}
-                  </div>
+                  </m.div>
                 </div>
               )
           )}

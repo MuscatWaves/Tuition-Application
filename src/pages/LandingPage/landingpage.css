@@ -33,7 +33,7 @@
   position: relative;
   display: flex;
   z-index: 10;
-  background: url("../../images/banner.webp.png");
+  background: url("../../images/banner.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

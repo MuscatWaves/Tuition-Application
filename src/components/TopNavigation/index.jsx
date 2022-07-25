@@ -4,9 +4,10 @@ import logo from "../../images/logo-head.png";
 import logoSmall from "../../images/logo-small.png";
 import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function TopNavigation() {
+  const location = useLocation().pathname;
   const [colorChange, setColorchange] = useState(false);
   const [firstItem, setFirstItem] = useState(false);
   const [secondItem, setSecondItem] = useState(false);
@@ -59,22 +60,28 @@ function TopNavigation() {
         </div>
         <div className="flex-gap">
           <m.div
-            onMouseEnter={() => setFirstItem(true)}
-            onMouseLeave={() => setFirstItem(false)}
+            onMouseEnter={() => location !== "/tuition" && setFirstItem(true)}
+            onMouseLeave={() => location !== "/tuition" && setFirstItem(false)}
           >
             <div
-              className="primary-colour bold pointer menu-nav"
+              className={
+                location !== "/tuition"
+                  ? "primary-colour bold pointer menu-nav"
+                  : "secondary-colour bolder"
+              }
               style={{ fontSize: "18px" }}
               onClick={() => {
                 navigateTo("/tuition");
               }}
             >
               Tution{" "}
-              <m.i
-                className="pi pi-angle-down"
-                animate={{ rotate: firstItem ? "360deg" : "180deg" }}
-                transition={{ duration: "0.3" }}
-              ></m.i>
+              {location !== "/tuition" && (
+                <m.i
+                  className="pi pi-angle-down"
+                  animate={{ rotate: firstItem ? "360deg" : "180deg" }}
+                  transition={{ duration: "0.3" }}
+                ></m.i>
+              )}
             </div>
             <AnimatePresence>
               {firstItem && (
@@ -86,10 +93,22 @@ function TopNavigation() {
                   transition={{ duration: "0.3" }}
                 >
                   <m.div className="menu-box">
-                    <div className="primary-colour bold pointer menu-nav">
+                    <div
+                      className="primary-colour bold pointer menu-nav"
+                      onClick={() => {
+                        localStorage.setItem("tabSelected", 1);
+                        navigateTo("/tuition");
+                      }}
+                    >
                       Grade
                     </div>
-                    <div className="primary-colour bold pointer menu-nav">
+                    <div
+                      className="primary-colour bold pointer menu-nav"
+                      onClick={() => {
+                        localStorage.setItem("tabSelected", 2);
+                        navigateTo("/tuition");
+                      }}
+                    >
                       Subject
                     </div>
                     <div className="primary-colour bold pointer menu-nav">
