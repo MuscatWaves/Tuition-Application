@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import BreadCrumb from "../BreadCrumb";
 import { Button } from "primereact/button";
 import { m } from "framer-motion";
 import "./services.css";
 
-const Services = ({ service, query }) => {
+const Services = ({ service, activeMenu, setActiveMenu }) => {
   localStorage.removeItem("tabSelected");
-  const [activeMenu, setActiveMenu] = useState(query);
-
   const leftMenuVariant = {
     show: {
       x: "0",
@@ -85,7 +83,14 @@ const Services = ({ service, query }) => {
                       ? "bolder active-menu-item-services"
                       : "menu-item-services primary-colour"
                   }
-                  onClick={() => setActiveMenu(menu.id)}
+                  onClick={() => {
+                    setActiveMenu(menu.id);
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                 >
                   {menu.name}
                 </div>

@@ -6,7 +6,7 @@ import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function TopNavigation() {
+const TopNavigation = ({ setActiveItem }) => {
   const location = useLocation().pathname;
   const [colorChange, setColorchange] = useState(false);
   const [firstItem, setFirstItem] = useState(false);
@@ -60,28 +60,22 @@ function TopNavigation() {
         </div>
         <div className="flex-gap">
           <m.div
-            onMouseEnter={() => location !== "/tuition" && setFirstItem(true)}
-            onMouseLeave={() => location !== "/tuition" && setFirstItem(false)}
+            onMouseEnter={() => setFirstItem(true)}
+            onMouseLeave={() => setFirstItem(false)}
           >
             <div
-              className={
-                location !== "/tuition"
-                  ? "primary-colour bold pointer menu-nav"
-                  : "secondary-colour bolder"
-              }
+              className={"primary-colour bold pointer menu-nav"}
               style={{ fontSize: "18px" }}
               onClick={() => {
                 navigateTo("/tuition");
               }}
             >
               Tution{" "}
-              {location !== "/tuition" && (
-                <m.i
-                  className="pi pi-angle-down"
-                  animate={{ rotate: firstItem ? "360deg" : "180deg" }}
-                  transition={{ duration: "0.3" }}
-                ></m.i>
-              )}
+              <m.i
+                className="pi pi-angle-down"
+                animate={{ rotate: firstItem ? "360deg" : "180deg" }}
+                transition={{ duration: "0.3" }}
+              ></m.i>
             </div>
             <AnimatePresence>
               {firstItem && (
@@ -98,6 +92,16 @@ function TopNavigation() {
                       onClick={() => {
                         localStorage.setItem("tabSelected", 1);
                         navigateTo("/tuition");
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          setActiveItem(1);
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: "smooth",
+                          });
                       }}
                     >
                       Grade
@@ -107,6 +111,16 @@ function TopNavigation() {
                       onClick={() => {
                         localStorage.setItem("tabSelected", 2);
                         navigateTo("/tuition");
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          setActiveItem(2);
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: "smooth",
+                          });
                       }}
                     >
                       Subject
@@ -116,6 +130,16 @@ function TopNavigation() {
                       onClick={() => {
                         localStorage.setItem("tabSelected", 3);
                         navigateTo("/tuition");
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          setActiveItem(3);
+                        setActiveItem &&
+                          location === "/tuition" &&
+                          window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: "smooth",
+                          });
                       }}
                     >
                       Services
@@ -214,6 +238,6 @@ function TopNavigation() {
       </m.div>
     </m.div>
   );
-}
+};
 
 export default TopNavigation;

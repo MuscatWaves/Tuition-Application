@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Services from "../../components/Services";
 import TopNavigation from "../../components/TopNavigation";
 import Footer from "../../components/Footer";
@@ -8,7 +8,8 @@ import subjectsImage from "../../images/subjects.svg";
 import { m } from "framer-motion";
 
 const Tuition = () => {
-  const query = JSON.parse(localStorage.getItem("tabSelected")) || 1;
+  const query = Number(localStorage.getItem("tabSelected"));
+  const [activeMenu, setActiveMenu] = useState(query || 1);
   const service = {
     nav: [
       {
@@ -85,9 +86,13 @@ const Tuition = () => {
       transition={{ duration: 0.6 }}
       exit={{ opacity: 0 }}
     >
-      <TopNavigation />
-      <Services service={service} query={query} />
-      <Footer />
+      <TopNavigation setActiveItem={setActiveMenu} />
+      <Services
+        service={service}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
+      <Footer setActiveItem={setActiveMenu} />
     </m.div>
   );
 };
