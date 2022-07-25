@@ -111,7 +111,13 @@ function TopNavigation() {
                     >
                       Subject
                     </div>
-                    <div className="primary-colour bold pointer menu-nav">
+                    <div
+                      className="primary-colour bold pointer menu-nav"
+                      onClick={() => {
+                        localStorage.setItem("tabSelected", 3);
+                        navigateTo("/tuition");
+                      }}
+                    >
                       Services
                     </div>
                   </m.div>
