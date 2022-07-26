@@ -15,7 +15,7 @@ const Footer = ({ setActiveItem }) => {
       <div className="horizontal-line-footer"></div>
       <div className="footer">
         <div>
-          <img src={logo} alt={"logo"} />
+          <img src={logo} alt={"logo"} width={"250px"} height={"250px"} />
         </div>
 
         <div className="each-division-service-footer">

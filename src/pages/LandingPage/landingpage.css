@@ -17,14 +17,14 @@
 }
 
 .first-section {
-  display: grid;
-  grid-template-columns: 45% 50%;
+  /* display: grid;
+  grid-template-columns: 45% 50%; */
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  height: 55vh;
+  height: fit-content;
   background-color: #9099a218;
-  padding-right: 4rem;
+  padding: 4rem;
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -150,7 +150,8 @@
 }
 
 .how-we-work-image {
-  background: url("../../images/how_we_work_image.jpg");
+  /* background: url("../../images/how_we_work_image.jpg"); */
+  background: var(--secondary-color);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

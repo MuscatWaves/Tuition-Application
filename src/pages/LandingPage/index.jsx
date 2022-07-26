@@ -156,12 +156,12 @@ const LandingPage = () => {
       <TopNavigation />
       <m.div className="landing-body" variants={inViewVariant}>
         <m.div className="first-section">
-          <m.div
+          {/* <m.div
             className="photoWrapper"
             variants={inViewVariant}
             whileInView={"zoomView"}
             initial={"zoomHidden"}
-          ></m.div>
+          ></m.div> */}
           <m.div
             className="flex-gap-column-2"
             variants={inViewVariant}
@@ -224,6 +224,8 @@ const LandingPage = () => {
                   whileInView={"leftShow"}
                   initial={"leftHidden"}
                   viewport={{ margin: "-80px" }}
+                  width={"280px"}
+                  height={"280px"}
                 ></m.img>
               </div>
               <m.div
@@ -320,7 +322,8 @@ const LandingPage = () => {
                       : "each-card"
                   }
                   style={{
-                    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6)), url(${card.image})`,
+                    // background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6)), url(${card.image})`,
+                    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6))`,
                   }}
                   key={card.id}
                   onMouseEnter={() =>

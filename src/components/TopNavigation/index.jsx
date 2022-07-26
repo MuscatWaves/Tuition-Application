@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "primereact/button";
-import logo from "../../images/logo-head.png";
+import logo from "../../images/logo.png";
 import logoSmall from "../../images/logo-small.png";
 import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
@@ -52,8 +52,8 @@ const TopNavigation = ({ setActiveItem }) => {
               initial={{ opacity: 0, y: "-20px" }}
               transition={{ duration: "1.2" }}
               src={logo}
-              width={"80px"}
-              height={"80px"}
+              width={"130px"}
+              height={"130px"}
               onClick={() => navigateTo("/")}
             />
           )}
