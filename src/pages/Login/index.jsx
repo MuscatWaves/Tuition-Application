@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import React from "react";
-import bannerImage from "../../images/banner.webp";
 
 const Login = () => {
   return (
@@ -10,9 +9,7 @@ const Login = () => {
       transition={{ duration: 0.6 }}
       exit={{ opacity: 0 }}
     >
-      <div>
-        <img src={bannerImage} alt="sac"></img>
-      </div>
+      <div>Tester</div>
     </motion.div>
   );
 };

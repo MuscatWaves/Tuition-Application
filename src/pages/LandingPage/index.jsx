@@ -8,6 +8,7 @@ import { m, AnimatePresence } from "framer-motion";
 import "./landingpage.css";
 import logo from "../../images/logo.png";
 import howWeWorkImage from "../../images/how_we_work.svg";
+import learnImage from "../../images/learn.svg";
 import Footer from "../../components/Footer";
 
 const LandingPage = () => {
@@ -153,51 +154,50 @@ const LandingPage = () => {
           </div>
         )}
       </Dialog>
-      <TopNavigation />
+      <TopNavigation landing />
       <m.div className="landing-body" variants={inViewVariant}>
         <m.div className="first-section">
-          {/* <m.div
-            className="photoWrapper"
-            variants={inViewVariant}
-            whileInView={"zoomView"}
-            initial={"zoomHidden"}
-          ></m.div> */}
-          <m.div
-            className="flex-gap-column-2"
-            variants={inViewVariant}
-            whileInView={"leftViewVariant"}
-            initial={"leftViewHidden"}
-          >
-            <m.div>
-              <div className="text primary-font primary-colour primary-header-text">
-                Company
-              </div>
+          <div className="first-section-content">
+            <m.div
+              className="flex-gap-column-2"
+              variants={inViewVariant}
+              whileInView={"leftViewVariant"}
+              initial={"leftViewHidden"}
+            >
+              <m.div>
+                <div className="text primary-font text-white-light primary-header-text">
+                  Company
+                </div>
+              </m.div>
+              <m.div className="text-white-light description-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                sit amet molestie est, vel condimentum lorem.
+              </m.div>
+              <m.div className="flex-small-gap">
+                <Button
+                  type="outlined"
+                  size="large"
+                  shape="round"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  label="Sign Up"
+                  onClick={() => navigate("/login")}
+                  className={"our-button"}
+                />
+                <Button
+                  type="primary"
+                  className="p-button-outlined"
+                  size="large"
+                  shape="round"
+                  label="Learn More"
+                  onClick={executeScroll}
+                />
+              </m.div>
             </m.div>
-            <m.div className="text-colour description-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit
-              amet molestie est, vel condimentum lorem.
-            </m.div>
-            <m.div className="flex-small-gap">
-              <Button
-                type="outlined"
-                size="large"
-                shape="round"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                label="Sign Up"
-                onClick={() => navigate("/login")}
-                className={"our-button"}
-              />
-              <Button
-                type="primary"
-                className="p-button-outlined"
-                size="large"
-                shape="round"
-                label="Learn More"
-                onClick={executeScroll}
-              />
-            </m.div>
-          </m.div>
+            <div className="first-section-image">
+              <img src={learnImage} alt="learn new things" />
+            </div>
+          </div>
         </m.div>
         <m.div className="second-section-wrapper">
           <m.div

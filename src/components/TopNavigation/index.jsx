@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import logo from "../../images/logo.png";
 import logoSmall from "../../images/logo-small.png";
+import whiteLogo from "../../images/white-logo.png";
 import { m, AnimatePresence } from "framer-motion";
 import "./topnavigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const TopNavigation = ({ setActiveItem }) => {
+const TopNavigation = ({ setActiveItem, landing }) => {
   const location = useLocation().pathname;
   const [colorChange, setColorchange] = useState(false);
   const [firstItem, setFirstItem] = useState(false);
@@ -51,9 +52,9 @@ const TopNavigation = ({ setActiveItem }) => {
               animate={{ opacity: 1, y: "0" }}
               initial={{ opacity: 0, y: "-20px" }}
               transition={{ duration: "1.2" }}
-              src={logo}
-              width={"130px"}
-              height={"130px"}
+              src={landing ? whiteLogo : logo}
+              width={"140px"}
+              height={"140px"}
               onClick={() => navigateTo("/")}
             />
           )}
@@ -64,7 +65,11 @@ const TopNavigation = ({ setActiveItem }) => {
             onMouseLeave={() => setFirstItem(false)}
           >
             <div
-              className={"primary-colour bold pointer menu-nav"}
+              className={
+                landing && !colorChange
+                  ? "bold pointer menu-nav white-appearance"
+                  : "primary-colour bold pointer menu-nav"
+              }
               style={{ fontSize: "18px" }}
               onClick={() => {
                 navigateTo("/tuition");
@@ -88,7 +93,7 @@ const TopNavigation = ({ setActiveItem }) => {
                 >
                   <m.div className="menu-box">
                     <div
-                      className="primary-colour bold pointer menu-nav"
+                      className={"primary-colour bold pointer menu-nav"}
                       onClick={() => {
                         localStorage.setItem("tabSelected", 1);
                         navigateTo("/tuition");
@@ -155,7 +160,11 @@ const TopNavigation = ({ setActiveItem }) => {
             onMouseLeave={() => setSecondItem(false)}
           >
             <div
-              className="primary-colour bold pointer menu-nav"
+              className={
+                landing && !colorChange
+                  ? "bold pointer menu-nav white-appearance"
+                  : "primary-colour bold pointer menu-nav"
+              }
               style={{ fontSize: "18px" }}
             >
               IELTS{" "}
@@ -192,7 +201,11 @@ const TopNavigation = ({ setActiveItem }) => {
             onMouseLeave={() => setThirdItem(false)}
           >
             <div
-              className="primary-colour bold pointer menu-nav"
+              className={
+                landing && !colorChange
+                  ? "bold pointer menu-nav white-appearance"
+                  : "primary-colour bold pointer menu-nav"
+              }
               style={{ fontSize: "18px" }}
             >
               Summer Activities{" "}

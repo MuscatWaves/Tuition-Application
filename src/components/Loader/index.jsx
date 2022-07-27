@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ojimage from "../../images/brush.webp";
 import "./loader.css";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { m, LazyMotion, domAnimation } from "framer-motion";
@@ -20,7 +19,6 @@ const Loader = ({ minHeight }) => {
         exit={{ opacity: 0 }}
       >
         <div className="inner-loading-data">
-          <img src={ojimage} className="loader-image" alt="Oman jobs" />
           <ProgressSpinner />
         </div>
       </m.div>

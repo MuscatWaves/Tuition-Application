@@ -24,6 +24,10 @@
   z-index: 100;
 }
 
+.white-appearance {
+  color: #e6e6e6;
+}
+
 .menu-nav {
   position: relative;
   transition: 0.3s;

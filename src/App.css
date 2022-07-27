@@ -9,6 +9,9 @@
   --secondary-color: #6b5759;
   --ternary-color: #9099a2;
   --text-color: #576176;
+  --magic-number: 0.09719; /* tan(11°)/2 */
+  --content-width: 100vw;
+  --skew-padding: calc(var(--content-width) * var(--magic-number));
 }
 
 h1 {
@@ -36,7 +39,7 @@ h1 {
 }
 
 .p-button-outlined {
-  color: var(--secondary-color) !important;
+  color: #d5d5d5 !important;
 }
 
 .primary-colour {
@@ -61,6 +64,10 @@ h1 {
 
 .text-light-grey {
   color: #9e9fa7;
+}
+
+.text-white-light {
+  color: #e6e6e6;
 }
 
 .text-black {
@@ -220,7 +227,7 @@ h1 {
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--secondary-color) var(--primary-color);
+  scrollbar-color: var(--secondary-color) #d5d5d5;
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -229,7 +236,7 @@ h1 {
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--primary-color);
+  background: #d5d5d5;
 }
 
 *::-webkit-scrollbar-thumb {
