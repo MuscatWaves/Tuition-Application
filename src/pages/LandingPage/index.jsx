@@ -321,10 +321,6 @@ const LandingPage = () => {
                       ? "each-card each-card--active"
                       : "each-card"
                   }
-                  style={{
-                    // background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6)), url(${card.image})`,
-                    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0, 0, 0.6))`,
-                  }}
                   key={card.id}
                   onMouseEnter={() =>
                     setCards({
@@ -344,6 +340,12 @@ const LandingPage = () => {
                 >
                   {!cards[`card${card.id}`] && (
                     <div className="card--inactive larger-text bolder">
+                      <card.icon
+                        style={{
+                          fontSize: "60px",
+                          color: "var(--ternary-color)",
+                        }}
+                      />
                       {card.name}
                     </div>
                   )}
@@ -351,7 +353,9 @@ const LandingPage = () => {
                     {cards[`card${card.id}`] && (
                       <m.div
                         key={card.id}
-                        className={"card-description secondary-text-colour"}
+                        className={
+                          "card-description secondary-text-colour pointer"
+                        }
                         animate={{ y: 0 }}
                         initial={{ y: "120px" }}
                         transition={{
@@ -360,6 +364,7 @@ const LandingPage = () => {
                           damping: 10,
                         }}
                         exit={{ y: "120px", opacity: 0 }}
+                        onClick={() => navigate(card.link)}
                       >
                         <div className="bolder large-text">{card.name}</div>
                         <div className="horizontal-line"></div>

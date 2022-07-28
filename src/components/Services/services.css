@@ -54,7 +54,7 @@
   content: "";
   height: 6px;
   width: 20%;
-  background-color: var(--secondary-color);
+  background-color: var(--red-shade-color);
   transition: 0.3s;
 }
 
@@ -62,7 +62,7 @@
   content: "";
   height: 6px;
   width: 100%;
-  background-color: var(--secondary-color);
+  background-color: var(--red-shade-color);
 }
 
 .services-right-section {

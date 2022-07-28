@@ -11,7 +11,7 @@ const BreadCrumb = ({ items }) => {
               <AiFillCaretRight
                 style={
                   item.active
-                    ? { color: "var(--secondary-color)" }
+                    ? { color: "var(--red-shade-color)" }
                     : { color: "var(--primary-color)" }
                 }
               />

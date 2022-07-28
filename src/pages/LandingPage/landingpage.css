@@ -19,16 +19,38 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
+  /* background-image: linear-gradient(
+    to left top,
+    #6d7993,
+    #727292,
+    #7a698d,
+    #836083,
+    #8c5676,
+    #8c536d,
+    #8c5064,
+    #8a4e5c,
+    #83515b,
+    #7b535a,
+    #735559,
+    #6b5759
+  ); */
   background-image: linear-gradient(
     to right bottom,
-    #6d7993,
+    #6b5759,
+    #715b63,
+    #75616e,
+    #76677a,
     #746e86,
-    #766576,
-    #725d67,
-    #6b5759
+    #746e89,
+    #746f8d,
+    #746f90,
+    #7c668a,
+    #865d80,
+    #8e5371,
+    #934a5f
   );
   gap: 4rem;
-  height: 70vh;
+  height: 75vh;
   padding: 4rem;
   padding-top: 170px;
   border-radius: 20px;
@@ -103,6 +125,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   height: 300px;
+  background: var(--primary-color);
 }
 
 .card--inactive {
@@ -232,7 +255,7 @@
   z-index: 3;
   width: 0;
   height: 0;
-  border-left: 32px solid var(--secondary-color);
+  border-left: 32px solid var(--red-shade-color);
   border-top: 22px solid transparent;
   border-bottom: 22px solid transparent;
 }
