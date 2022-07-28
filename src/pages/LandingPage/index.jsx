@@ -342,11 +342,11 @@ const LandingPage = () => {
                     <div className="card--inactive larger-text bolder">
                       <card.icon
                         style={{
-                          fontSize: "60px",
-                          color: "var(--ternary-color)",
+                          fontSize: "80px",
+                          color: "var(--secondary-color)",
                         }}
                       />
-                      {card.name}
+                      <div>{card.name}</div>
                     </div>
                   )}
                   <AnimatePresence>
