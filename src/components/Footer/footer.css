@@ -34,7 +34,7 @@
 
 .icon-footer {
   transition: 0.3s;
-  font-size: 34px;
+  font-size: 28px;
   cursor: pointer;
   border: 2px solid var(--primary-color);
   border-radius: 50%;

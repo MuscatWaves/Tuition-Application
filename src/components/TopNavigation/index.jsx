@@ -5,6 +5,7 @@ import whiteLogo from "../../images/white-logo.png";
 import { m, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import CustomButton from "../Buttons";
+import { IoIosArrowDown } from "react-icons/io";
 import "./topnavigation.css";
 
 const TopNavigation = ({ setActiveItem, landing }) => {
@@ -67,20 +68,21 @@ const TopNavigation = ({ setActiveItem, landing }) => {
             <div
               className={
                 landing && !colorChange
-                  ? "bold pointer menu-nav white-appearance"
-                  : "primary-colour bold pointer menu-nav"
+                  ? "bold pointer menu-nav white-appearance flex-small-gap"
+                  : "primary-colour bold pointer menu-nav flex-small-gap"
               }
               style={{ fontSize: "18px" }}
               onClick={() => {
                 navigateTo("/tuition");
               }}
             >
-              Tution{" "}
-              <m.i
-                className="pi pi-angle-down"
+              Tution
+              <m.div
                 animate={{ rotate: firstItem ? "360deg" : "180deg" }}
                 transition={{ duration: "0.3" }}
-              ></m.i>
+              >
+                <IoIosArrowDown style={{ fontSize: "16px" }} />
+              </m.div>
             </div>
             <AnimatePresence>
               {firstItem && (
@@ -162,17 +164,18 @@ const TopNavigation = ({ setActiveItem, landing }) => {
             <div
               className={
                 landing && !colorChange
-                  ? "bold pointer menu-nav white-appearance"
-                  : "primary-colour bold pointer menu-nav"
+                  ? "bold pointer menu-nav white-appearance flex-small-gap"
+                  : "primary-colour bold pointer menu-nav flex-small-gap"
               }
               style={{ fontSize: "18px" }}
             >
               IELTS{" "}
-              <m.i
-                className="pi pi-angle-down"
+              <m.div
                 animate={{ rotate: secondItem ? "360deg" : "180deg" }}
                 transition={{ duration: "0.3" }}
-              ></m.i>
+              >
+                <IoIosArrowDown style={{ fontSize: "16px" }} />
+              </m.div>
             </div>
             <AnimatePresence>
               {secondItem && (
@@ -203,17 +206,18 @@ const TopNavigation = ({ setActiveItem, landing }) => {
             <div
               className={
                 landing && !colorChange
-                  ? "bold pointer menu-nav white-appearance"
-                  : "primary-colour bold pointer menu-nav"
+                  ? "bold pointer menu-nav white-appearance flex-small-gap"
+                  : "primary-colour bold pointer menu-nav flex-small-gap"
               }
               style={{ fontSize: "18px" }}
             >
               Summer Activities{" "}
-              <m.i
-                className="pi pi-angle-down"
+              <m.div
                 animate={{ rotate: thirdItem ? "360deg" : "180deg" }}
                 transition={{ duration: "0.3" }}
-              ></m.i>
+              >
+                <IoIosArrowDown style={{ fontSize: "16px" }} />
+              </m.div>
             </div>
             <AnimatePresence>
               {thirdItem && (
