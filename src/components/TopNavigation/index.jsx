@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "primereact/button";
 import logo from "../../images/logo.png";
 import logoSmall from "../../images/logo-small.png";
 import whiteLogo from "../../images/white-logo.png";
 import { m, AnimatePresence } from "framer-motion";
-import "./topnavigation.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import CustomButton from "../Buttons";
+import "./topnavigation.css";
 
 const TopNavigation = ({ setActiveItem, landing }) => {
   const location = useLocation().pathname;
@@ -241,12 +241,18 @@ const TopNavigation = ({ setActiveItem, landing }) => {
           </m.div>
         </div>
         <div className="flex-small-gap">
-          <Button type="primary" className="p-button-sm our-button">
-            Login
-          </Button>
-          <Button type="primary" className="p-button-sm our-button">
-            SignUp
-          </Button>
+          <CustomButton
+            label="Login"
+            category="primary"
+            size={"md"}
+            radius={"md"}
+          />
+          <CustomButton
+            label="Sign Up"
+            category="primary"
+            size={"md"}
+            radius={"md"}
+          />
         </div>
       </m.div>
     </m.div>

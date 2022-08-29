@@ -1,15 +1,15 @@
 import React, { useState, useRef } from "react";
 import TopNavigation from "../../components/TopNavigation";
-import { Button } from "primereact/button";
-import { Dialog } from "primereact/dialog";
 import { cardList } from "./constants.ts";
 import { useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import "./landingpage.css";
 import logo from "../../images/logo.png";
 import howWeWorkImage from "../../images/how_we_work.svg";
 import learnImage from "../../images/learn.svg";
 import Footer from "../../components/Footer";
+import CustomButton from "../../components/Buttons";
+import { Modal } from "@mantine/core";
+import "./landingpage.css";
 
 const LandingPage = () => {
   let navigate = useNavigate();
@@ -133,12 +133,10 @@ const LandingPage = () => {
       transition={{ duration: 0.6 }}
       exit={{ opacity: 0 }}
     >
-      <Dialog
-        // header="Header"
-        className="video-cont"
-        visible={showVideo}
-        style={{ width: "50vw" }}
-        onHide={() => toggleVideo(false)}
+      <Modal
+        opened={showVideo}
+        onClose={() => toggleVideo(false)}
+        size="calc(80vw - 87px)"
       >
         {showVideo && (
           <div className="video-section">
@@ -153,7 +151,7 @@ const LandingPage = () => {
             ></iframe>
           </div>
         )}
-      </Dialog>
+      </Modal>
       <TopNavigation landing />
       <m.div className="landing-body" variants={inViewVariant}>
         <m.div className="first-section">
@@ -174,23 +172,19 @@ const LandingPage = () => {
                 sit amet molestie est, vel condimentum lorem.
               </m.div>
               <m.div className="flex-small-gap">
-                <Button
-                  type="outlined"
-                  size="large"
-                  shape="round"
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
+                <CustomButton
                   label="Sign Up"
-                  onClick={() => navigate("/login")}
-                  className={"our-button"}
+                  category="landing"
+                  size={"lg"}
+                  radius={"md"}
+                  action={() => navigate("/login")}
                 />
-                <Button
-                  type="primary"
-                  className="p-button-outlined"
-                  size="large"
-                  shape="round"
+                <CustomButton
                   label="Learn More"
-                  onClick={executeScroll}
+                  category="grey"
+                  size={"lg"}
+                  radius={"md"}
+                  action={executeScroll}
                 />
               </m.div>
             </m.div>

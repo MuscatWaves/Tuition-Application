@@ -1,7 +1,7 @@
 import React from "react";
 import BreadCrumb from "../BreadCrumb";
-import { Button } from "primereact/button";
 import { m } from "framer-motion";
+import CustomButton from "../Buttons";
 import "./services.css";
 
 const Services = ({ service, activeMenu, setActiveMenu }) => {
@@ -98,9 +98,12 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
             ))}
           </div>
           <div className="service-left-section-button">
-            <Button type="primary" className="p-button our-button">
-              Join Now
-            </Button>
+            <CustomButton
+              label="Let's Go"
+              category="primary"
+              size={"lg"}
+              radius={"md"}
+            />
           </div>
         </m.div>
         <div className="services-right-section">

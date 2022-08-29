@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import "./loader.css";
-import { ProgressSpinner } from "primereact/progressspinner";
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import logoSmall from "../../images/logo-small.png";
+import Spinner from "../Spinner";
 
 const Loader = ({ minHeight }) => {
   useEffect(() => {
@@ -18,8 +19,14 @@ const Loader = ({ minHeight }) => {
         transition={{ duration: 0.2 }}
         exit={{ opacity: 0 }}
       >
+        <img
+          src={logoSmall}
+          width={"90px"}
+          height={"90px"}
+          alt="loading the page"
+        />
         <div className="inner-loading-data">
-          <ProgressSpinner />
+          <Spinner />
         </div>
       </m.div>
     </LazyMotion>

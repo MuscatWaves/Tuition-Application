@@ -22,6 +22,10 @@ const Routing = () => {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/tuition" element={<Tuition />}></Route>
+                <Route
+                  path="/loader"
+                  element={<Loader minHeight={"90vh"} />}
+                ></Route>
               </Routes>
             </LazyMotion>
           </AnimatePresence>
