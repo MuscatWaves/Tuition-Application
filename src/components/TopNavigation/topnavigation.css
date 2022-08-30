@@ -64,3 +64,17 @@
   border-radius: 10px;
   width: 150px;
 }
+
+.smallMenuOpen {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-container-nav {
+    display: none;
+  }
+
+  .smallMenuOpen {
+    display: block;
+  }
+}

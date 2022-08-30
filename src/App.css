@@ -46,6 +46,10 @@ h1 {
   color: var(--secondary-color);
 }
 
+.red-shade-colour {
+  color: var(--red-shade-color);
+}
+
 .ternary-colour {
   color: var(--ternary-color);
 }
@@ -87,7 +91,7 @@ h1 {
 }
 
 .primary-header-text {
-  font-size: 55px;
+  font-size: 45px;
   font-weight: 700;
 }
 
@@ -96,8 +100,8 @@ h1 {
 }
 
 .description-text {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
   text-align: justify;
 }
 
@@ -218,6 +222,14 @@ h1 {
   gap: 1.5rem;
 }
 
+.small-padding {
+  padding: 1rem;
+}
+
+.medium-padding {
+  padding: 2rem;
+}
+
 /* Custom Scrollbar */
 
 /* Works on Firefox */
@@ -251,5 +263,21 @@ h1 {
   100% {
     transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .primary-header-text {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .description-text {
+    text-align: center;
+  }
+
+  .flex-small-gap {
+    justify-content: center;
   }
 }

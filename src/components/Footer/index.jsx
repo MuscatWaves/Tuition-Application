@@ -17,85 +17,88 @@ const Footer = ({ setActiveItem }) => {
         <div>
           <img src={logo} alt={"logo"} width={"250px"} height={"250px"} />
         </div>
+        <div className="whole-division-footer">
+          <div className="each-division-service-footer">
+            <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
+              Tution
+            </div>
+            <div className="flex-small-gap-column">
+              <div
+                className="bolder text-black pointer"
+                onClick={() => {
+                  localStorage.setItem("tabSelected", 1);
+                  navigateTo("/tuition");
+                  setActiveItem && location === "/tuition" && setActiveItem(1);
+                  setActiveItem &&
+                    location === "/tuition" &&
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                }}
+              >
+                Grade
+              </div>
+              <div
+                className="bolder text-black pointer"
+                onClick={() => {
+                  localStorage.setItem("tabSelected", 2);
+                  navigateTo("/tuition");
+                  setActiveItem && location === "/tuition" && setActiveItem(2);
+                  setActiveItem &&
+                    location === "/tuition" &&
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                }}
+              >
+                Subject
+              </div>
+              <div
+                className="bolder text-black pointer"
+                onClick={() => {
+                  localStorage.setItem("tabSelected", 3);
+                  navigateTo("/tuition");
+                  setActiveItem && location === "/tuition" && setActiveItem(3);
+                  setActiveItem &&
+                    location === "/tuition" &&
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                }}
+              >
+                Services
+              </div>
+            </div>
+          </div>
 
-        <div className="each-division-service-footer">
-          <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
-            Tution
-          </div>
-          <div className="flex-small-gap-column">
-            <div
-              className="bolder text-black pointer"
-              onClick={() => {
-                localStorage.setItem("tabSelected", 1);
-                navigateTo("/tuition");
-                setActiveItem && location === "/tuition" && setActiveItem(1);
-                setActiveItem &&
-                  location === "/tuition" &&
-                  window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                  });
-              }}
-            >
-              Grade
+          <div className="each-division-service-footer">
+            <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
+              IELTS
             </div>
-            <div
-              className="bolder text-black pointer"
-              onClick={() => {
-                localStorage.setItem("tabSelected", 2);
-                navigateTo("/tuition");
-                setActiveItem && location === "/tuition" && setActiveItem(2);
-                setActiveItem &&
-                  location === "/tuition" &&
-                  window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                  });
-              }}
-            >
-              Subject
-            </div>
-            <div
-              className="bolder text-black pointer"
-              onClick={() => {
-                localStorage.setItem("tabSelected", 3);
-                navigateTo("/tuition");
-                setActiveItem && location === "/tuition" && setActiveItem(3);
-                setActiveItem &&
-                  location === "/tuition" &&
-                  window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                  });
-              }}
-            >
-              Services
+            <div className="flex-small-gap-column">
+              <div className="bolder text-black pointer">Grade</div>
+              <div className="bolder text-black pointer">Subject</div>
             </div>
           </div>
-        </div>
-
-        <div className="each-division-service-footer">
-          <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
-            IELTS
-          </div>
-          <div className="flex-small-gap-column">
-            <div className="bolder text-black pointer">Grade</div>
-            <div className="bolder text-black pointer">Subject</div>
-          </div>
-        </div>
-        <div className="each-division-service-footer">
-          <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
-            Summer Classes
-          </div>
-          <div className="flex-small-gap-column">
-            <div className="bolder text-black pointer">Grade</div>
+          <div className="each-division-service-footer">
+            <div className="mid-large-text boldest primary-font small-margin-bottom primary-colour">
+              Summer Classes
+            </div>
+            <div className="flex-small-gap-column">
+              <div className="bolder text-black pointer">Grade</div>
+            </div>
           </div>
         </div>
         <div>
-          <div className="small-margin-bottom">Contact Us</div>
+          <div className="small-margin-bottom small-margin-top bolder">
+            Contact Us
+          </div>
           <div className="flex-small-gap">
             <GrMail className="icon-footer mail-icon" />
             <RiWhatsappFill className="icon-footer whatsapp-icon" />

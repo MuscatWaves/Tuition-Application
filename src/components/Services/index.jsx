@@ -2,61 +2,11 @@ import React from "react";
 import BreadCrumb from "../BreadCrumb";
 import { m } from "framer-motion";
 import CustomButton from "../Buttons";
+import { leftMenuVariant, heading, container, item } from "../../animation";
 import "./services.css";
 
 const Services = ({ service, activeMenu, setActiveMenu }) => {
   localStorage.removeItem("tabSelected");
-  const leftMenuVariant = {
-    show: {
-      x: "0",
-      opacity: 1,
-      transition: { type: "spring", stiffness: 40, damping: 6 },
-    },
-    hidden: {
-      x: "-100px",
-      opacity: 0,
-    },
-  };
-
-  const heading = {
-    hidden: { opacity: 1, y: "60px" },
-    show: {
-      y: "0",
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 40,
-        damping: 9,
-      },
-    },
-  };
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const item = {
-    hidden: {
-      opacity: 0,
-      y: "100px",
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      delay: 0.7,
-      transition: {
-        type: "spring",
-        stiffness: 40,
-        damping: 9,
-      },
-    },
-  };
 
   return (
     <div className="services-main-body">

@@ -164,7 +164,7 @@ const LandingPage = () => {
             >
               <m.div>
                 <div className="text primary-font text-white-light primary-header-text">
-                  Company
+                  Something will be Happening
                 </div>
               </m.div>
               <m.div className="text-white-light description-text">
@@ -247,7 +247,6 @@ const LandingPage = () => {
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ margin: "-250px" }}
           >
             <m.div
               className="horizontal-line"
@@ -261,8 +260,7 @@ const LandingPage = () => {
               How we work?
             </m.div>
             <m.div
-              style={{ width: "50%", marginTop: "10px" }}
-              className="primary-font large-text bolder text-colour"
+              className="we-work-landing-desc primary-font large-text bolder text-colour"
               variants={item}
             >
               We Work for your sucess Lorem Ipsum is simply dummy text.
@@ -292,7 +290,6 @@ const LandingPage = () => {
             variants={inViewVariant}
             whileInView={"zoomView"}
             initial={"zoomHidden"}
-            viewport={{ margin: "-250px" }}
           >
             <div className="second-section-header">
               <m.div
