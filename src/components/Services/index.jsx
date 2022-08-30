@@ -49,8 +49,8 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
           </div>
           <div className="service-left-section-button">
             <CustomButton
-              label="Let's Go"
-              category="primary"
+              label="Sign Up"
+              category="landing"
               size={"lg"}
               radius={"md"}
             />

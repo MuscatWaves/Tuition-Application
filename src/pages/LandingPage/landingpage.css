@@ -353,6 +353,9 @@
     justify-content: center;
     gap: 4rem;
     margin: 0;
+    padding: 4rem 0;
+    width: 100vw;
+    background-color: #934a5f1e;
   }
 
   .how-we-work-hook {
@@ -368,12 +371,12 @@
   }
 
   .we-work-landing-desc {
-    width: fit-content;
+    width: 70vw;
   }
 
   .how-we-work-image {
     height: 400px;
-    width: 100vw;
+    width: 80vw;
   }
 
   .card-pack {
