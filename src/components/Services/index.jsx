@@ -3,10 +3,13 @@ import BreadCrumb from "../BreadCrumb";
 import { m } from "framer-motion";
 import CustomButton from "../Buttons";
 import { leftMenuVariant, heading, container, item } from "../../animation";
+import { NativeSelect } from "@mantine/core";
 import "./services.css";
 
 const Services = ({ service, activeMenu, setActiveMenu }) => {
   localStorage.removeItem("tabSelected");
+
+  console.log(activeMenu);
 
   return (
     <div className="services-main-body">
@@ -57,10 +60,30 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
           </div>
         </m.div>
         <div className="services-right-section">
+          <div className="dropdown-section-services">
+            <NativeSelect
+              data={[
+                { label: "Grades", value: 1 },
+                { label: "Subjects", value: 2 },
+                { label: "Services", value: 3 },
+              ]}
+              value={activeMenu}
+              onChange={(event) => {
+                setActiveMenu(Number(event.currentTarget.value));
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }}
+              radius="xl"
+              size="lg"
+            />
+          </div>
           {service.menu.map(
             (menu) =>
               activeMenu === menu.id && (
-                <div key={menu.id}>
+                <div key={menu.id} className="each-services-container">
                   <m.div
                     className="flex-gap"
                     variants={heading}

@@ -70,6 +70,10 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .top-navigation-main {
+    width: 100vw;
+  }
+
   .main-container-nav {
     display: none;
   }

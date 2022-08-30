@@ -100,3 +100,40 @@
   justify-content: center;
   margin-top: 4rem;
 }
+
+.dropdown-section-services {
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .service-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services-left-section {
+    display: none !important;
+  }
+
+  .each-services-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .each-services-container > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+
+  .services-right-section-list {
+    justify-content: center;
+  }
+
+  .dropdown-section-services {
+    display: block;
+  }
+}

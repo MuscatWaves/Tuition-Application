@@ -48,7 +48,7 @@ const SmallNavigation = ({
               setFirstItem(!firstItem);
             }}
           >
-            Title{" "}
+            Tuition{" "}
             <m.div
               animate={{ rotate: firstItem ? "360deg" : "180deg" }}
               transition={{ duration: "0.3" }}
@@ -84,6 +84,7 @@ const SmallNavigation = ({
                   Grade
                 </div>
                 <div
+                  className="pointer"
                   onClick={() => {
                     localStorage.setItem("tabSelected", 2);
                     setSmallMenuOpen(false);
@@ -102,7 +103,26 @@ const SmallNavigation = ({
                 >
                   Subject
                 </div>
-                <div onClick={() => {}}>Services</div>
+                <div
+                  className="pointer"
+                  onClick={() => {
+                    localStorage.setItem("tabSelected", 3);
+                    setSmallMenuOpen(false);
+                    navigateTo("/tuition");
+                    setActiveItem &&
+                      location === "/tuition" &&
+                      setActiveItem(3);
+                    setActiveItem &&
+                      location === "/tuition" &&
+                      window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: "smooth",
+                      });
+                  }}
+                >
+                  Services
+                </div>
               </div>
             </Collapse>
           </div>

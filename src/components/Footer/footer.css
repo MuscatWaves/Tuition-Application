@@ -110,4 +110,11 @@
   .each-division-service-footer {
     min-height: 100px;
   }
+
+  .footer-last-part {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    /* background-color: #25d366; */
+  }
 }
