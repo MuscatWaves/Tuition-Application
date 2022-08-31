@@ -261,6 +261,29 @@ h1 {
   padding: 2rem;
 }
 
+.mantine-Select-input {
+  border: none;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.mantine-MultiSelect-input {
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
 /* Custom Scrollbar */
 
 /* Works on Firefox */
