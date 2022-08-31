@@ -268,7 +268,7 @@ const TopNavigation = ({ setActiveItem, landing }) => {
           />
           <CustomButton
             label="Sign Up"
-            category="primary"
+            category="landing"
             size={"md"}
             radius={"md"}
           />

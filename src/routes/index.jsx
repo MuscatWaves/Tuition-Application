@@ -8,6 +8,8 @@ const LandingPage = lazy(() => import("../pages/LandingPage"));
 const PageNotFound = lazy(() => import("../components/NoPageFound"));
 const Login = lazy(() => import("../pages/Login"));
 const Tuition = lazy(() => import("../pages/Tuition"));
+const PreSignUp = lazy(() => import("../pages/PreSignUp"));
+const TuitionSignUp = lazy(() => import("../pages/TuitionSignUp"));
 
 const Routing = () => {
   return (
@@ -22,6 +24,11 @@ const Routing = () => {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/tuition" element={<Tuition />}></Route>
+                <Route path="/preSignUp" element={<PreSignUp />}></Route>
+                <Route
+                  path="/signUp/Tuition"
+                  element={<TuitionSignUp />}
+                ></Route>
                 <Route
                   path="/loader"
                   element={<Loader minHeight={"90vh"} />}

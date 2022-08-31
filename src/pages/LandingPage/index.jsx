@@ -177,7 +177,7 @@ const LandingPage = () => {
                   category="landing"
                   size={"lg"}
                   radius={"md"}
-                  action={() => navigate("/login")}
+                  action={() => navigate("/preSignUp")}
                 />
                 <CustomButton
                   label="Learn More"

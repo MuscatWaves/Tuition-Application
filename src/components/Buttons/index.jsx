@@ -10,6 +10,7 @@ const CustomButton = ({
   category,
   variant,
   color,
+  rightIcon,
 }) => {
   const mainColour = () => {
     if (category === "primary") {
@@ -67,6 +68,7 @@ const CustomButton = ({
       type={type}
       color={color}
       variant={variant}
+      rightIcon={rightIcon}
     >
       {label}
     </Button>
