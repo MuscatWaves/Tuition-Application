@@ -8,6 +8,25 @@
   --magic-number: 0.09719; /* tan(11°)/2 */
   --content-width: 100vw;
   --skew-padding: calc(var(--content-width) * var(--magic-number));
+  --shadow-1: 25px 25px 50px #b5b5b5;
+  --shadow-2: -25px -25px 50px #f5f5f5;
+  --background-card-color: #ecf0f3;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #9e9fa791;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9e9fa791;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #9e9fa791;
 }
 
 h1 {
@@ -15,7 +34,7 @@ h1 {
 }
 
 .App {
-  background: #d5d5d5;
+  background: #e8e8e8;
   min-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -198,6 +217,12 @@ h1 {
   padding: 0.5rem;
 }
 
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+
 .horizontal-line {
   width: 60px;
   height: 5px;
@@ -208,6 +233,12 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.flex-gap-column-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .flex-gap-column-2 {
