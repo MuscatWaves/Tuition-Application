@@ -36,6 +36,7 @@ const PreSignUp = () => {
         "Question Papers & Answer Papers",
         "Explanatory Videos",
       ],
+      path: "/signUp/IELTS",
     },
   ];
 

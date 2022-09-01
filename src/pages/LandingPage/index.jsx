@@ -9,10 +9,14 @@ import learnImage from "../../images/learn.svg";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/Buttons";
 import { Modal } from "@mantine/core";
+import { zoomItem } from "../../animation";
+import { AspectRatio } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import "./landingpage.css";
 
 const LandingPage = () => {
   let navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width: 900px)");
   const [showVideo, toggleVideo] = useState(false);
   const aboutRef = useRef(null);
   const [cards, setCards] = useState({
@@ -136,42 +140,48 @@ const LandingPage = () => {
       <Modal
         opened={showVideo}
         onClose={() => toggleVideo(false)}
-        size="calc(80vw - 87px)"
+        size={
+          isMobile ? window.innerWidth : `calc(${window.innerWidth}px - 500px)`
+        }
+        overlayOpacity={0.55}
+        overlayBlur={3}
       >
         {showVideo && (
-          <div className="video-section">
+          <AspectRatio ratio={16 / 9}>
             <iframe
-              className="iframe"
-              src="https://www.youtube.com/embed/sUwD3GRPJos?controls=0"
+              src="https://www.youtube.com/embed/sUwD3GRPJos?controls=1"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              autoPlay={1}
             ></iframe>
-          </div>
+          </AspectRatio>
         )}
       </Modal>
       <TopNavigation landing />
-      <m.div className="landing-body" variants={inViewVariant}>
+      <m.div className="landing-body">
         <m.div className="first-section">
           <div className="first-section-content">
             <m.div
               className="flex-gap-column-2"
-              variants={inViewVariant}
-              whileInView={"leftViewVariant"}
-              initial={"leftViewHidden"}
+              variants={container}
+              initial={"hidden"}
+              animate={"show"}
             >
-              <m.div>
-                <div className="text primary-font text-white-light primary-header-text">
-                  Something will be Happening
-                </div>
+              <m.div
+                className="text primary-font text-white-light primary-header-text"
+                variants={zoomItem}
+              >
+                Something will be Happening
               </m.div>
-              <m.div className="text-white-light description-text">
+              <m.div
+                className="text-white-light description-text"
+                variants={zoomItem}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                 sit amet molestie est, vel condimentum lorem.
               </m.div>
-              <m.div className="flex-small-gap">
+              <m.div className="flex-small-gap" variants={zoomItem}>
                 <CustomButton
                   label="Sign Up"
                   category="landing"
