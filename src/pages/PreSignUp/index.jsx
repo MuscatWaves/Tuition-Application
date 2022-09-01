@@ -40,15 +40,20 @@ const PreSignUp = () => {
   ];
 
   return (
-    <div>
+    <m.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <TopNavigation />
       <div className="pre-sign-up__page">
         <div className="pre-sign-up__page-wrapper">
           <div className="larger-text bolder primary-font">
             Choose your package
           </div>
-          <div className="bold text-light-grey">
-            Payments will be shown on next page
+          <div className="bold red-shade-colour">
+            *Payments will be shown on next page
           </div>
           <m.div
             className="pre-sign-up__two-section"
@@ -109,7 +114,7 @@ const PreSignUp = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </m.div>
   );
 };
 

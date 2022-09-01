@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../../components/Footer";
 import { useForm } from "@mantine/form";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import logoSmall from "../../images/logo-small.png";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Buttons";
@@ -16,10 +16,10 @@ const Login = () => {
     },
   });
   return (
-    <motion.div
+    <m.div
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
       <div className="login-form-main-wrapper">
@@ -66,7 +66,7 @@ const Login = () => {
         </div>
       </div>
       <Footer />
-    </motion.div>
+    </m.div>
   );
 };
 

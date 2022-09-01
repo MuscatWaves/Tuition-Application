@@ -6,6 +6,10 @@
 }
 
 .tuitionSignUp-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   padding: 2rem;
   border-radius: 30px;
   background: #e8e8e8;

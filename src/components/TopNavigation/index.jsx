@@ -30,9 +30,8 @@ const TopNavigation = ({ setActiveItem, landing }) => {
   return (
     <m.div
       className="nav-wrapper"
-      initial={{ y: "-80px" }}
-      animate={{ y: "0px" }}
-      transition={{ type: "spring", stiffness: 50, damping: 6 }}
+      initial={{ opacity: 0.2 }}
+      animate={{ opacity: 1 }}
     >
       <SmallNavigation
         isSmallMenuOpen={isSmallMenuOpen}

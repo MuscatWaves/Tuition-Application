@@ -11,6 +11,8 @@ const CustomButton = ({
   variant,
   color,
   rightIcon,
+  maxWidth,
+  disabled,
 }) => {
   const mainColour = () => {
     if (category === "primary") {
@@ -55,6 +57,7 @@ const CustomButton = ({
           backgroundColor: mainColour(),
           transition: "all 0.5s",
           color: textColor(),
+          width: maxWidth && "100%",
 
           "&:hover": {
             backgroundColor: hoverColour(),
@@ -69,6 +72,7 @@ const CustomButton = ({
       color={color}
       variant={variant}
       rightIcon={rightIcon}
+      disabled={disabled}
     >
       {label}
     </Button>

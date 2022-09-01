@@ -25,6 +25,23 @@ export const item = {
   },
 };
 
+export const zoomItem = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    delay: 0.2,
+    transition: {
+      type: "spring",
+      stiffness: 40,
+      damping: 9,
+    },
+  },
+};
+
 export const leftMenuVariant = {
   show: {
     x: "0",
