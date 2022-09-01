@@ -12,6 +12,12 @@ import { Modal } from "@mantine/core";
 import { zoomItem } from "../../animation";
 import { AspectRatio } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import {
+  item,
+  logoRevealVariant,
+  howWeVariant,
+  inViewVariant,
+} from "../../animation";
 import "./landingpage.css";
 
 const LandingPage = () => {
@@ -25,103 +31,12 @@ const LandingPage = () => {
     card3: false,
   });
 
-  const inViewVariant = {
-    zoomView: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 1.25,
-        ease: "easeOut",
-      },
-    },
-    zoomHidden: { scale: 0.9, opacity: 0 },
-    leftViewVariant: {
-      x: "0",
-      opacity: 1,
-      transition: { type: "spring", stiffness: 40, damping: 6 },
-    },
-    leftViewHidden: {
-      x: "-100px",
-      opacity: 0,
-    },
-    rightViewVariant: {
-      x: "0",
-      opacity: 1,
-      transition: { stiffness: 40, type: "spring", damping: 20 },
-    },
-    rightViewHidden: {
-      x: "5vw",
-      opacity: 0,
-    },
-    slideTopView: {
-      y: "0",
-      opacity: 1,
-      transition: { stiffness: 40, type: "spring", damping: 20 },
-    },
-    slideTopHidden: {
-      y: "5vh",
-      opacity: 1,
-      transition: { stiffness: 40, type: "spring", damping: 20 },
-    },
-  };
-
-  const logoRevealVariant = {
-    leftShow: {
-      x: "0",
-      transition: { type: "spring", delay: 0.25 },
-    },
-    leftHidden: {
-      x: "10vw",
-    },
-    rightShow: {
-      opacity: 1,
-      transition: { delay: 0.3, duration: 0.5 },
-    },
-    rightHidden: {
-      opacity: 0,
-    },
-  };
-
-  const howWeVariant = {
-    leftShow: {
-      x: "0",
-      transition: { type: "spring", delay: 0.5 },
-    },
-    leftHidden: {
-      x: "50%",
-    },
-    rightShow: {
-      opacity: 1,
-      transition: { delay: 0.7, duration: 0.6 },
-    },
-    rightHidden: {
-      opacity: 0,
-    },
-  };
-
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.5,
-      },
-    },
-  };
-
-  const item = {
-    hidden: {
-      opacity: 0,
-      y: "100px",
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      delay: 0.7,
-      transition: {
-        type: "spring",
-        stiffness: 40,
-        damping: 9,
+        staggerChildren: 0.6,
       },
     },
   };
@@ -159,8 +74,8 @@ const LandingPage = () => {
         )}
       </Modal>
       <TopNavigation landing />
-      <m.div className="landing-body">
-        <m.div className="first-section">
+      <div className="landing-body">
+        <div className="first-section">
           <div className="first-section-content">
             <m.div
               className="flex-gap-column-2"
@@ -202,7 +117,7 @@ const LandingPage = () => {
               <img src={learnImage} alt="learn new things" />
             </div>
           </div>
-        </m.div>
+        </div>
         <m.div className="second-section-wrapper">
           <m.div
             className="second-section"
@@ -378,7 +293,7 @@ const LandingPage = () => {
             </div>
           </m.div>
         </div>
-      </m.div>
+      </div>
       <Footer />
     </m.div>
   );
