@@ -1,52 +1,52 @@
 import React from "react";
-import { Button, message } from "antd";
-import ojimage from "../../images/oj.png";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-import Authentication from "../../components/Authentication";
-import jwt from "jsonwebtoken";
+// import Authentication from "../../components/Authentication";
+// import jwt from "jsonwebtoken";
 import { AiOutlinePoweroff } from "react-icons/ai";
+import logoSmall from "../../images/logo-small.png";
 import { FiUser } from "react-icons/fi";
+// import { removeCookie } from "../../utilities";
+import { m } from "framer-motion";
+import CustomButton from "../Buttons";
 import "./header.css";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const cookies = new Cookies();
-  const token = cookies.get("token");
-  const navigateTo = (path) => {
-    navigate(path);
-  };
-  const user = jwt.verify(token, process.env.REACT_APP_JWT_KEY);
+  const navigateTo = useNavigate();
+  // const cookies = new Cookies();
+  // const token = cookies.get("token");
+  // const navigateTo = (path) => {
+  //   navigate(path);
+  // };
+  //   const user =
+  //     (token && jwt.verify(token, process.env.REACT_APP_JWT_KEY)) || "";
 
-  const removeCookie = () => {
-    const cookies = new Cookies();
-    cookies.set("token", "", { path: "/", expires: new Date(Date.now()) });
-    message.success("Logged Out");
-    navigateTo("/");
-  };
+  const logOut = () => {};
 
   return (
     <div className="header">
-      <img
-        src={ojimage}
-        className="header-image"
-        alt="Oman jobs"
+      <m.img
+        animate={{ opacity: 1, y: "0" }}
+        initial={{ opacity: 0, y: "20px" }}
+        transition={{ duration: "0.8" }}
+        src={logoSmall}
+        width={"70px"}
+        height={"70px"}
         onClick={() => navigateTo("/dashboard")}
       />
-      <Authentication />
+      {/* <Authentication /> */}
       <div className="flex-small-gap">
         <FiUser className="large-text text-light-grey" />
-        <div className="text-light-grey bolder">{user.name}</div>
-        <Button
-          className="header-log-out-btn"
-          type="primary"
-          danger
-          onClick={removeCookie}
-          shape={"round"}
-          title={"Log Off"}
-        >
-          <AiOutlinePoweroff className="large-text" />
-        </Button>
+        <div className="text-light-grey bolder">
+          {/* {user?.data ? user.data[0].name : ""} */}
+          Test User
+        </div>
+        <CustomButton
+          color="red"
+          radius="lg"
+          size="sm"
+          label={<AiOutlinePoweroff style={{ fontSize: "22px" }} />}
+        />
       </div>
     </div>
   );

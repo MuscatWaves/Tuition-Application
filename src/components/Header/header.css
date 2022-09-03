@@ -1,14 +1,20 @@
-.header{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 }
 
-.header-image{
-    width: 80px;
-    height: 80px;
-    animation: slide-in-left 0.8s;
-    cursor: pointer;
-}
+/* .sign-up-logo {
+    background: linear-gradient(
+      to left,
+      #6c6488,
+      #a56697,
+      #e16585,
+      #ff7657,
+      #fba100
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  } */

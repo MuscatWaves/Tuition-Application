@@ -57,7 +57,7 @@ const Login = () => {
               type={"submit"}
               size={"lg"}
               radius={"xl"}
-              action={() => navigate("/login")}
+              action={() => navigate("/dashboard")}
             />
             <div className="small-text bolder flex-end text-grey">
               Forgot Password?
