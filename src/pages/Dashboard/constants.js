@@ -13,7 +13,7 @@ export const cards = (isLoggedIn) => [
     title: "English",
     description: "Contains 14 Chapters with 120 sections.",
     permission: true,
-    path: "/searchWorkers",
+    path: "/dashboard/english",
   },
   {
     id: 2,

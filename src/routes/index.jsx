@@ -12,6 +12,7 @@ const PreSignUp = lazy(() => import("../pages/PreSignUp"));
 const TuitionSignUp = lazy(() => import("../pages/TuitionSignUp"));
 const IELTSSignUp = lazy(() => import("../pages/IELTSSignUp"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
+const SubjectDashboard = lazy(() => import("../pages/SubjectDashboard"));
 
 const Routing = () => {
   return (
@@ -33,6 +34,10 @@ const Routing = () => {
                 ></Route>
                 <Route path="/signUp/IELTS" element={<IELTSSignUp />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route
+                  path="/dashboard/:subject"
+                  element={<SubjectDashboard />}
+                ></Route>
                 <Route
                   path="/loader"
                   element={<Loader minHeight={"90vh"} />}
