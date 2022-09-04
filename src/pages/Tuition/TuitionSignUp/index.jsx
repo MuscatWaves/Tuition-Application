@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Footer from "../../components/Footer";
-import TopNavigation from "../../components/TopNavigation";
+import Footer from "../../../components/Footer";
+import TopNavigation from "../../../components/TopNavigation";
 import { useForm } from "@mantine/form";
 import { Select, MultiSelect } from "@mantine/core";
-import CustomButton from "../../components/Buttons";
+import CustomButton from "../../../components/Buttons";
 import { m } from "framer-motion";
 import "./tuitionSignUp.css";
-import { container, zoomItem } from "../../animation";
+import { container, zoomItem } from "../../../animation";
 
 const TuitionSignUp = () => {
   const form = useForm({

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Header from "../../components/Header";
+import React from "react";
+import Header from "../../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, m } from "framer-motion";
 import { cards, container, item } from "./constants";
-import { FaBook } from "react-icons/fa";
 import "./dashboard.css";
 
 const SubjectDashboard = () => {
-  const [isLoggedIn, setLoggedIn] = useState({});
+  // const [isLoggedIn, setLoggedIn] = useState({});
+  const isLoggedIn = {};
   const navigate = useNavigate();
   const navigateTo = (path) => {
     navigate(path);

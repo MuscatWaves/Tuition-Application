@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Services from "../../components/Services";
-import TopNavigation from "../../components/TopNavigation";
-import Footer from "../../components/Footer";
-import gradesImage from "../../images/grades.svg";
-import servicesImage from "../../images/services.svg";
-import subjectsImage from "../../images/subjects.svg";
+import Services from "../../../components/Services";
+import TopNavigation from "../../../components/TopNavigation";
+import Footer from "../../../components/Footer";
+import gradesImage from "../../../images/grades.svg";
+import servicesImage from "../../../images/services.svg";
+import subjectsImage from "../../../images/subjects.svg";
 import { m } from "framer-motion";
 
 const Tuition = () => {

@@ -154,6 +154,10 @@
 }
 
 @media screen and (max-width: 700px) {
+  .card {
+    width: auto;
+  }
+
   .welcome-message {
     font-size: 10px;
   }

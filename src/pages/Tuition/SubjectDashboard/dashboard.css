@@ -34,7 +34,6 @@
   text-align: center;
   cursor: pointer;
   position: relative;
-  /* gap: 1rem; */
   width: 320px;
   height: 240px;
   border-radius: 4px;
@@ -154,6 +153,10 @@
 }
 
 @media screen and (max-width: 700px) {
+  .card {
+    width: auto;
+  }
+
   .welcome-message {
     font-size: 10px;
   }
