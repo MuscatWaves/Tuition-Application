@@ -17,6 +17,7 @@ const TuitionSignUp = lazy(() => import("../pages/Tuition/TuitionSignUp"));
 const SubjectDashboard = lazy(() =>
   import("../pages/Tuition/SubjectDashboard")
 );
+const TopicWiseNotes = lazy(() => import("../pages/Tuition/TopicWiseNotes"));
 
 //  Routing Function
 const Routing = () => {
@@ -42,6 +43,10 @@ const Routing = () => {
                 <Route
                   path="/dashboard/:subject"
                   element={<SubjectDashboard />}
+                ></Route>
+                <Route
+                  path="/tuition/:subject/topicWiseNotes"
+                  element={<TopicWiseNotes />}
                 ></Route>
                 <Route
                   path="/loader"

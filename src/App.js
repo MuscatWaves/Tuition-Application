@@ -1,13 +1,16 @@
 import "./App.css";
 import Routing from "./routes";
+import { NotificationsProvider } from "@mantine/notifications";
 
 function App() {
   return (
-    <div className="App">
+    <NotificationsProvider position="bottom-left" zIndex={2077}>
+      <div className="App">
         <header className="App-header">
-          <Routing/>
+          <Routing />
         </header>
-    </div>
+      </div>
+    </NotificationsProvider>
   );
 }
 

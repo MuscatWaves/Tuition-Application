@@ -1,0 +1,24 @@
+.tpw-notes-each-card {
+  background: #e8e8e8;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+
+.tpw-notes-main {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 2rem;
+  width: 60vw;
+  margin: 2rem;
+}
+
+.tpw-notes-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.tpw-notes-each-card {
+  padding: 2rem;
+  border-radius: 20px;
+  height: fit-content;
+}

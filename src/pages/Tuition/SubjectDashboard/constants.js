@@ -13,7 +13,7 @@ export const cards = (isLoggedIn) => [
     title: "Topic Wise Notes",
     description: "Contains topic wise notes for corresponding subject.",
     permission: true,
-    path: "/subject/english",
+    path: "/tuition/english/topicWiseNotes",
   },
   {
     id: 2,

@@ -2,19 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
+  width: 95vw;
 }
 
-/* .sign-up-logo {
-    background: linear-gradient(
-      to left,
-      #6c6488,
-      #a56697,
-      #e16585,
-      #ff7657,
-      #fba100
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  } */
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, m } from "framer-motion";
@@ -7,7 +7,8 @@ import { FaBook } from "react-icons/fa";
 import "./dashboard.css";
 
 const Dashboard = () => {
-  const [isLoggedIn, setLoggedIn] = useState({});
+  // const [isLoggedIn, setLoggedIn] = useState({});
+  const isLoggedIn = {};
   const navigate = useNavigate();
   const navigateTo = (path) => {
     navigate(path);
@@ -22,7 +23,7 @@ const Dashboard = () => {
       <div>
         <Header />
         <div className="main-dashboard-wrapper">
-          <div className="larger-text bolder primary-font primary-colour flex-small-gap">
+          <div className="larger-text bolder primary-font primary-colour flex-small-gap welcome-message">
             <span>Welcome</span>
             <span className="red-shade-colour">Test User!</span>
           </div>

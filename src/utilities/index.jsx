@@ -22,15 +22,15 @@ export const get_youtube_thumbnail = (url, quality) => {
       }
 
       var quality_key = "maxresdefault"; // Max quality
-      if (quality == "low") {
+      if (quality === "low") {
         quality_key = "sddefault";
-      } else if (quality == "medium") {
+      } else if (quality === "medium") {
         quality_key = "mqdefault";
-      } else if (quality == "high") {
+      } else if (quality === "high") {
         quality_key = "hqdefault";
       }
 
-      var thumbnail =
+      thumbnail =
         "http://img.youtube.com/vi/" + video_id + "/" + quality_key + ".jpg";
       return thumbnail;
     }
