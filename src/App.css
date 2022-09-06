@@ -332,6 +332,12 @@ h1 {
 .link {
   font-weight: 700;
   color: var(--secondary-color) !important;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .link--active {

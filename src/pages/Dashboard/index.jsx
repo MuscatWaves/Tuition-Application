@@ -19,7 +19,13 @@ const Dashboard = () => {
   // https://img.youtube.com/vi/sUwD3GRPJos/maxresdefault.jpg
 
   return (
-    <div className="main-dashboard">
+    <m.div
+      className="main-dashboard"
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <div>
         <Header />
         <div className="main-dashboard-wrapper">
@@ -63,7 +69,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div>Footer</div>
-    </div>
+    </m.div>
   );
 };
 

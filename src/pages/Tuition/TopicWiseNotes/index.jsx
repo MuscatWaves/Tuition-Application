@@ -1,24 +1,25 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 import { removeUnderScore } from "../../../utilities";
-import { Breadcrumbs, Anchor } from "@mantine/core";
 import { container, item } from "../../../animation";
 import { m, AnimatePresence } from "framer-motion";
+import { Breadcrumbs, Anchor } from "@mantine/core";
+import { Link } from "react-router-dom";
 import "./topicwisenotes.css";
 
 const TopicWiseNotes = () => {
-  const navigateTo = useNavigate();
   const data = useParams();
   const items = [
-    { title: "Dashboard", href: "/dashboard" },
-    { title: "English", href: "#" },
-    { title: "Topic Wise Notes", href: "#", active: true },
+    { title: "Dashboard", to: "/dashboard" },
+    { title: "English", to: `/dashboard/${data.subject}` },
+    { title: "Topic Wise Notes", to: "#", active: true },
   ].map((item, index) => (
     <Anchor
       key={index}
       className={item.active ? "link--active" : "link"}
-      onClick={() => navigateTo(item.href)}
+      component={Link}
+      to={item.to}
     >
       {item.title}
     </Anchor>
@@ -75,15 +76,15 @@ const TopicWiseNotes = () => {
       <div>
         <div className="flex-column-center medium-gap">
           <div className="bolder primary-font-2 larger-text">
-            <span className="secondary-colour">
+            <span className="red-shade-colour">
               {removeUnderScore(`${data.subject} : `)}
             </span>
-            <span className="primary-colour">Topic Wise Notes</span>
+            <span className="secondary-colour">Topic Wise Notes</span>
           </div>
           <div>
             <Breadcrumbs separator="→">{items}</Breadcrumbs>
           </div>
-          <div className="bold text-light-grey small-margin-top">{`Concise resources for the ${removeUnderScore(
+          <div className="primary-colour small-margin-top">{`Concise resources for the ${removeUnderScore(
             data.subject
           )} course.`}</div>
         </div>
