@@ -30,7 +30,11 @@ const SubjectDashboard = () => {
       <div>
         <Header />
         <InnerHeader navigation={navigation} data={data} />
-        <GridLayoutDash cards={cards} isLoggedIn={isLoggedIn} />
+        <GridLayoutDash
+          cards={cards}
+          isLoggedIn={isLoggedIn}
+          subject={data.subject}
+        />
       </div>
       <div>Footer</div>
     </m.div>

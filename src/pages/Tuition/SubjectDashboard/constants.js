@@ -5,7 +5,7 @@ import { IoPieChartSharp } from "react-icons/io5";
 import { BiPaperPlane } from "react-icons/bi";
 import { FaBook } from "react-icons/fa";
 
-export const cards = (isLoggedIn) => [
+export const cards = (isLoggedIn, subject) => [
   {
     id: 1,
     name: "card1",
@@ -13,7 +13,7 @@ export const cards = (isLoggedIn) => [
     title: "Topic Wise Notes",
     description: "Contains topic wise notes for corresponding subject.",
     permission: true,
-    path: "/tuition/english/topicWiseNotes",
+    path: `/tuition/${subject}/topicWiseNotes`,
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const cards = (isLoggedIn) => [
     title: "Explanatory Videos",
     description: "Videos for each topic.",
     permission: true,
-    path: "/searchcv",
+    path: `/tuition/${subject}/explanatoryVideo`,
   },
   {
     id: 4,

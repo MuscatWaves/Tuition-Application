@@ -18,6 +18,9 @@ const SubjectDashboard = lazy(() =>
   import("../pages/Tuition/SubjectDashboard")
 );
 const TopicWiseNotes = lazy(() => import("../pages/Tuition/TopicWiseNotes"));
+const ExplanatoryVideo = lazy(() =>
+  import("../pages/Tuition/ExplanatoryVideo")
+);
 
 //  Routing Function
 const Routing = () => {
@@ -47,6 +50,10 @@ const Routing = () => {
                 <Route
                   path="/tuition/:subject/topicWiseNotes"
                   element={<TopicWiseNotes />}
+                ></Route>
+                <Route
+                  path="/tuition/:subject/explanatoryVideo"
+                  element={<ExplanatoryVideo />}
                 ></Route>
                 <Route
                   path="/loader"

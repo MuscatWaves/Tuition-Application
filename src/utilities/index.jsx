@@ -7,7 +7,7 @@ export const removeUnderScore = (str) => {
   return frags.join(" ");
 };
 
-export const get_youtube_thumbnail = (url, quality) => {
+export const getYoutubeThumbnail = (url, quality) => {
   if (url) {
     var video_id, thumbnail, result;
     if ((result = url.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/))) {

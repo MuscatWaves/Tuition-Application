@@ -1,10 +1,11 @@
 import React from "react";
 import { removeUnderScore } from "../../utilities";
 import { useNavigate } from "react-router-dom";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight, FaLongArrowAltDown } from "react-icons/fa";
 import { m } from "framer-motion";
+import "./innerheader.css";
 
-const InnerHeader = ({ navigation, data }) => {
+const InnerHeader = ({ navigation, data, customHeading, customDesc }) => {
   const navigateTo = useNavigate();
   const items = navigation.map((item, index) => (
     <div
@@ -22,7 +23,22 @@ const InnerHeader = ({ navigation, data }) => {
         i,
         0,
         <div className="bolder" key={i + 10}>
-          <FaLongArrowAltRight style={{ fontSize: "18px", marginTop: "8px" }} />
+          <FaLongArrowAltRight
+            style={{
+              fontSize: "18px",
+              marginTop: "8px",
+              color: "var(--red-shade-color)",
+            }}
+            className="innerHeader-right-icon"
+          />
+          <FaLongArrowAltDown
+            style={{
+              fontSize: "18px",
+              marginTop: "8px",
+              color: "var(--red-shade-color)",
+            }}
+            className="innerHeader-down-icon"
+          />
         </div>
       );
       items.join();
@@ -31,19 +47,23 @@ const InnerHeader = ({ navigation, data }) => {
 
   return (
     <m.div
-      className="flex-column-center medium-gap"
+      className="innerHeader-main medium-gap"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
-      <div className="larger-text bolder primary-font-2 red-shade-colour">
-        {removeUnderScore(data.subject)}
-      </div>
-      <div className="flex-small-gap">{items.map((item) => item)}</div>
-      <div className="primary-font bold primary-colour">
-        A start of something good
-      </div>
+      {(customHeading && customHeading) || (
+        <div className="larger-text bolder primary-font-2 red-shade-colour">
+          {removeUnderScore(data.subject)}
+        </div>
+      )}
+      <div className="innerHeader-navigation">{items.map((item) => item)}</div>
+      {(customDesc && customDesc) || (
+        <div className="primary-font bold primary-colour">
+          A start of something good
+        </div>
+      )}
     </m.div>
   );
 };
