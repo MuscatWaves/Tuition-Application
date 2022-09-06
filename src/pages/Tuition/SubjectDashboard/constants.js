@@ -22,7 +22,7 @@ export const cards = (isLoggedIn, subject) => [
     title: "Topic Wise QP & AP",
     description: "Question papers & Answers for each topic.",
     permission: true,
-    path: "/searchCompanies",
+    path: `/tuition/${subject}/topicWiseQPAP`,
   },
   {
     id: 3,

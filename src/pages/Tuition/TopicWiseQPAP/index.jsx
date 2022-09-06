@@ -6,12 +6,12 @@ import InnerHeader from "../../../components/InnerHeader";
 import { removeUnderScore } from "../../../utilities";
 import GridInnerPage from "../../../components/GridInnerPage";
 
-const ExplanatoryVideo = () => {
+const TopicWiseQPAP = () => {
   const data = useParams();
   const navigation = [
     { id: 1, title: "Dashboard", to: "/dashboard" },
     { id: 2, title: "English", to: `/dashboard/${data.subject}` },
-    { id: 3, title: "Explanatory Videos", to: "", active: true },
+    { id: 3, title: "Topic Wise QP/AP", to: "", active: true },
   ];
 
   const testData = [
@@ -19,32 +19,21 @@ const ExplanatoryVideo = () => {
       id: 1,
       name: "Information 1",
       resources: [
-        {
-          id: 1,
-          name: "Test Link 1",
-          link: "https://www.youtube.com/watch?v=rXhGajRFLlY",
-        },
-        {
-          id: 2,
-          name: "Test Link 2",
-          link: "https://www.youtube.com/watch?v=e992r0QxuI4",
-        },
-        {
-          id: 3,
-          name: "Test Link 3",
-          link: "https://www.youtube.com/watch?v=ba7L_g59cNI",
-        },
+        { id: 1, name: "Test Link 1" },
+        { id: 2, name: "Test Link 2" },
+        { id: 3, name: "Test Link 3" },
+        { id: 4, name: "Test Link 3" },
+        { id: 5, name: "Test Link 3" },
+        { id: 6, name: "Test Link 3" },
       ],
     },
     {
       id: 2,
       name: "Information 2",
       resources: [
-        {
-          id: 1,
-          name: "Test Link 1",
-          link: "https://www.youtube.com/watch?v=itEhZsn8wXc",
-        },
+        { id: 1, name: "Test Link 1" },
+        { id: 2, name: "Test Link 2" },
+        { id: 3, name: "Test Link 3" },
       ],
     },
   ];
@@ -65,7 +54,7 @@ const ExplanatoryVideo = () => {
               <span className="red-shade-colour">
                 {removeUnderScore(`${data.subject} : `)}
               </span>
-              <span className="secondary-colour">Explanatory Videos</span>
+              <span className="secondary-colour">{`Topic Wise QP & AP`}</span>
             </div>
           }
           customDesc={
@@ -74,10 +63,10 @@ const ExplanatoryVideo = () => {
             )} course.`}</div>
           }
         />
-        <GridInnerPage data={testData} view={"video"} />
+        <GridInnerPage data={testData} view={"two-list"} />
       </div>
     </m.div>
   );
 };
 
-export default ExplanatoryVideo;
+export default TopicWiseQPAP;

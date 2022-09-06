@@ -2,6 +2,7 @@ import React from "react";
 import { container, item } from "../../animation";
 import { m, AnimatePresence } from "framer-motion";
 import { getYoutubeThumbnail } from "../../utilities";
+import { Button } from "@mantine/core";
 import "./gridInnerPage.css";
 
 const GridInnerPage = ({ data, view }) => {
@@ -34,6 +35,30 @@ const GridInnerPage = ({ data, view }) => {
                 />
                 <div className="secondary-colour medium-text" key={resource.id}>
                   {resource.name}
+                </div>
+              </div>
+            ))}
+          </div>
+        </m.div>
+      );
+    }
+    if (view === "two-list") {
+      return (
+        <m.div key={data.id} className="tpw-notes-each-card" variants={item}>
+          <div className="red-shade-colour larger-text bolder">{data.name}</div>
+          <div className="flex-small-gap-column small-margin-top">
+            {data.resources.map((resource) => (
+              <div className="flex-between" key={resource.id}>
+                <div className="primary-colour medium-text">
+                  {resource.name}
+                </div>
+                <div className="flex-small-gap">
+                  <Button color="indigo" radius="lg" size="md" compact>
+                    Question Paper
+                  </Button>
+                  <Button color="teal" radius="lg" size="md" compact>
+                    Answer Key
+                  </Button>
                 </div>
               </div>
             ))}

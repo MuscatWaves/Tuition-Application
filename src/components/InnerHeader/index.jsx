@@ -22,7 +22,7 @@ const InnerHeader = ({ navigation, data, customHeading, customDesc }) => {
       items.splice(
         i,
         0,
-        <div className="bolder" key={i + 10}>
+        <div className="bolder" key={i + 10 * i + 1}>
           <FaLongArrowAltRight
             style={{
               fontSize: "18px",

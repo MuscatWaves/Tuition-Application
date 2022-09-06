@@ -10,9 +10,9 @@ import "./topicwisenotes.css";
 const TopicWiseNotes = () => {
   const data = useParams();
   const navigation = [
-    { title: "Dashboard", to: "/dashboard" },
-    { title: "English", to: `/dashboard/${data.subject}` },
-    { title: "Topic Wise Notes", to: "#", active: true },
+    { id: 1, title: "Dashboard", to: "/dashboard" },
+    { id: 2, title: "English", to: `/dashboard/${data.subject}` },
+    { id: 3, title: "Topic Wise Notes", to: "#", active: true },
   ];
 
   const testData = [
