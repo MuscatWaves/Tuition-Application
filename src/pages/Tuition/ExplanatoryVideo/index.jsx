@@ -10,7 +10,11 @@ const ExplanatoryVideo = () => {
   const data = useParams();
   const navigation = [
     { id: 1, title: "Dashboard", to: "/dashboard" },
-    { id: 2, title: "English", to: `/dashboard/${data.subject}` },
+    {
+      id: 2,
+      title: removeUnderScore(data.subject),
+      to: `/dashboard/${data.subject}`,
+    },
     { id: 3, title: "Explanatory Videos", to: "", active: true },
   ];
 

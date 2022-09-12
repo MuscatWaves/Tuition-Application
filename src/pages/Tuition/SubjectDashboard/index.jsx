@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 import GridLayoutDash from "../../../components/GridLayoutDash";
 import InnerHeader from "../../../components/InnerHeader";
-import { cards } from "./constants";
+import { removeUnderScore } from "../../../utilities";
 import { m } from "framer-motion";
+import { cards } from "./constants";
 import "./dashboard.css";
 
 const SubjectDashboard = () => {
@@ -14,7 +15,12 @@ const SubjectDashboard = () => {
 
   const navigation = [
     { id: 1, title: "Dashboard", to: "/dashboard" },
-    { id: 2, title: "English", to: `/dashboard/${data.subject}`, active: true },
+    {
+      id: 2,
+      title: removeUnderScore(data.subject),
+      to: `/dashboard/${data.subject}`,
+      active: true,
+    },
   ];
 
   // https://img.youtube.com/vi/sUwD3GRPJos/maxresdefault.jpg

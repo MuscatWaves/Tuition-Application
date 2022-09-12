@@ -2,14 +2,11 @@
 // import { AiOutlineUsergroupAdd } from "react-icons/ai";
 // import { HiOutlineDocumentReport } from "react-icons/hi";
 // import { RiFileUserLine } from "react-icons/ri";
-import { TbFileUpload } from "react-icons/tb";
-import { FiUserX } from "react-icons/fi";
 
 export const cards = (isLoggedIn) => [
   {
     id: 1,
     name: "card1",
-    icon: TbFileUpload,
     title: "English",
     description: "Contains 14 Chapters with 120 sections.",
     permission: true,
@@ -18,11 +15,10 @@ export const cards = (isLoggedIn) => [
   {
     id: 2,
     name: "card2",
-    icon: FiUserX,
     title: "Maths",
     description: "",
     permission: true,
-    path: "/searchCompanies",
+    path: "/dashboard/maths",
   },
   // {
   //   id: 3,
