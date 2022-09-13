@@ -263,7 +263,7 @@ const TopNavigation = ({ setActiveItem, landing }) => {
             category="primary"
             size={"md"}
             radius={"md"}
-            action={() => navigateTo("/login")}
+            action={() => navigateTo("/prelogin")}
           />
           <CustomButton
             label="Sign Up"

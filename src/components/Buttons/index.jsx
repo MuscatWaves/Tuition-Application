@@ -13,6 +13,7 @@ const CustomButton = ({
   rightIcon,
   maxWidth,
   disabled,
+  loading,
 }) => {
   const mainColour = () => {
     if (category === "primary") {
@@ -73,6 +74,7 @@ const CustomButton = ({
       variant={variant}
       rightIcon={rightIcon}
       disabled={disabled}
+      loading={loading}
     >
       {label}
     </Button>

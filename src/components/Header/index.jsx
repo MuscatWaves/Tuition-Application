@@ -23,7 +23,7 @@ const Header = () => {
   //     (token && jwt.verify(token, process.env.REACT_APP_JWT_KEY)) || "";
 
   const logOut = () => {
-    navigateTo("/login");
+    navigateTo("/prelogin");
     showNotification({
       title: "Testing",
       message: "Message something",

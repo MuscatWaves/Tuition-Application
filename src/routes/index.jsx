@@ -22,6 +22,7 @@ const ExplanatoryVideo = lazy(() =>
   import("../pages/Tuition/ExplanatoryVideo")
 );
 const TopicWiseQPAP = lazy(() => import("../pages/Tuition/TopicWiseQPAP"));
+const PreLogin = lazy(() => import("../pages/PreLogin"));
 
 //  Routing Function
 const Routing = () => {
@@ -34,7 +35,8 @@ const Routing = () => {
               <ScrollToTop />
               <Routes>
                 <Route path="/" element={<LandingPage />}></Route>
-                <Route path="/login" element={<Login />}></Route>
+                <Route path="/:type/login" element={<Login />}></Route>
+                <Route path="/prelogin" element={<PreLogin />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/tuition" element={<TuitionPublic />}></Route>
                 <Route path="/preSignUp" element={<PreSignUp />}></Route>

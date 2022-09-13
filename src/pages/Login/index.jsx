@@ -1,20 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import { useForm } from "@mantine/form";
 import { m } from "framer-motion";
+import isEmail from "validator/lib/isEmail";
+import axios from "axios";
+import Cookies from "universal-cookie";
 import logoSmall from "../../images/logo-small.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../components/Buttons";
+import { blueNotify } from "../../notification";
 import "./login.css";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const cookies = new Cookies();
   const navigate = useNavigate();
+  const data = useParams();
   const form = useForm({
     initialValues: {
       email: "",
       password: "",
     },
   });
+
+  const handleSubmit = async (values) => {
+    const Email = values["email"];
+    const Password = values["password"];
+    setLoading(true);
+    if (!isEmail(Email) && data.type !== "admin") {
+      showNotification({
+        title: "Testing",
+        message: "Message something",
+        styles: blueNotify,
+      });
+      console.log("Going inside");
+      setLoading(false);
+    }
+    var bodyFormData = new FormData();
+    data.type === "admin"
+      ? bodyFormData.append("username", "Admin")
+      : bodyFormData.append("username", Email);
+    bodyFormData.append("password", Password);
+    await axios({
+      method: "POST",
+      url: `/api/login`,
+      data: bodyFormData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(function (response) {
+        if (response.status === 200 && response.data.token) {
+          // message.success(response.data.ok);
+          cookies.set("token", response.data.token, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 365,
+          });
+          navigate("/dashboard");
+          setLoading(false);
+        } else {
+          if (response.status === 201) {
+            // message.error(response.data.error);
+            setLoading(false);
+          } else {
+            // message.error(`Ouch, Something went terribly wrong`);
+            setLoading(false);
+          }
+        }
+      })
+      .catch(function (response) {
+        setLoading(false);
+        // message.error(
+        //   response.response.data.error || "Something went terribly wrong"
+        // );
+      });
+  };
+
   return (
     <m.div
       animate={{ opacity: 1 }}
@@ -27,19 +90,25 @@ const Login = () => {
           <img className="logo-small-login" src={logoSmall} alt="login-small" />
           <form
             className="flex-gap-column-1"
-            onSubmit={form.onSubmit((values) => console.log(values))}
+            onSubmit={form.onSubmit(handleSubmit)}
           >
-            <div className="flex-small-gap-column">
-              <div className="medium-text bolder text-light-grey">Email</div>
-              <input
-                type="text"
-                name="text"
-                className="login-input"
-                placeholder="Enter your mail here!"
-                {...form.getInputProps("email")}
-                required
-              />
-            </div>
+            {data.type === "admin" ? (
+              <div className="flex-center bold larger-text primary-font red-shade-colour">
+                Admin Login
+              </div>
+            ) : (
+              <div className="flex-small-gap-column">
+                <div className="medium-text bolder text-light-grey">Email</div>
+                <input
+                  type="text"
+                  name="text"
+                  className="login-input"
+                  placeholder="Enter your mail here!"
+                  {...form.getInputProps("email")}
+                  required
+                />
+              </div>
+            )}
             <div className="flex-small-gap-column small-margin-bottom">
               <div className="medium-text bolder text-light-grey">Password</div>
               <input
@@ -57,7 +126,7 @@ const Login = () => {
               type={"submit"}
               size={"lg"}
               radius={"xl"}
-              action={() => navigate("/dashboard")}
+              loading={loading}
             />
             <div className="small-text bolder flex-end text-grey">
               Forgot Password?
