@@ -288,11 +288,11 @@ h1 {
 }
 
 .mantine-Select-itemsWrapper {
-  width: auto;
+  width: auto !important;
 }
 
 .mantine-MultiSelect-itemsWrapper {
-  width: auto;
+  width: auto !important;
 }
 
 .mantine-Input-input {
@@ -302,20 +302,21 @@ h1 {
   transition: 0.3s;
   font-weight: 600;
   font-size: 16px;
+  background: #e8e8e8 !important;
   color: var(--text-color);
 }
 
 .login-input {
   border: none;
   padding: 1rem;
-  border-radius: 1rem;
-  background: #e8e8e8;
+  border-radius: 20px;
   box-shadow: inset 9px 9px 18px #c5c5c5, inset -9px -9px 18px #ffffff;
   transition: 0.3s;
   font-weight: 600;
   font-size: 16px;
   color: var(--text-color);
   min-width: 300px;
+  background: #e8e8e8;
 }
 
 .login-input:focus {
