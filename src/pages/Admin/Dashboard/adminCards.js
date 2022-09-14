@@ -11,7 +11,7 @@ export const adminCards = (isLoggedIn) => [
     title: "Manage Access",
     description: "Create, Update & Delete any access",
     permission: true,
-    path: "/dashboard/maths",
+    path: "/admin/manageAccess",
   },
   {
     id: 3,
