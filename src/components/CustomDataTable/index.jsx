@@ -1,12 +1,15 @@
 import React from "react";
 import DataTable from "react-data-table-component";
 import Loader from "../Loader";
+import { m } from "framer-motion";
+import "./customDataTable.css";
 
 const CustomDataTable = ({
   columns,
   data,
   noHeight,
   pagination,
+  highlightOnHover,
   progressPending,
   onRowClicked,
 }) => {
@@ -81,31 +84,41 @@ const CustomDataTable = ({
       progress: {
         style: {
           padding: "2rem",
+          backgroundColor: "#e5e5e5",
         },
       },
     };
   };
 
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      customStyles={tableStyles(noHeight)}
-      responsive
-      highlightOnHover
-      pagination={pagination}
-      progressPending={progressPending}
-      progressComponent={
-        <div className="flex-gap">
-          <Loader />
-          <div className="text-black boldest">Loading your data</div>
-        </div>
-      }
-      paginationComponentOptions={{
-        noRowsPerPage: true,
-      }}
-      onRowClicked={onRowClicked}
-    />
+    <div className="table-wrapper">
+      <m.div
+        className="main-table"
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        exit={{ opacity: 0 }}
+      >
+        <DataTable
+          columns={columns}
+          data={data}
+          customStyles={tableStyles(noHeight)}
+          responsive
+          highlightOnHover={highlightOnHover}
+          pagination={pagination}
+          progressPending={progressPending}
+          progressComponent={
+            <div className="flex-gap">
+              <Loader />
+            </div>
+          }
+          paginationComponentOptions={{
+            noRowsPerPage: true,
+          }}
+          onRowClicked={onRowClicked}
+        />
+      </m.div>
+    </div>
   );
 };
 

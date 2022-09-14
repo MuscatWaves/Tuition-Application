@@ -325,6 +325,10 @@ h1 {
   transition: 0.3s;
 }
 
+.mantine-Modal-modal {
+  background: #e8e8e8;
+}
+
 .small-card {
   padding: 1rem;
   border-radius: 20px;
@@ -344,6 +348,19 @@ h1 {
 .link--active {
   font-weight: 700;
   color: var(--red-shade-color) !important;
+}
+
+.top-heading-admin-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.top-heading-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  width: 95vw;
 }
 
 /* Custom Scrollbar */

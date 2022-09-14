@@ -1,0 +1,11 @@
+.form-manage-access-admin {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 2rem;
+}
+
+.button-form-manage-access {
+  grid-column: 1/3;
+  display: flex;
+  justify-content: center;
+}

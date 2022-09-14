@@ -1,0 +1,8 @@
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.main-table {
+  width: 95vw;
+}
