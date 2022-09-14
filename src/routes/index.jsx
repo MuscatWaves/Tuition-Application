@@ -23,6 +23,7 @@ const ExplanatoryVideo = lazy(() =>
 );
 const TopicWiseQPAP = lazy(() => import("../pages/Tuition/TopicWiseQPAP"));
 const PreLogin = lazy(() => import("../pages/PreLogin"));
+const AdminDash = lazy(() => import("../pages/Admin/Dashboard"));
 
 //  Routing Function
 const Routing = () => {
@@ -35,6 +36,9 @@ const Routing = () => {
               <ScrollToTop />
               <Routes>
                 <Route path="/" element={<LandingPage />}></Route>
+                {/* Admin */}
+                <Route path="/adminDashboard" element={<AdminDash />}></Route>
+                {/* Tuition */}
                 <Route path="/:type/login" element={<Login />}></Route>
                 <Route path="/prelogin" element={<PreLogin />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>

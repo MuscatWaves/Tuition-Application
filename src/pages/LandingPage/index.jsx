@@ -90,7 +90,7 @@ const LandingPage = () => {
                 Something will be Happening
               </m.div>
               <m.div
-                className="text-white-light description-text"
+                className="text-white-light landing-description-text"
                 variants={zoomItem}
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi

@@ -9,7 +9,7 @@ import logoSmall from "../../images/logo-small.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../components/Buttons";
-import { blueNotify } from "../../notification";
+import { greenNotify, redNotify } from "../../notification";
 import "./login.css";
 
 const Login = () => {
@@ -30,9 +30,9 @@ const Login = () => {
     setLoading(true);
     if (!isEmail(Email) && data.type !== "admin") {
       showNotification({
-        title: "Testing",
-        message: "Message something",
-        styles: blueNotify,
+        title: "Login Error",
+        message: "Please enter a valid Email!",
+        styles: redNotify,
       });
       console.log("Going inside");
       setLoading(false);
@@ -53,28 +53,44 @@ const Login = () => {
     })
       .then(function (response) {
         if (response.status === 200 && response.data.token) {
-          // message.success(response.data.ok);
+          showNotification({
+            title: "Login Successful!",
+            styles: greenNotify,
+          });
           cookies.set("token", response.data.token, {
             path: "/",
             maxAge: 60 * 60 * 24 * 365,
           });
-          navigate("/dashboard");
+          if (data.type === "admin") {
+            navigate("/adminDashboard");
+          }
           setLoading(false);
         } else {
           if (response.status === 201) {
-            // message.error(response.data.error);
+            showNotification({
+              title: "Login Error!",
+              message: response.data.error,
+              styles: greenNotify,
+            });
             setLoading(false);
           } else {
-            // message.error(`Ouch, Something went terribly wrong`);
+            showNotification({
+              title: "Login Error!",
+              message: `Ouch, Something went terribly wrong`,
+              styles: redNotify,
+            });
             setLoading(false);
           }
         }
       })
       .catch(function (response) {
         setLoading(false);
-        // message.error(
-        //   response.response.data.error || "Something went terribly wrong"
-        // );
+        showNotification({
+          title: "Login Error!",
+          message:
+            response.response.data.error || "Something went terribly wrong",
+          styles: redNotify,
+        });
       });
   };
 

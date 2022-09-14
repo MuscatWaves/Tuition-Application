@@ -1,3 +1,7 @@
+import { showNotification } from "@mantine/notifications";
+import Cookies from "universal-cookie";
+import { greenNotify } from "../notification";
+
 export const removeUnderScore = (str) => {
   var i,
     frags = str.split("_");
@@ -36,4 +40,16 @@ export const getYoutubeThumbnail = (url, quality) => {
     }
   }
   return false;
+};
+
+export const removeCookie = (navigate) => {
+  localStorage.removeItem("filter");
+  localStorage.removeItem("page");
+  const cookies = new Cookies();
+  cookies.set("token", "", { path: "/", expires: new Date(Date.now()) });
+  showNotification({
+    title: "Log Out Successful",
+    styles: greenNotify,
+  });
+  navigate("/prelogin");
 };
