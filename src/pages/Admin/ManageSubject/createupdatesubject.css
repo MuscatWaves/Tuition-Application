@@ -1,0 +1,10 @@
+.form-manage-access-subject {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-form-manage-subject {
+  display: flex;
+  justify-content: center;
+}

@@ -27,6 +27,7 @@ const PreLogin = lazy(() => import("../pages/PreLogin"));
 // Admin
 const AdminDash = lazy(() => import("../pages/Admin/Dashboard"));
 const ManageAccess = lazy(() => import("../pages/Admin/ManageAccess"));
+const ManageSubject = lazy(() => import("../pages/Admin/ManageSubject"));
 
 //  Routing Function
 const Routing = () => {
@@ -44,6 +45,10 @@ const Routing = () => {
                 <Route
                   path="/admin/manageAccess"
                   element={<ManageAccess />}
+                ></Route>
+                <Route
+                  path="/admin/manageSubject"
+                  element={<ManageSubject />}
                 ></Route>
                 {/* Tuition */}
                 <Route path="/:type/login" element={<Login />}></Route>

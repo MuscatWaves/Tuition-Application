@@ -6,20 +6,15 @@ import Header from "../../../components/Header";
 import CustomDataTable from "../../../components/CustomDataTable";
 import { ActionIcon } from "@mantine/core";
 import { Modal } from "@mantine/core";
-import {
-  AiOutlineDelete,
-  AiFillCheckCircle,
-  AiOutlineEdit,
-} from "react-icons/ai";
-import { MdCancel } from "react-icons/md";
-import CreateUpdateAccess from "./CreateUpdateAccess";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import CreateUpdateSubject from "./CreateUpdateSubject";
 import BreadCrumb from "../../../components/BreadCrumb";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./manageacess.css";
+import "./createupdatesubject.css";
 
-const ManageAccess = () => {
+const ManageSubject = () => {
   const [isModalOpen, toggleModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,9 +27,9 @@ const ManageAccess = () => {
     isFetching,
     refetch,
   } = useQuery(
-    ["adminManageAccess"],
+    ["adminManageSubject"],
     () =>
-      axios.get("/api/access", {
+      axios.get(`/api/subject?page=1`, {
         headers: {
           Authorization: token,
         },
@@ -43,7 +38,7 @@ const ManageAccess = () => {
   );
 
   useEffect(() => {
-    document.title = "Admin - Manage Access";
+    document.title = "Admin - Manage Subject";
     // eslint-disable-next-line
   }, []);
 
@@ -53,48 +48,12 @@ const ManageAccess = () => {
 
   const columns = [
     {
-      name: "Name",
-      selector: (row) => row.name,
+      name: "Title",
+      selector: (row) => row.title,
     },
     {
-      name: "Service",
-      selector: (row) => row.service,
-    },
-    {
-      name: "Read Access",
-      selector: (row) =>
-        row.readAccess ? (
-          <AiFillCheckCircle className="mid-large-text text-green" />
-        ) : (
-          <MdCancel className="mid-large-text text-red" />
-        ),
-    },
-    {
-      name: "Write Access",
-      selector: (row) =>
-        row.writeAccess ? (
-          <AiFillCheckCircle className="mid-large-text text-green" />
-        ) : (
-          <MdCancel className="mid-large-text text-red" />
-        ),
-    },
-    {
-      name: "Edit Access",
-      selector: (row) =>
-        row.editAccess ? (
-          <AiFillCheckCircle className="mid-large-text text-green" />
-        ) : (
-          <MdCancel className="mid-large-text text-red" />
-        ),
-    },
-    {
-      name: "Delete Access",
-      selector: (row) =>
-        row.deleteAccess ? (
-          <AiFillCheckCircle className="mid-large-text text-green" />
-        ) : (
-          <MdCancel className="mid-large-text text-red" />
-        ),
+      name: "Description",
+      selector: (row) => row.description,
     },
     {
       name: "Actions",
@@ -137,8 +96,8 @@ const ManageAccess = () => {
     },
     {
       id: 1,
-      name: "Manage Access",
-      url: "/admin/manageAccess",
+      name: "Manage Subject",
+      url: "/admin/manageSubject",
       active: true,
     },
   ];
@@ -152,7 +111,7 @@ const ManageAccess = () => {
     var axios = require("axios");
     var config = {
       method: "delete",
-      url: `/api/access/${deleteData.id}`,
+      url: `/api/subject/${deleteData.id}`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -180,7 +139,7 @@ const ManageAccess = () => {
 
   return (
     <div>
-      <CreateUpdateAccess
+      <CreateUpdateSubject
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
         data={updateData}
@@ -189,7 +148,7 @@ const ManageAccess = () => {
         refetch={refetch}
       />
       <Modal
-        title={<div className="bolder large-text">Delete Access</div>}
+        title={<div className="bolder large-text">Delete Subject</div>}
         opened={deleteModal}
         onClose={handleClose}
       >
@@ -206,11 +165,11 @@ const ManageAccess = () => {
           />
         </div>
       </Modal>
-      <Header customLink={"/adminDashboard"} />
+      <Header />
       <div className="top-heading-admin-wrapper">
         <div className="top-heading-admin">
           <div className="bolder larger-text primary-font red-shade-colour">
-            Manage Access
+            Manage Subject
           </div>
           <div className="flex-between">
             <BreadCrumb items={nav} />
@@ -236,4 +195,4 @@ const ManageAccess = () => {
   );
 };
 
-export default ManageAccess;
+export default ManageSubject;

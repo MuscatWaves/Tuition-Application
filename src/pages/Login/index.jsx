@@ -34,7 +34,6 @@ const Login = () => {
         message: "Please enter a valid Email!",
         styles: redNotify,
       });
-      console.log("Going inside");
       setLoading(false);
     }
     var bodyFormData = new FormData();

@@ -18,7 +18,7 @@ export const adminCards = (isLoggedIn) => [
     title: "Manage Subjects",
     description: "Create, Update & Delete any subjects",
     permission: true,
-    path: "/dashboard/maths",
+    path: "/admin/manageSubject",
   },
   {
     id: 4,

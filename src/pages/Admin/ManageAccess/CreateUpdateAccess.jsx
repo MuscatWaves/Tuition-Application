@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Modal, Switch } from "@mantine/core";
+import { Modal, Switch, Select } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -80,6 +80,7 @@ const CreateUpdateAccess = ({
       .catch(function (error) {
         showNotification({
           title: "Error!",
+          message: error.response.data.error,
           styles: redNotify,
         });
         setLoading(false);
@@ -89,20 +90,45 @@ const CreateUpdateAccess = ({
   const handleClose = () => {
     setData(false);
     toggleModal(false);
+    form.reset();
   };
 
   return (
     <Modal
       opened={isModalOpen}
       onClose={handleClose}
-      title="Introduce yourself!"
+      title={
+        data ? (
+          <div className="bolder large-text">Update Access</div>
+        ) : (
+          <div className="bolder large-text">Create Access</div>
+        )
+      }
+      radius="lg"
     >
       <form
         className="form-manage-access-admin"
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="medium-text bolder text-light-grey">Service</div>
+          <div className="small-text bolder text-light-grey">User</div>
+          <Select
+            placeholder="Select the user for providing access"
+            data={[
+              { label: "Grades", value: 1 },
+              { label: "Subjects", value: 2 },
+              { label: "Services", value: 3 },
+            ]}
+            radius="xl"
+            size="lg"
+            transitionDuration={150}
+            transition="pop-top-left"
+            transitionTimingFunction="ease"
+            {...form.getInputProps("grades")}
+          />
+        </div>
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="small-text bolder text-light-grey">Service</div>
           <input
             type="text"
             name="service"

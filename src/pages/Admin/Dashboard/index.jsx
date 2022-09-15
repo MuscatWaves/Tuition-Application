@@ -23,7 +23,7 @@ const AdminDash = () => {
       exit={{ opacity: 0 }}
     >
       <div>
-        <Header />
+        <Header customLink={"/adminDashboard"} />
         <div className="main-dashboard-wrapper">
           <div className="larger-text bolder primary-font primary-colour flex-small-gap welcome-message">
             <span>Welcome</span>

@@ -10,7 +10,7 @@ import CustomButton from "../Buttons";
 import { removeCookie } from "../../utilities";
 import "./header.css";
 
-const Header = () => {
+const Header = ({ customLink }) => {
   const navigateTo = useNavigate();
   // const cookies = new Cookies();
   // const token = cookies.get("token");
@@ -33,7 +33,7 @@ const Header = () => {
           src={logoSmall}
           width={"70px"}
           height={"70px"}
-          onClick={() => navigateTo("/dashboard")}
+          onClick={() => navigateTo(customLink || "/dashboard")}
         />
         <Authentication />
         <div className="flex-small-gap">
