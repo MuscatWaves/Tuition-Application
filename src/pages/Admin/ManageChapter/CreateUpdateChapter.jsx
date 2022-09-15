@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Modal } from "@mantine/core";
+import { Modal, Select } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatesubject.css";
+import "./createupdatechapter.css";
 
-const CreateUpdateSubject = ({
+const CreateUpdateChapter = ({
   isModalOpen,
   toggleModal,
   data,
   setData,
   token,
+  subjectData,
   refetch,
 }) => {
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
+      subject: "",
       title: "",
       description: "",
     },
@@ -25,6 +27,7 @@ const CreateUpdateSubject = ({
   useEffect(() => {
     if (data) {
       form.setValues({
+        subject: data.subjectId,
         title: data.title,
         description: data.description,
       });
@@ -37,17 +40,19 @@ const CreateUpdateSubject = ({
     var updateData = data
       ? JSON.stringify({
           id: data.id,
+          subjectId: values.subject,
           title: values.title,
           description: values.description,
         })
       : JSON.stringify({
+          subjectId: values.subject,
           title: values.title,
           description: values.description,
         });
 
     var config = {
       method: data ? "put" : "post",
-      url: "/api/subject",
+      url: "/api/chapter",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -88,17 +93,33 @@ const CreateUpdateSubject = ({
       onClose={handleClose}
       title={
         data ? (
-          <div className="bolder large-text">Update Subject</div>
+          <div className="bolder large-text">Update Chapter</div>
         ) : (
-          <div className="bolder large-text">Create Subject</div>
+          <div className="bolder large-text">Create Chapter</div>
         )
       }
       radius="lg"
     >
       <form
-        className="form-manage-access-subject"
+        className="form-manage-access-chapter"
         onSubmit={form.onSubmit(handleSubmit)}
       >
+        <div className="flex-small-gap-column">
+          <div className="bold just-flex">
+            <div>Subject</div>
+            <div className="text-red">*</div>
+          </div>
+          <Select
+            placeholder="Select your subject"
+            data={subjectData}
+            radius="xl"
+            size="lg"
+            transitionDuration={150}
+            transition="pop-top-left"
+            transitionTimingFunction="ease"
+            {...form.getInputProps("subject")}
+          />
+        </div>
         <div className="flex-small-gap-column">
           <div className="small-text bolder text-light-grey">Title</div>
           <input
@@ -123,7 +144,7 @@ const CreateUpdateSubject = ({
             required
           />
         </div>
-        <div className="button-form-manage-subject">
+        <div className="button-form-manage-chapter">
           <CustomButton
             label={data ? "Update" : "Create"}
             category="landing"
@@ -138,4 +159,4 @@ const CreateUpdateSubject = ({
   );
 };
 
-export default CreateUpdateSubject;
+export default CreateUpdateChapter;

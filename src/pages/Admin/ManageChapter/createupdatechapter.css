@@ -1,0 +1,10 @@
+.form-manage-access-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-form-manage-chapter {
+  display: flex;
+  justify-content: center;
+}

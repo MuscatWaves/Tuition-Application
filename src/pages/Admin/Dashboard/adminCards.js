@@ -4,7 +4,7 @@ export const adminCards = (isLoggedIn) => [
     title: "Manage Accounts",
     description: "Create, Update & Delete any account",
     permission: true,
-    path: "/dashboard/maths",
+    path: "/adminDashboard",
   },
   {
     id: 2,
@@ -25,6 +25,6 @@ export const adminCards = (isLoggedIn) => [
     title: "Manage Chapters",
     description: "Create, Update & Delete any chapter",
     permission: true,
-    path: "/dashboard/maths",
+    path: "/admin/manageChapter",
   },
 ];
