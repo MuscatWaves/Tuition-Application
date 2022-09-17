@@ -107,7 +107,7 @@ const CreateUpdateChapter = ({
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column">
-          <div className="bold just-flex">
+          <div className="bold just-flex text-light-grey">
             <div>Subject</div>
             <div className="text-red">*</div>
           </div>
@@ -123,7 +123,10 @@ const CreateUpdateChapter = ({
           />
         </div>
         <div className="flex-small-gap-column">
-          <div className="small-text bolder text-light-grey">Title</div>
+          <div className="bold just-flex text-light-grey">
+            <div>Title</div>
+            <div className="text-red">*</div>
+          </div>
           <input
             type="text"
             name="title"
@@ -134,9 +137,7 @@ const CreateUpdateChapter = ({
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="small-text bolder text-light-grey">
-            Small Description
-          </div>
+          <div className="bolder text-light-grey">Small Description</div>
           <input
             type="text"
             name="description"

@@ -113,7 +113,10 @@ const CreateUpdateAccess = ({
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="small-text bolder text-light-grey">User</div>
+          <div className="bold just-flex text-light-grey">
+            <div>User</div>
+            <div className="text-red">*</div>
+          </div>
           <Select
             placeholder="Select the user for providing access"
             data={[
@@ -127,10 +130,14 @@ const CreateUpdateAccess = ({
             transition="pop-top-left"
             transitionTimingFunction="ease"
             {...form.getInputProps("grades")}
+            required
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="small-text bolder text-light-grey">Service</div>
+          <div className="bold just-flex text-light-grey">
+            <div>Service</div>
+            <div className="text-red">*</div>
+          </div>
           <input
             type="text"
             name="service"

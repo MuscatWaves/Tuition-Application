@@ -102,7 +102,7 @@ const CreateUpdateAccount = ({
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column">
-          <div className="small-text bolder text-light-grey">Title</div>
+          <div className="bolder text-light-grey">Title</div>
           <input
             type="text"
             name="title"
@@ -113,9 +113,7 @@ const CreateUpdateAccount = ({
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="small-text bolder text-light-grey">
-            Small Description
-          </div>
+          <div className="bolder text-light-grey">Small Description</div>
           <input
             type="text"
             name="description"
