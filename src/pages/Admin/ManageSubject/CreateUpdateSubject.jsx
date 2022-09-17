@@ -110,6 +110,7 @@ const CreateUpdateSubject = ({
             placeholder="Please enter the title of subject"
             {...form.getInputProps("title")}
             required
+            data-autofocus
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
