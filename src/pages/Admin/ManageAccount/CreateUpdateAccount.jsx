@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer, Select } from "@mantine/core";
+import { Drawer } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatechapter.css";
+import "./createupdateaccount.css";
 
-const CreateUpdateChapter = ({
+const CreateUpdateAccount = ({
   isModalOpen,
   toggleModal,
   data,
   setData,
   token,
-  subjectData,
   refetch,
 }) => {
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
-      subject: "",
       title: "",
       description: "",
     },
@@ -27,7 +25,6 @@ const CreateUpdateChapter = ({
   useEffect(() => {
     if (data) {
       form.setValues({
-        subject: data.subjectId,
         title: data.title,
         description: data.description,
       });
@@ -40,19 +37,17 @@ const CreateUpdateChapter = ({
     var updateData = data
       ? JSON.stringify({
           id: data.id,
-          subjectId: values.subject,
           title: values.title,
           description: values.description,
         })
       : JSON.stringify({
-          subjectId: values.subject,
           title: values.title,
           description: values.description,
         });
 
     var config = {
       method: data ? "put" : "post",
-      url: "/api/chapter",
+      url: "/api/subject",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -93,9 +88,9 @@ const CreateUpdateChapter = ({
       onClose={handleClose}
       title={
         data ? (
-          <div className="bolder large-text">Update Chapter</div>
+          <div className="bolder large-text">Update Account</div>
         ) : (
-          <div className="bolder large-text">Create Chapter</div>
+          <div className="bolder large-text">Create Account</div>
         )
       }
       padding="xl"
@@ -103,25 +98,9 @@ const CreateUpdateChapter = ({
       position="right"
     >
       <form
-        className="form-manage-access-chapter"
+        className="form-manage-access-account"
         onSubmit={form.onSubmit(handleSubmit)}
       >
-        <div className="flex-small-gap-column">
-          <div className="bold just-flex">
-            <div>Subject</div>
-            <div className="text-red">*</div>
-          </div>
-          <Select
-            placeholder="Select your subject"
-            data={subjectData}
-            radius="xl"
-            size="lg"
-            transitionDuration={150}
-            transition="pop-top-left"
-            transitionTimingFunction="ease"
-            {...form.getInputProps("subject")}
-          />
-        </div>
         <div className="flex-small-gap-column">
           <div className="small-text bolder text-light-grey">Title</div>
           <input
@@ -145,7 +124,7 @@ const CreateUpdateChapter = ({
             {...form.getInputProps("description")}
           />
         </div>
-        <div className="button-form-manage-chapter">
+        <div className="button-form-manage-account">
           <CustomButton
             label={"Cancel"}
             size={"md"}
@@ -168,4 +147,4 @@ const CreateUpdateChapter = ({
   );
 };
 
-export default CreateUpdateChapter;
+export default CreateUpdateAccount;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Modal } from "@mantine/core";
+import { Drawer } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -83,7 +83,7 @@ const CreateUpdateSubject = ({
   };
 
   return (
-    <Modal
+    <Drawer
       opened={isModalOpen}
       onClose={handleClose}
       title={
@@ -93,7 +93,9 @@ const CreateUpdateSubject = ({
           <div className="bolder large-text">Create Subject</div>
         )
       }
-      radius="lg"
+      padding="xl"
+      size="xl"
+      position="right"
     >
       <form
         className="form-manage-access-subject"
@@ -124,6 +126,14 @@ const CreateUpdateSubject = ({
         </div>
         <div className="button-form-manage-subject">
           <CustomButton
+            label={"Cancel"}
+            size={"md"}
+            radius={"xl"}
+            variant={"subtle"}
+            action={handleClose}
+            color={"gray"}
+          />
+          <CustomButton
             label={data ? "Update" : "Create"}
             category="landing"
             type={"submit"}
@@ -133,7 +143,7 @@ const CreateUpdateSubject = ({
           />
         </div>
       </form>
-    </Modal>
+    </Drawer>
   );
 };
 

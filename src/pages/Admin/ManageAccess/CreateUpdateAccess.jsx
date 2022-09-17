@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Modal, Switch, Select } from "@mantine/core";
+import { Switch, Select, Drawer } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -94,7 +94,7 @@ const CreateUpdateAccess = ({
   };
 
   return (
-    <Modal
+    <Drawer
       opened={isModalOpen}
       onClose={handleClose}
       title={
@@ -104,7 +104,9 @@ const CreateUpdateAccess = ({
           <div className="bolder large-text">Create Access</div>
         )
       }
-      radius="lg"
+      padding="xl"
+      size="xl"
+      position="right"
     >
       <form
         className="form-manage-access-admin"
@@ -150,7 +152,7 @@ const CreateUpdateAccess = ({
         <Switch
           color="teal"
           size="md"
-          label="Read Access"
+          label="Write Access"
           onLabel="ON"
           offLabel="OFF"
           checked={form.values.writeAccess}
@@ -159,7 +161,7 @@ const CreateUpdateAccess = ({
         <Switch
           color="teal"
           size="md"
-          label="Read Access"
+          label="Edit Access"
           onLabel="ON"
           offLabel="OFF"
           checked={form.values.editAccess}
@@ -168,13 +170,21 @@ const CreateUpdateAccess = ({
         <Switch
           color="teal"
           size="md"
-          label="Read Access"
+          label="Delete Access"
           onLabel="ON"
           offLabel="OFF"
           checked={form.values.deleteAccess}
           {...form.getInputProps("deleteAccess")}
         />
         <div className="button-form-manage-access">
+          <CustomButton
+            label={"Cancel"}
+            size={"md"}
+            radius={"xl"}
+            variant={"subtle"}
+            action={handleClose}
+            color={"gray"}
+          />
           <CustomButton
             label={data ? "Update" : "Create"}
             category="landing"
@@ -185,7 +195,7 @@ const CreateUpdateAccess = ({
           />
         </div>
       </form>
-    </Modal>
+    </Drawer>
   );
 };
 

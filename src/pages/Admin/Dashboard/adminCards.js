@@ -4,7 +4,7 @@ export const adminCards = (isLoggedIn) => [
     title: "Manage Accounts",
     description: "Create, Update & Delete any account",
     permission: true,
-    path: "/adminDashboard",
+    path: "/admin/manageAccount",
   },
   {
     id: 2,
