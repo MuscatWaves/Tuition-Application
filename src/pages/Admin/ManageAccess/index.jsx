@@ -25,6 +25,7 @@ const ManageAccess = () => {
   const [loading, setLoading] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
+  const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const {
@@ -32,9 +33,9 @@ const ManageAccess = () => {
     isFetching,
     refetch,
   } = useQuery(
-    ["adminManageAccess"],
+    ["adminManageAccess", page],
     () =>
-      axios.get("/api/access", {
+      axios.get(`/api/access?page=${page}`, {
         headers: {
           Authorization: token,
         },
@@ -49,6 +50,10 @@ const ManageAccess = () => {
 
   const update = () => {
     toggleModal(true);
+  };
+
+  const handlePageChange = (page) => {
+    setPage(page);
   };
 
   const columns = [
@@ -166,7 +171,11 @@ const ManageAccess = () => {
           styles: greenNotify,
         });
         setLoading(false);
-        refetch();
+        if ((page - 1) * 10 + 1 === data.data?.Total) {
+          setPage(page - 1);
+        } else {
+          refetch();
+        }
         handleClose();
       })
       .catch(function (error) {
@@ -230,6 +239,10 @@ const ManageAccess = () => {
           data={data.data?.data}
           columns={columns}
           progressPending={isFetching}
+          pagination
+          paginationServer
+          paginationTotalRows={data.data?.Total}
+          onChangePage={handlePageChange}
         />
       </div>
     </div>

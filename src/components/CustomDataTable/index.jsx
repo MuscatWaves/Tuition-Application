@@ -9,6 +9,9 @@ const CustomDataTable = ({
   data,
   noHeight,
   pagination,
+  paginationServer,
+  paginationTotalRows,
+  onChangePage,
   highlightOnHover,
   progressPending,
   onRowClicked,
@@ -105,13 +108,16 @@ const CustomDataTable = ({
           customStyles={tableStyles(noHeight)}
           responsive
           highlightOnHover={highlightOnHover}
-          pagination={pagination}
           progressPending={progressPending}
           progressComponent={
             <div className="flex-gap">
               <Loader />
             </div>
           }
+          pagination={pagination}
+          paginationServer={paginationServer}
+          paginationTotalRows={paginationTotalRows}
+          onChangePage={onChangePage}
           paginationComponentOptions={{
             noRowsPerPage: true,
           }}

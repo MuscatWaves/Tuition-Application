@@ -20,22 +20,25 @@ const ManageChapter = () => {
   const [loading, setLoading] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
+  const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
+
   const {
     data = [],
     isFetching,
     refetch,
   } = useQuery(
-    ["adminManageChapter"],
+    ["adminManageChapter", page],
     () =>
-      axios.get(`/api/chapter?page=1`, {
+      axios.get(`/api/chapter?page=${page}`, {
         headers: {
           Authorization: token,
         },
       }),
     { refetchOnWindowFocus: false }
   );
+
   const { data: subjectData = [] } = useQuery(
     ["adminManageSubjectTemp1"],
     () =>
@@ -63,6 +66,10 @@ const ManageChapter = () => {
 
   const update = () => {
     toggleModal(true);
+  };
+
+  const handlePageChange = (page) => {
+    setPage(page);
   };
 
   const columns = [
@@ -150,7 +157,11 @@ const ManageChapter = () => {
           styles: greenNotify,
         });
         setLoading(false);
-        refetch();
+        if ((page - 1) * 10 + 1 === data.data?.Total) {
+          setPage(page - 1);
+        } else {
+          refetch();
+        }
         handleClose();
       })
       .catch(function (error) {
@@ -215,6 +226,10 @@ const ManageChapter = () => {
           data={data.data?.data}
           columns={columns}
           progressPending={isFetching}
+          pagination
+          paginationServer
+          paginationTotalRows={data.data?.Total}
+          onChangePage={handlePageChange}
         />
       </div>
     </div>

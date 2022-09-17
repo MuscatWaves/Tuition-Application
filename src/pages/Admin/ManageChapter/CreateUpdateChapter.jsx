@@ -141,7 +141,6 @@ const CreateUpdateChapter = ({
             className="login-input"
             placeholder="Please enter the description of subject"
             {...form.getInputProps("description")}
-            required
           />
         </div>
         <div className="button-form-manage-chapter">
