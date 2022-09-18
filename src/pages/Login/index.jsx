@@ -35,62 +35,64 @@ const Login = () => {
         styles: redNotify,
       });
       setLoading(false);
-    }
-    var bodyFormData = new FormData();
-    data.type === "admin"
-      ? bodyFormData.append("username", "Admin")
-      : bodyFormData.append("username", Email);
-    bodyFormData.append("password", Password);
-    await axios({
-      method: "POST",
-      url: `/api/login`,
-      data: bodyFormData,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then(function (response) {
-        if (response.status === 200 && response.data.token) {
-          showNotification({
-            title: "Login Successful!",
-            styles: greenNotify,
-          });
-          cookies.set("token", response.data.token, {
-            path: "/",
-            maxAge: 60 * 60 * 24 * 365,
-          });
-          if (data.type === "admin") {
-            navigate("/adminDashboard");
-          }
-          setLoading(false);
-        } else {
-          if (response.status === 201) {
+      return;
+    } else {
+      var bodyFormData = new FormData();
+      data.type === "admin"
+        ? bodyFormData.append("username", "Admin")
+        : bodyFormData.append("username", Email);
+      bodyFormData.append("password", Password);
+      await axios({
+        method: "POST",
+        url: `/api/login`,
+        data: bodyFormData,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then(function (response) {
+          if (response.status === 200 && response.data.token) {
             showNotification({
-              title: "Login Error!",
-              message: response.data.error,
+              title: "Login Successful!",
               styles: greenNotify,
             });
+            cookies.set("token", response.data.token, {
+              path: "/",
+              maxAge: 60 * 60 * 24 * 365,
+            });
+            if (data.type === "admin") {
+              navigate("/adminDashboard");
+            }
             setLoading(false);
           } else {
-            showNotification({
-              title: "Login Error!",
-              message: `Ouch, Something went terribly wrong`,
-              styles: redNotify,
-            });
-            setLoading(false);
+            if (response.status === 201) {
+              showNotification({
+                title: "Login Error!",
+                message: response.data.error,
+                styles: greenNotify,
+              });
+              setLoading(false);
+            } else {
+              showNotification({
+                title: "Login Error!",
+                message: `Ouch, Something went terribly wrong`,
+                styles: redNotify,
+              });
+              setLoading(false);
+            }
           }
-        }
-      })
-      .catch(function (response) {
-        setLoading(false);
-        showNotification({
-          title: "Login Error!",
-          message:
-            response.response.data.error || "Something went terribly wrong",
-          styles: redNotify,
+        })
+        .catch(function (response) {
+          setLoading(false);
+          showNotification({
+            title: "Login Error!",
+            message:
+              response.response.data.error || "Something went terribly wrong",
+            styles: redNotify,
+          });
         });
-      });
+    }
   };
 
   return (
