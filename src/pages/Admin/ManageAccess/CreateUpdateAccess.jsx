@@ -13,10 +13,12 @@ const CreateUpdateAccess = ({
   setData,
   token,
   refetch,
+  accounts,
 }) => {
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
+      user: "",
       service: "",
       readAccess: false,
       writeAccess: false,
@@ -28,6 +30,7 @@ const CreateUpdateAccess = ({
   useEffect(() => {
     if (data) {
       form.setValues({
+        user: data.userid,
         service: data.service,
         readAccess: data?.readAccess,
         writeAccess: data?.writeAccess,
@@ -49,7 +52,7 @@ const CreateUpdateAccess = ({
           deleteAccess: values.deleteAccess,
         })
       : JSON.stringify({
-          user: 1,
+          user: values.user,
           service: values.service,
           readAccess: values.readAccess,
           writeAccess: values.writeAccess,
@@ -119,17 +122,13 @@ const CreateUpdateAccess = ({
           </div>
           <Select
             placeholder="Select the user for providing access"
-            data={[
-              { label: "Grades", value: 1 },
-              { label: "Subjects", value: 2 },
-              { label: "Services", value: 3 },
-            ]}
+            data={accounts}
             radius="lg"
             size="lg"
             transitionDuration={150}
             transition="pop-top-left"
             transitionTimingFunction="ease"
-            {...form.getInputProps("grades")}
+            {...form.getInputProps("user")}
             required
           />
         </div>

@@ -43,6 +43,27 @@ const ManageAccess = () => {
     { refetchOnWindowFocus: false }
   );
 
+  const { data: accounts = [] } = useQuery(
+    ["adminManageAccountTemp"],
+    () =>
+      axios.get(`/api/account`, {
+        headers: {
+          Authorization: token,
+        },
+      }),
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => {
+        console.log(data);
+        const newData = data.data.data.map((item) => ({
+          label: item.name,
+          value: item.id,
+        }));
+        return newData;
+      },
+    }
+  );
+
   useEffect(() => {
     document.title = "Admin - Manage Access";
     // eslint-disable-next-line
@@ -196,6 +217,7 @@ const ManageAccess = () => {
         setData={setUpdateData}
         token={token}
         refetch={refetch}
+        accounts={accounts}
       />
       <Modal
         title={<div className="bolder large-text">Delete Access</div>}

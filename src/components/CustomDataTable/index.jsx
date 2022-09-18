@@ -15,6 +15,9 @@ const CustomDataTable = ({
   highlightOnHover,
   progressPending,
   onRowClicked,
+  expandableRows,
+  expandableRowsComponent,
+  noClassRequired,
 }) => {
   const tableStyles = (noHeight) => {
     return {
@@ -94,9 +97,9 @@ const CustomDataTable = ({
   };
 
   return (
-    <div className="table-wrapper">
+    <div className={!noClassRequired && "table-wrapper"}>
       <m.div
-        className="main-table"
+        className={!noClassRequired && "main-table"}
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
@@ -122,6 +125,8 @@ const CustomDataTable = ({
             noRowsPerPage: true,
           }}
           onRowClicked={onRowClicked}
+          expandableRows={expandableRows}
+          expandableRowsComponent={expandableRowsComponent}
         />
       </m.div>
     </div>

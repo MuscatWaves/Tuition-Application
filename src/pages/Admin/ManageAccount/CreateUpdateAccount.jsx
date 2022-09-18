@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer, Input, Switch } from "@mantine/core";
+import { Drawer, Input, Switch, Checkbox } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -15,12 +15,12 @@ const CreateUpdateAccount = ({
   refetch,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(false);
   const form = useForm({
     initialValues: {
       user: "",
       name: "",
       password: "",
-      isActive: true,
     },
   });
 
@@ -108,19 +108,6 @@ const CreateUpdateAccount = ({
         className="form-manage-access-account"
         onSubmit={form.onSubmit(handleSubmit)}
       >
-        <div className="flex-small-gap-column">
-          <div className="bold just-flex text-grey">
-            <div>User</div>
-            <div className="text-red">*</div>
-          </div>
-          <Input
-            placeholder="Please enter the user!"
-            radius="lg"
-            size="lg"
-            {...form.getInputProps("user")}
-            required
-          />
-        </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bold just-flex text-grey">
             <div>Name</div>
@@ -134,23 +121,55 @@ const CreateUpdateAccount = ({
             required
           />
         </div>
-        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+        <div className="flex-small-gap-column">
           <div className="bold just-flex text-grey">
-            <div>Password</div>
-            {!data && <div className="text-red">*</div>}
+            <div>User Name</div>
+            <div className="text-red">*</div>
           </div>
           <Input
-            placeholder={
-              data
-                ? "Please enter new password to update!"
-                : "Please enter the password!"
-            }
+            placeholder="Please enter the user!"
             radius="lg"
             size="lg"
-            {...form.getInputProps("password")}
-            required={!data}
+            {...form.getInputProps("user")}
+            required
           />
         </div>
+
+        {!data && (
+          <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+            <div className="bold just-flex text-grey">
+              <div>Password</div>
+              <div className="text-red">*</div>
+            </div>
+            <Input
+              placeholder={"Please enter the password!"}
+              radius="lg"
+              size="lg"
+              {...form.getInputProps("password")}
+              required={!data}
+            />
+          </div>
+        )}
+        {data && (
+          <Checkbox
+            checked={checked}
+            label={"Please check to update the password"}
+            onChange={(event) => setChecked(event.currentTarget.checked)}
+          />
+        )}
+        {data && checked && (
+          <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+            <div className="bold just-flex text-grey">
+              <div>New Password</div>
+            </div>
+            <Input
+              placeholder={"Please enter new password to update!"}
+              radius="lg"
+              size="lg"
+              {...form.getInputProps("password")}
+            />
+          </div>
+        )}
         {data && (
           <div className="flex-small-gap-column">
             <div className="bold just-flex text-grey">

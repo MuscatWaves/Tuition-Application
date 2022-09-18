@@ -6,10 +6,15 @@ import Header from "../../../components/Header";
 import CustomDataTable from "../../../components/CustomDataTable";
 import { ActionIcon } from "@mantine/core";
 import { Modal } from "@mantine/core";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import {
+  AiOutlineDelete,
+  AiOutlineEdit,
+  AiFillCheckCircle,
+} from "react-icons/ai";
 import CreateUpdateAccount from "./CreateUpdateAccount";
 import BreadCrumb from "../../../components/BreadCrumb";
 import CustomButton from "../../../components/Buttons";
+import { MdCancel } from "react-icons/md";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
 import "./createupdateaccount.css";
@@ -57,7 +62,7 @@ const ManageAccount = () => {
       selector: (row) => row.name,
     },
     {
-      name: "User",
+      name: "Username",
       selector: (row) => row.user,
     },
     {
@@ -99,6 +104,49 @@ const ManageAccount = () => {
           </ActionIcon>
         </div>
       ),
+    },
+  ];
+
+  const accessColumns = [
+    {
+      name: "Service",
+      selector: (row) => row.service,
+    },
+    {
+      name: "Read Access",
+      selector: (row) =>
+        row.readAccess ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
+    },
+    {
+      name: "Write Access",
+      selector: (row) =>
+        row.writeAccess ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
+    },
+    {
+      name: "Edit Access",
+      selector: (row) =>
+        row.editAccess ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
+    },
+    {
+      name: "Delete Access",
+      selector: (row) =>
+        row.deleteAccess ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
     },
   ];
 
@@ -160,6 +208,20 @@ const ManageAccount = () => {
       });
   };
 
+  const ExpandedComponent = (row) => (
+    <div className="flex-gap-column-1 medium-padding">
+      <div className="bolder text-black large-text">Access Permissions</div>
+      <div>
+        <CustomDataTable
+          data={row.data.access}
+          columns={accessColumns}
+          noHeight
+          noClassRequired
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div>
       <CreateUpdateAccount
@@ -216,6 +278,8 @@ const ManageAccount = () => {
           paginationServer
           paginationTotalRows={data.data?.Total}
           onChangePage={handlePageChange}
+          expandableRows
+          expandableRowsComponent={ExpandedComponent}
         />
       </div>
     </div>
