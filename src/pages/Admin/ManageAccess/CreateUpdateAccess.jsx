@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Switch, Select, Drawer } from "@mantine/core";
+import { Switch, Select, Drawer, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -113,7 +113,7 @@ const CreateUpdateAccess = ({
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="bold just-flex text-light-grey">
+          <div className="bold just-flex text-grey">
             <div>User</div>
             <div className="text-red">*</div>
           </div>
@@ -124,7 +124,7 @@ const CreateUpdateAccess = ({
               { label: "Subjects", value: 2 },
               { label: "Services", value: 3 },
             ]}
-            radius="xl"
+            radius="lg"
             size="lg"
             transitionDuration={150}
             transition="pop-top-left"
@@ -134,15 +134,14 @@ const CreateUpdateAccess = ({
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="bold just-flex text-light-grey">
+          <div className="bold just-flex text-grey">
             <div>Service</div>
             <div className="text-red">*</div>
           </div>
-          <input
-            type="text"
-            name="service"
-            className="login-input"
+          <Input
             placeholder="Enter the name of the service"
+            radius="lg"
+            size="lg"
             {...form.getInputProps("service")}
             required
           />

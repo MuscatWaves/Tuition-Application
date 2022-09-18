@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer } from "@mantine/core";
+import { Drawer, Input, Switch } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -17,16 +17,20 @@ const CreateUpdateAccount = ({
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
-      title: "",
-      description: "",
+      user: "",
+      name: "",
+      password: "",
+      isActive: true,
     },
   });
 
   useEffect(() => {
     if (data) {
       form.setValues({
-        title: data.title,
-        description: data.description,
+        user: data.user,
+        name: data.name,
+        password: data.password,
+        isActive: data.isActive,
       });
     }
     // eslint-disable-next-line
@@ -37,17 +41,20 @@ const CreateUpdateAccount = ({
     var updateData = data
       ? JSON.stringify({
           id: data.id,
-          title: values.title,
-          description: values.description,
+          user: values.user,
+          name: values.name,
+          password: values.password,
+          isActive: values.isActive,
         })
       : JSON.stringify({
-          title: values.title,
-          description: values.description,
+          username: values.user,
+          name: values.name,
+          password: values.password,
         });
 
     var config = {
       method: data ? "put" : "post",
-      url: "/api/subject",
+      url: data ? "/api/account" : "/api/account/create",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -102,26 +109,66 @@ const CreateUpdateAccount = ({
         onSubmit={form.onSubmit(handleSubmit)}
       >
         <div className="flex-small-gap-column">
-          <div className="bolder text-light-grey">Title</div>
-          <input
-            type="text"
-            name="title"
-            className="login-input"
-            placeholder="Please enter the title of subject"
-            {...form.getInputProps("title")}
+          <div className="bold just-flex text-grey">
+            <div>User</div>
+            <div className="text-red">*</div>
+          </div>
+          <Input
+            placeholder="Please enter the user!"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("user")}
             required
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="bolder text-light-grey">Small Description</div>
-          <input
-            type="text"
-            name="description"
-            className="login-input"
-            placeholder="Please enter the description of subject"
-            {...form.getInputProps("description")}
+          <div className="bold just-flex text-grey">
+            <div>Name</div>
+            <div className="text-red">*</div>
+          </div>
+          <Input
+            placeholder="Please enter the name!"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("name")}
+            required
           />
         </div>
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bold just-flex text-grey">
+            <div>Password</div>
+            {!data && <div className="text-red">*</div>}
+          </div>
+          <Input
+            placeholder={
+              data
+                ? "Please enter new password to update!"
+                : "Please enter the password!"
+            }
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("password")}
+            required={!data}
+          />
+        </div>
+        {data && (
+          <div className="flex-small-gap-column">
+            <div className="bold just-flex text-grey">
+              <div>User Status</div>
+              <div className="text-red">*</div>
+            </div>
+            <Switch
+              label={
+                <div className="bold">
+                  Click here to change the account status
+                </div>
+              }
+              size="md"
+              checked={form.values.isActive}
+              {...form.getInputProps("isActive")}
+            />
+          </div>
+        )}
         <div className="button-form-manage-account">
           <CustomButton
             label={"Cancel"}

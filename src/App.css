@@ -306,27 +306,16 @@ h1 {
   color: var(--text-color);
 }
 
-.login-input {
-  border: none;
-  padding: 1rem;
-  border-radius: 20px;
-  box-shadow: inset 9px 9px 18px #c5c5c5, inset -9px -9px 18px #ffffff;
-  transition: 0.3s;
+.mantine-PasswordInput-innerInput {
   font-weight: 600;
-  font-size: 16px;
-  color: var(--text-color);
-  min-width: 300px;
-  background: #e8e8e8;
-}
-
-.login-input:focus {
-  outline-color: #e8e8e8;
-  background: #e8e8e8;
-  transition: 0.3s;
 }
 
 .mantine-Modal-modal {
-  background: #e8e8e8;
+  background-color: #e8e8e8 !important;
+}
+
+.mantine-Drawer-drawer {
+  background-color: #e8e8e8 !important;
 }
 
 .small-card {
@@ -361,6 +350,10 @@ h1 {
   gap: 1rem;
   margin: 0.5rem 0;
   width: 95vw;
+}
+
+.form-main-login {
+  min-width: 350px;
 }
 
 /* Custom Scrollbar */
@@ -412,5 +405,9 @@ h1 {
 
   .flex-small-gap {
     justify-content: center;
+  }
+
+  .form-main-login {
+    min-width: 320px;
   }
 }

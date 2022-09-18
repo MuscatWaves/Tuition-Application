@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer, Select } from "@mantine/core";
+import { Drawer, Select, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -114,7 +114,7 @@ const CreateUpdateChapter = ({
           <Select
             placeholder="Select your subject"
             data={subjectData}
-            radius="xl"
+            radius="lg"
             size="lg"
             transitionDuration={150}
             transition="pop-top-left"
@@ -127,22 +127,20 @@ const CreateUpdateChapter = ({
             <div>Title</div>
             <div className="text-red">*</div>
           </div>
-          <input
-            type="text"
-            name="title"
-            className="login-input"
+          <Input
             placeholder="Please enter the title of subject"
+            radius="lg"
+            size="lg"
             {...form.getInputProps("title")}
             required
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bolder text-light-grey">Small Description</div>
-          <input
-            type="text"
-            name="description"
-            className="login-input"
+          <Input
             placeholder="Please enter the description of subject"
+            radius="lg"
+            size="lg"
             {...form.getInputProps("description")}
           />
         </div>

@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import Footer from "../../../components/Footer";
 import TopNavigation from "../../../components/TopNavigation";
 import { useForm } from "@mantine/form";
-import { Select, MultiSelect } from "@mantine/core";
+import { Select, MultiSelect, Input, PasswordInput } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { m } from "framer-motion";
-import "./tuitionSignUp.css";
 import { container, zoomItem } from "../../../animation";
+import "./tuitionSignUp.css";
 
 const TuitionSignUp = () => {
   const form = useForm({
@@ -62,10 +62,10 @@ const TuitionSignUp = () => {
                 <div className="text-red">*</div>
               </div>
               <div style={{ width: "100%" }}>
-                <input
-                  type="text"
-                  className="login-input"
-                  placeholder="Enter your first name"
+                <Input
+                  placeholder="Enter your mail here!"
+                  radius="lg"
+                  size="lg"
                   {...form.getInputProps("first_name")}
                   required
                 />
@@ -76,10 +76,10 @@ const TuitionSignUp = () => {
                 <div>Last Name</div>
                 <div className="text-red">*</div>
               </div>
-              <input
-                type="text"
-                className="login-input"
+              <Input
                 placeholder="Enter your last name"
+                radius="lg"
+                size="lg"
                 {...form.getInputProps("last_name")}
                 required
               />
@@ -96,7 +96,7 @@ const TuitionSignUp = () => {
                   { label: "Subjects", value: 2 },
                   { label: "Services", value: 3 },
                 ]}
-                radius="xl"
+                radius="lg"
                 size="lg"
                 transitionDuration={150}
                 transition="pop-top-left"
@@ -109,12 +109,12 @@ const TuitionSignUp = () => {
                 <div>Email</div>
                 <div className="text-red">*</div>
               </div>
-              <input
-                type="text"
-                className="login-input"
+              <Input
                 placeholder="Enter your email"
-                required
+                radius="lg"
+                size="lg"
                 {...form.getInputProps("email")}
+                required
               />
             </m.div>
             <m.div variants={zoomItem}>
@@ -122,10 +122,10 @@ const TuitionSignUp = () => {
                 <div>Password</div>
                 <div className="text-red">*</div>
               </div>
-              <input
-                type="text"
-                className="login-input"
+              <PasswordInput
                 placeholder="Enter your password"
+                radius="lg"
+                size="lg"
                 {...form.getInputProps("password")}
                 required
               />
@@ -142,7 +142,7 @@ const TuitionSignUp = () => {
                   { label: "Subjects", value: 2 },
                   { label: "Services", value: 3 },
                 ]}
-                radius="xl"
+                radius="lg"
                 size="lg"
                 transitionDuration={150}
                 transition="pop-top-left"
@@ -166,7 +166,7 @@ const TuitionSignUp = () => {
                   { value: "blitz", label: "Blitz.js" },
                 ]}
                 placeholder="Please choose your subjects"
-                radius="xl"
+                radius="lg"
                 size="lg"
                 transitionDuration={150}
                 transition="pop-top-left"

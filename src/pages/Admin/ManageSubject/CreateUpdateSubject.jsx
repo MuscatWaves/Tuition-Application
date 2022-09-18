@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer } from "@mantine/core";
+import { Drawer, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
@@ -106,23 +106,21 @@ const CreateUpdateSubject = ({
             <div>Title</div>
             <div className="text-red">*</div>
           </div>
-          <input
-            type="text"
-            name="title"
-            className="login-input"
+          <Input
             placeholder="Please enter the title of subject"
+            radius="lg"
+            size="lg"
             {...form.getInputProps("title")}
-            required
             data-autofocus
+            required
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bold text-light-grey">Small Description</div>
-          <input
-            type="text"
-            name="description"
-            className="login-input"
-            placeholder="Please enter the description of subject"
+          <Input
+            placeholder="Please enter the description of subject!"
+            radius="lg"
+            size="lg"
             {...form.getInputProps("description")}
           />
         </div>

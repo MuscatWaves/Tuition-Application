@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../components/Buttons";
 import { greenNotify, redNotify } from "../../notification";
+import { Input, PasswordInput } from "@mantine/core";
 import "./login.css";
 
 const Login = () => {
@@ -106,7 +107,7 @@ const Login = () => {
         <div className="login-form-main">
           <img className="logo-small-login" src={logoSmall} alt="login-small" />
           <form
-            className="flex-gap-column-1"
+            className="flex-gap-column-1 form-main-login"
             onSubmit={form.onSubmit(handleSubmit)}
           >
             {data.type === "admin" ? (
@@ -116,25 +117,22 @@ const Login = () => {
             ) : (
               <div className="flex-small-gap-column">
                 <div className="medium-text bolder text-light-grey">Email</div>
-                <input
-                  type="text"
-                  name="text"
-                  className="login-input"
+                <Input
                   placeholder="Enter your mail here!"
-                  {...form.getInputProps("email")}
                   required
+                  radius="lg"
+                  size="lg"
+                  {...form.getInputProps("email")}
                 />
               </div>
             )}
             <div className="flex-small-gap-column small-margin-bottom">
               <div className="medium-text bolder text-light-grey">Password</div>
-              <input
-                type="password"
-                name="text"
-                className="login-input"
+              <PasswordInput
                 placeholder="Enter your password here!"
+                radius="lg"
+                size="lg"
                 {...form.getInputProps("password")}
-                required
               />
             </div>
             <CustomButton

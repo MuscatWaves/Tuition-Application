@@ -30,7 +30,7 @@ const ManageAccount = () => {
   } = useQuery(
     ["adminManageAccount", page],
     () =>
-      axios.get(`/api/subject?page=${page}`, {
+      axios.get(`/api/account?page=${page}`, {
         headers: {
           Authorization: token,
         },
@@ -53,12 +53,21 @@ const ManageAccount = () => {
 
   const columns = [
     {
-      name: "Title",
-      selector: (row) => row.title,
+      name: "Name",
+      selector: (row) => row.name,
     },
     {
-      name: "Description",
-      selector: (row) => row.description,
+      name: "User",
+      selector: (row) => row.user,
+    },
+    {
+      name: "Account status",
+      selector: (row) =>
+        row.isActive ? (
+          <div className="bolder text-green">Active</div>
+        ) : (
+          <div className="bolder text-red">Inactive</div>
+        ),
     },
     {
       name: "Actions",
@@ -114,13 +123,18 @@ const ManageAccount = () => {
 
   const handleDelete = () => {
     var axios = require("axios");
+    var data = JSON.stringify({
+      id: deleteData.id,
+    });
+
     var config = {
       method: "delete",
-      url: `/api/subject/${deleteData.id}`,
+      url: `/api/account`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
       },
+      data: data,
     };
     setLoading(true);
     axios(config)
