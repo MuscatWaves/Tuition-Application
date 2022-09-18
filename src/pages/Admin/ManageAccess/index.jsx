@@ -54,7 +54,6 @@ const ManageAccess = () => {
     {
       refetchOnWindowFocus: false,
       select: (data) => {
-        console.log(data);
         const newData = data.data.data.map((item) => ({
           label: item.name,
           value: item.id,
