@@ -1,3 +1,7 @@
+const checkPermission = (service, data) => {
+  return data.filter((each) => service === each.service)[0];
+};
+
 export const adminCards = (isLoggedIn) => [
   {
     id: 1,
@@ -17,7 +21,8 @@ export const adminCards = (isLoggedIn) => [
     id: 3,
     title: "Manage Subjects",
     description: "Create, Update & Delete any subjects",
-    permission: true,
+    permission:
+      checkPermission("subject", isLoggedIn.access).readAccess || false,
     path: "/admin/manageSubject",
   },
   {

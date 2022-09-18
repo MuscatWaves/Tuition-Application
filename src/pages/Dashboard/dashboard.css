@@ -136,6 +136,15 @@
   text-align: center;
 }
 
+.first-time-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
 @media screen and (max-width: 1770px) {
   .grid-3 {
     grid-template-columns: repeat(3, auto);

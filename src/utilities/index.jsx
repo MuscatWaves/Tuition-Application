@@ -43,8 +43,7 @@ export const getYoutubeThumbnail = (url, quality) => {
 };
 
 export const removeCookie = (navigate) => {
-  localStorage.removeItem("filter");
-  localStorage.removeItem("page");
+  localStorage.clear();
   const cookies = new Cookies();
   cookies.set("token", "", { path: "/", expires: new Date(Date.now()) });
   showNotification({
