@@ -107,7 +107,6 @@ const AdminLogin = () => {
                 {...form.getInputProps("email")}
               />
             </div>
-
             <div className="flex-small-gap-column small-margin-bottom">
               <div className="medium-text bolder text-light-grey">Password</div>
               <PasswordInput
