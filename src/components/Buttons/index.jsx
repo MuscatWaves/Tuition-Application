@@ -14,6 +14,7 @@ const CustomButton = ({
   maxWidth,
   disabled,
   loading,
+  show = true,
 }) => {
   const mainColour = () => {
     if (category === "primary") {
@@ -52,32 +53,34 @@ const CustomButton = ({
   };
 
   return (
-    <Button
-      styles={(theme) => ({
-        root: {
-          backgroundColor: mainColour(),
-          transition: "all 0.5s",
-          color: textColor(),
-          width: maxWidth && "100%",
+    show && (
+      <Button
+        styles={(theme) => ({
+          root: {
+            backgroundColor: mainColour(),
+            transition: "all 0.5s",
+            color: textColor(),
+            width: maxWidth && "100%",
 
-          "&:hover": {
-            backgroundColor: hoverColour(),
-            color: hoverTextColor(),
+            "&:hover": {
+              backgroundColor: hoverColour(),
+              color: hoverTextColor(),
+            },
           },
-        },
-      })}
-      radius={radius}
-      size={size}
-      onClick={action}
-      type={type}
-      color={color}
-      variant={variant}
-      rightIcon={rightIcon}
-      disabled={disabled}
-      loading={loading}
-    >
-      {label}
-    </Button>
+        })}
+        radius={radius}
+        size={size}
+        onClick={action}
+        type={type}
+        color={color}
+        variant={variant}
+        rightIcon={rightIcon}
+        disabled={disabled}
+        loading={loading}
+      >
+        {label}
+      </Button>
+    )
   );
 };
 

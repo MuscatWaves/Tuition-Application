@@ -1,35 +1,32 @@
-const checkPermission = (service, data) => {
-  return data.filter((each) => service === each.service)[0];
-};
+import { checkPermission } from "../../../utilities";
 
 export const adminCards = (isLoggedIn) => [
   {
     id: 1,
     title: "Manage Accounts",
     description: "Create, Update & Delete any account",
-    permission: true,
+    permission: isLoggedIn.data[0].id === 1,
     path: "/admin/manageAccount",
   },
   {
     id: 2,
     title: "Manage Access",
     description: "Create, Update & Delete any access",
-    permission: true,
+    permission: isLoggedIn.data[0].id === 1,
     path: "/admin/manageAccess",
   },
   {
     id: 3,
     title: "Manage Subjects",
     description: "Create, Update & Delete any subjects",
-    permission:
-      checkPermission("subject", isLoggedIn.access).readAccess || false,
+    permission: checkPermission("subject", isLoggedIn.access).readAccess,
     path: "/admin/manageSubject",
   },
   {
     id: 4,
     title: "Manage Chapters",
     description: "Create, Update & Delete any chapter",
-    permission: true,
+    permission: checkPermission("chapter", isLoggedIn.access).readAccess,
     path: "/admin/manageChapter",
   },
 ];

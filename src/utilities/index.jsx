@@ -52,3 +52,7 @@ export const removeCookie = (navigate) => {
   });
   navigate("/prelogin");
 };
+
+export const checkPermission = (service, data) => {
+  return data.filter((each) => service === each.service)[0];
+};

@@ -13,6 +13,7 @@ import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
 import "./createupdatesubject.css";
+import { checkPermission } from "../../../utilities";
 
 const ManageSubject = () => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -23,6 +24,7 @@ const ManageSubject = () => {
   const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const user = JSON.parse(localStorage.getItem("user"));
   const {
     data = [],
     isFetching,
@@ -61,33 +63,37 @@ const ManageSubject = () => {
       selector: (row) => row.description,
     },
     {
-      name: "Actions",
+      name: "",
       selector: (row) => (
         <div className="flex-small-gap">
-          <ActionIcon
-            color="blue"
-            size="lg"
-            radius="md"
-            variant="light"
-            onClick={() => {
-              setUpdateData(row);
-              update();
-            }}
-          >
-            <AiOutlineEdit style={{ fontSize: "22px" }} />
-          </ActionIcon>
-          <ActionIcon
-            color="red"
-            size="lg"
-            radius="md"
-            variant="light"
-            onClick={() => {
-              setDeleteData(row);
-              setDeleteModal(true);
-            }}
-          >
-            <AiOutlineDelete style={{ fontSize: "22px" }} />
-          </ActionIcon>
+          {checkPermission("subject", user.access).editAccess && (
+            <ActionIcon
+              color="blue"
+              size="lg"
+              radius="md"
+              variant="light"
+              onClick={() => {
+                setUpdateData(row);
+                update();
+              }}
+            >
+              <AiOutlineEdit style={{ fontSize: "22px" }} />
+            </ActionIcon>
+          )}
+          {checkPermission("subject", user.access).deleteAccess && (
+            <ActionIcon
+              color="red"
+              size="lg"
+              radius="md"
+              variant="light"
+              onClick={() => {
+                setDeleteData(row);
+                setDeleteModal(true);
+              }}
+            >
+              <AiOutlineDelete style={{ fontSize: "22px" }} />
+            </ActionIcon>
+          )}
         </div>
       ),
     },
@@ -189,6 +195,7 @@ const ManageSubject = () => {
                 setUpdateData(null);
                 update();
               }}
+              show={checkPermission("subject", user.access).writeAccess}
             />
           </div>
         </div>

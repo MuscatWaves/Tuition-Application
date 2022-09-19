@@ -8,8 +8,7 @@ import howWeWorkImage from "../../../images/how_we_work.svg";
 import learnImage from "../../../images/learn.svg";
 import Footer from "../../../components/Footer";
 import CustomButton from "../../../components/Buttons";
-import { Modal } from "@mantine/core";
-import { AspectRatio } from "@mantine/core";
+import { AspectRatio, Modal } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import {
   item,

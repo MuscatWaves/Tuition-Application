@@ -12,6 +12,7 @@ import BreadCrumb from "../../../components/BreadCrumb";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
+import { checkPermission } from "../../../utilities";
 import "./createupdatechapter.css";
 
 const ManageChapter = () => {
@@ -23,6 +24,7 @@ const ManageChapter = () => {
   const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const {
     data = [],
@@ -42,7 +44,7 @@ const ManageChapter = () => {
   const { data: subjectData = [] } = useQuery(
     ["adminManageSubjectTemp1"],
     () =>
-      axios.get(`/api/subject`, {
+      axios.get(`/api/open/subject`, {
         headers: {
           Authorization: token,
         },
@@ -88,33 +90,37 @@ const ManageChapter = () => {
           ?.label,
     },
     {
-      name: "Actions",
+      name: "",
       selector: (row) => (
         <div className="flex-small-gap">
-          <ActionIcon
-            color="blue"
-            size="lg"
-            radius="md"
-            variant="light"
-            onClick={() => {
-              setUpdateData(row);
-              update();
-            }}
-          >
-            <AiOutlineEdit style={{ fontSize: "22px" }} />
-          </ActionIcon>
-          <ActionIcon
-            color="red"
-            size="lg"
-            radius="md"
-            variant="light"
-            onClick={() => {
-              setDeleteData(row);
-              setDeleteModal(true);
-            }}
-          >
-            <AiOutlineDelete style={{ fontSize: "22px" }} />
-          </ActionIcon>
+          {checkPermission("chapter", user.access).editAccess && (
+            <ActionIcon
+              color="blue"
+              size="lg"
+              radius="md"
+              variant="light"
+              onClick={() => {
+                setUpdateData(row);
+                update();
+              }}
+            >
+              <AiOutlineEdit style={{ fontSize: "22px" }} />
+            </ActionIcon>
+          )}
+          {checkPermission("chapter", user.access).deleteAccess && (
+            <ActionIcon
+              color="red"
+              size="lg"
+              radius="md"
+              variant="light"
+              onClick={() => {
+                setDeleteData(row);
+                setDeleteModal(true);
+              }}
+            >
+              <AiOutlineDelete style={{ fontSize: "22px" }} />
+            </ActionIcon>
+          )}
         </div>
       ),
     },
@@ -217,6 +223,7 @@ const ManageChapter = () => {
                 setUpdateData(null);
                 update();
               }}
+              show={checkPermission("chapter", user.access).writeAccess}
             />
           </div>
         </div>
