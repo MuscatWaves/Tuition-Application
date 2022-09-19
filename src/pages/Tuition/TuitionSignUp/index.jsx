@@ -63,7 +63,7 @@ const TuitionSignUp = () => {
               </div>
               <div style={{ width: "100%" }}>
                 <Input
-                  placeholder="Enter your mail here!"
+                  placeholder="Enter your first name"
                   radius="lg"
                   size="lg"
                   {...form.getInputProps("first_name")}

@@ -128,6 +128,7 @@ const CreateUpdateAccess = ({
             transitionDuration={150}
             transition="pop-top-left"
             transitionTimingFunction="ease"
+            searchable
             {...form.getInputProps("user")}
             required
           />

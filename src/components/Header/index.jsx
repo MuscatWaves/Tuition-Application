@@ -1,5 +1,5 @@
 import React from "react";
-// import Cookies from "universal-cookie";
+import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import Authentication from "../../components/Authentication";
 import { AiOutlinePoweroff } from "react-icons/ai";
@@ -8,17 +8,14 @@ import { FiUser } from "react-icons/fi";
 import { m } from "framer-motion";
 import CustomButton from "../Buttons";
 import { removeCookie } from "../../utilities";
+import jwtDecode from "jwt-decode";
 import "./header.css";
 
 const Header = ({ customLink }) => {
   const navigateTo = useNavigate();
-  // const cookies = new Cookies();
-  // const token = cookies.get("token");
-  // const user =
-  //   (token && jwt.verify(token, process.env.REACT_APP_JWT_KEY)) || "";
-
-  // console.log(user);
-
+  const cookies = new Cookies();
+  const token = cookies.get("token");
+  const user = jwtDecode(token);
   const logOut = () => {
     removeCookie(navigateTo);
   };
@@ -38,10 +35,7 @@ const Header = ({ customLink }) => {
         <Authentication />
         <div className="flex-small-gap">
           <FiUser className="large-text text-light-grey" />
-          <div className="text-light-grey bolder">
-            {/* {user?.data ? user.data[0].name : ""} */}
-            Test User
-          </div>
+          <div className="text-light-grey bolder">{user.name}</div>
           <CustomButton
             color="red"
             radius="lg"

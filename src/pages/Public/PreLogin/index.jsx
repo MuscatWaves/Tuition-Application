@@ -1,11 +1,11 @@
 import React from "react";
-import TopNavigation from "../../components/TopNavigation";
-import { container, item } from "../../animation";
+import TopNavigation from "../../../components/TopNavigation";
+import { container, item } from "../../../animation";
 import { useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
-import CustomButton from "../../components/Buttons";
+import CustomButton from "../../../components/Buttons";
 import { AiOutlineRight } from "react-icons/ai";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 import "../PreSignUp/presignup.css";
 
 const PreLogin = () => {

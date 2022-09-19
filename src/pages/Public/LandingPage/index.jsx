@@ -1,15 +1,14 @@
 import React, { useState, useRef } from "react";
-import TopNavigation from "../../components/TopNavigation";
+import TopNavigation from "../../../components/TopNavigation";
 import { cardList } from "./constants.ts";
 import { useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import logo from "../../images/logo.png";
-import howWeWorkImage from "../../images/how_we_work.svg";
-import learnImage from "../../images/learn.svg";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/Buttons";
+import logo from "../../../images/logo.png";
+import howWeWorkImage from "../../../images/how_we_work.svg";
+import learnImage from "../../../images/learn.svg";
+import Footer from "../../../components/Footer";
+import CustomButton from "../../../components/Buttons";
 import { Modal } from "@mantine/core";
-import { zoomItem } from "../../animation";
 import { AspectRatio } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import {
@@ -17,7 +16,8 @@ import {
   logoRevealVariant,
   howWeVariant,
   inViewVariant,
-} from "../../animation";
+  zoomItem,
+} from "../../../animation";
 import "./landingpage.css";
 
 const LandingPage = () => {

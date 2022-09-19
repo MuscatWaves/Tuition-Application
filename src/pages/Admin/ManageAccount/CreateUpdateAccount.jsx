@@ -86,6 +86,7 @@ const CreateUpdateAccount = ({
   const handleClose = () => {
     setData(false);
     toggleModal(false);
+    setChecked(false);
     form.reset();
   };
 

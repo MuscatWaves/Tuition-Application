@@ -56,7 +56,7 @@ const AdminDash = () => {
         <div className="main-dashboard-wrapper">
           <div className="larger-text bolder primary-font primary-colour flex-small-gap welcome-message">
             <span>Welcome</span>
-            <span className="red-shade-colour">Admin!</span>
+            <span className="red-shade-colour">{`${user.name}!`}</span>
           </div>
           {isFetching ? (
             <div className="first-time-dash">

@@ -5,9 +5,6 @@
   --secondary-color: #6b5759;
   --ternary-color: #9099a2;
   --text-color: #576176;
-  --magic-number: 0.09719; /* tan(11°)/2 */
-  --content-width: 100vw;
-  --skew-padding: calc(var(--content-width) * var(--magic-number));
   --shadow-1: 25px 25px 50px #b5b5b5;
   --shadow-2: -25px -25px 50px #f5f5f5;
   --background-card-color: #ecf0f3;

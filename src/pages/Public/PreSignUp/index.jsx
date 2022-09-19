@@ -1,11 +1,11 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import TopNavigation from "../../components/TopNavigation";
+import Footer from "../../../components/Footer";
+import TopNavigation from "../../../components/TopNavigation";
 import { BiCheckCircle } from "react-icons/bi";
 import { AiOutlineRight } from "react-icons/ai";
-import CustomButton from "../../components/Buttons";
+import CustomButton from "../../../components/Buttons";
 import { useNavigate } from "react-router-dom";
-import { container, item } from "../../animation";
+import { container, item } from "../../../animation";
 import { m } from "framer-motion";
 import "./presignup.css";
 

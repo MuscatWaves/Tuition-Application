@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Loader from "../components/Loader";
 import ScrollToTop from "./ScrollToTop";
 
-const LandingPage = lazy(() => import("../pages/LandingPage"));
+const LandingPage = lazy(() => import("../pages/Public/LandingPage"));
 const PageNotFound = lazy(() => import("../components/NoPageFound"));
 const Login = lazy(() => import("../pages/Login"));
-const PreSignUp = lazy(() => import("../pages/PreSignUp"));
+const PreSignUp = lazy(() => import("../pages/Public/PreSignUp"));
 const IELTSSignUp = lazy(() => import("../pages/IELTSSignUp"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
+const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
 
 // Tuition
 const TuitionPublic = lazy(() => import("../pages/Tuition/PublicView"));
@@ -22,7 +23,6 @@ const ExplanatoryVideo = lazy(() =>
   import("../pages/Tuition/ExplanatoryVideo")
 );
 const TopicWiseQPAP = lazy(() => import("../pages/Tuition/TopicWiseQPAP"));
-const PreLogin = lazy(() => import("../pages/PreLogin"));
 
 // Admin
 const AdminDash = lazy(() => import("../pages/Admin/Dashboard"));

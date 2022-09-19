@@ -97,9 +97,9 @@ const CustomDataTable = ({
   };
 
   return (
-    <div className={!noClassRequired && "table-wrapper"}>
+    <div className={!noClassRequired ? "table-wrapper" : undefined}>
       <m.div
-        className={!noClassRequired && "main-table"}
+        className={!noClassRequired ? "main-table" : undefined}
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
@@ -113,8 +113,11 @@ const CustomDataTable = ({
           highlightOnHover={highlightOnHover}
           progressPending={progressPending}
           progressComponent={
-            <div className="flex-gap">
+            <div className="flex-gap-column-1">
               <Loader />
+              <div className="bolder text-light-grey medium-text">
+                Loading your data..
+              </div>
             </div>
           }
           pagination={pagination}
