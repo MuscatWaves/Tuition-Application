@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 import { useForm } from "@mantine/form";
 import { m } from "framer-motion";
 import isEmail from "validator/lib/isEmail";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import logoSmall from "../../images/logo-small.png";
+import logoSmall from "../../../images/logo-small.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { showNotification } from "@mantine/notifications";
-import CustomButton from "../../components/Buttons";
-import { greenNotify, redNotify } from "../../notification";
+import CustomButton from "../../../components/Buttons";
+import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
+import { removeUnderScore } from "../../../utilities";
 import "./login.css";
-import { removeUnderScore } from "../../utilities";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -139,6 +139,7 @@ const Login = () => {
               size={"lg"}
               radius={"xl"}
               loading={loading}
+              action={() => navigate("/dashboard")}
             />
             <div className="small-text bolder flex-end text-grey">
               Forgot Password?

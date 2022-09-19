@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../../../components/Header";
 import { m } from "framer-motion";
-import { container, item } from "../../Dashboard/constants";
+import { container, item } from "../../Public/Dashboard/constants";
 import { AnimatePresence } from "framer-motion";
 import Cookies from "universal-cookie";
 import { FaBook } from "react-icons/fa";
@@ -11,7 +11,7 @@ import jwtDecode from "jwt-decode";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Loader from "../../../components/Loader";
-import "../../Dashboard/dashboard.css";
+import "../../Public/Dashboard/dashboard.css";
 
 const AdminDash = () => {
   const navigateTo = useNavigate();

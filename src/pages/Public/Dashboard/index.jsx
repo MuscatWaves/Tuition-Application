@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, m } from "framer-motion";
 import { cards, container, item } from "./constants";

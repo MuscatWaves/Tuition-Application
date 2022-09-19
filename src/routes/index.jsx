@@ -6,11 +6,13 @@ import ScrollToTop from "./ScrollToTop";
 
 const LandingPage = lazy(() => import("../pages/Public/LandingPage"));
 const PageNotFound = lazy(() => import("../components/NoPageFound"));
-const Login = lazy(() => import("../pages/Login"));
+const Login = lazy(() => import("../pages/Public/Login"));
 const PreSignUp = lazy(() => import("../pages/Public/PreSignUp"));
-const IELTSSignUp = lazy(() => import("../pages/IELTSSignUp"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Dashboard = lazy(() => import("../pages/Public/Dashboard"));
 const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
+
+// IELTS
+const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
 
 // Tuition
 const TuitionPublic = lazy(() => import("../pages/Tuition/PublicView"));

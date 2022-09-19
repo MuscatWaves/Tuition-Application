@@ -10,7 +10,7 @@ import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
-import "../../Login/login.css";
+import "../../Public/Login/login.css";
 
 const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
