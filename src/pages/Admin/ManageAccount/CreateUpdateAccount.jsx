@@ -185,6 +185,7 @@ const CreateUpdateAccount = ({
               }
               size="md"
               checked={form.values.isActive}
+              color={"teal"}
               {...form.getInputProps("isActive")}
             />
           </div>

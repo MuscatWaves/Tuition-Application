@@ -45,6 +45,13 @@ const Routing = () => {
               <ScrollToTop />
               <Routes>
                 <Route path="/" element={<LandingPage />}></Route>
+                <Route path="/:type/login" element={<Login />}></Route>
+                <Route path="/prelogin" element={<PreLogin />}></Route>
+                <Route path="*" element={<PageNotFound />}></Route>
+                <Route
+                  path="/loader"
+                  element={<Loader minHeight={"90vh"} />}
+                ></Route>
                 {/* Admin */}
                 <Route path="/admin/login" element={<AdminLogin />}></Route>
                 <Route path="/adminDashboard" element={<AdminDash />}></Route>
@@ -65,9 +72,6 @@ const Routing = () => {
                   element={<ManageAccount />}
                 ></Route>
                 {/* Tuition */}
-                <Route path="/:type/login" element={<Login />}></Route>
-                <Route path="/prelogin" element={<PreLogin />}></Route>
-                <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/tuition" element={<TuitionPublic />}></Route>
                 <Route path="/preSignUp" element={<PreSignUp />}></Route>
                 <Route
@@ -91,10 +95,6 @@ const Routing = () => {
                 <Route
                   path="/tuition/:subject/topicWiseQPAP"
                   element={<TopicWiseQPAP />}
-                ></Route>
-                <Route
-                  path="/loader"
-                  element={<Loader minHeight={"90vh"} />}
                 ></Route>
               </Routes>
             </LazyMotion>

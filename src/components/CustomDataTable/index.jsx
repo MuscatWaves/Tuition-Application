@@ -93,6 +93,27 @@ const CustomDataTable = ({
           backgroundColor: "#e5e5e5",
         },
       },
+      expanderRow: {
+        style: {
+          backgroundColor: "#6bbaa71e",
+        },
+      },
+      expanderButton: {
+        style: {
+          color: "#6bbaa7",
+          backgroundColor: "transparent",
+          borderRadius: "2px",
+          transition: "0.25s",
+          height: "100%",
+          width: "100%",
+          "&:hover:enabled": {
+            cursor: "pointer",
+          },
+          svg: {
+            margin: "auto",
+          },
+        },
+      },
     };
   };
 
