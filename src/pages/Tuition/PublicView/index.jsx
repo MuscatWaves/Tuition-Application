@@ -77,6 +77,7 @@ const Tuition = () => {
         },
       },
     ],
+    path: "/signUp/Tuition",
   };
 
   return (

@@ -270,13 +270,20 @@ const TopNavigation = ({ setActiveItem, landing }) => {
             category="landing"
             size={"md"}
             radius={"md"}
+            action={() => navigateTo("/preSignUp")}
           />
         </div>
         <Burger
           className="smallMenuOpen"
           opened={isSmallMenuOpen}
           onClick={() => setSmallMenuOpen(!isSmallMenuOpen)}
-          color={colorChange ? "var(--red-shade-color)" : "#fff"}
+          color={
+            colorChange
+              ? "var(--red-shade-color)"
+              : landing
+              ? "#fff"
+              : "var(--red-shade-color)"
+          }
         />
       </m.div>
     </m.div>

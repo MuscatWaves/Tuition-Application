@@ -46,7 +46,7 @@ const ManageAccess = () => {
   const { data: accounts = [] } = useQuery(
     ["adminManageAccountTemp"],
     () =>
-      axios.get(`/api/account`, {
+      axios.get(`/api/open/account`, {
         headers: {
           Authorization: token,
         },

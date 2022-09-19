@@ -4,9 +4,11 @@ import { m } from "framer-motion";
 import CustomButton from "../Buttons";
 import { leftMenuVariant, heading, container, item } from "../../animation";
 import { Select } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import "./services.css";
 
 const Services = ({ service, activeMenu, setActiveMenu }) => {
+  const navigateTo = useNavigate();
   localStorage.removeItem("tabSelected");
   return (
     <div className="services-main-body">
@@ -53,6 +55,7 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
               category="landing"
               size={"lg"}
               radius={"md"}
+              action={() => navigateTo(service.path)}
             />
           </div>
         </m.div>
