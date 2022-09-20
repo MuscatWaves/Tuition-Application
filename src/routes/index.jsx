@@ -6,7 +6,6 @@ import ScrollToTop from "./ScrollToTop";
 
 const LandingPage = lazy(() => import("../pages/Public/LandingPage"));
 const PageNotFound = lazy(() => import("../components/NoPageFound"));
-const Login = lazy(() => import("../pages/Public/Login"));
 const PreSignUp = lazy(() => import("../pages/Public/PreSignUp"));
 const Dashboard = lazy(() => import("../pages/Public/Dashboard"));
 const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
@@ -15,6 +14,7 @@ const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
 const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
 
 // Tuition
+const TuitionLogin = lazy(() => import("../pages/Tuition/Login"));
 const TuitionPublic = lazy(() => import("../pages/Tuition/PublicView"));
 const TuitionSignUp = lazy(() => import("../pages/Tuition/TuitionSignUp"));
 const SubjectDashboard = lazy(() =>
@@ -44,8 +44,8 @@ const Routing = () => {
             <LazyMotion features={domAnimation}>
               <ScrollToTop />
               <Routes>
+                {/* Public */}
                 <Route path="/" element={<LandingPage />}></Route>
-                <Route path="/:type/login" element={<Login />}></Route>
                 <Route path="/prelogin" element={<PreLogin />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route
@@ -72,6 +72,7 @@ const Routing = () => {
                   element={<ManageAccount />}
                 ></Route>
                 {/* Tuition */}
+                <Route path="/tuition/login" element={<TuitionLogin />}></Route>
                 <Route path="/tuition" element={<TuitionPublic />}></Route>
                 <Route path="/preSignUp" element={<PreSignUp />}></Route>
                 <Route

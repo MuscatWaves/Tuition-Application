@@ -10,6 +10,7 @@ import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
+import { container, item, zoomItem } from "../../../animation";
 import "../../Public/Login/login.css";
 
 const AdminLogin = () => {
@@ -41,6 +42,7 @@ const AdminLogin = () => {
     })
       .then(function (response) {
         if (response.status === 200 && response.data.token) {
+          localStorage.clear();
           showNotification({
             title: "Login Successful!",
             styles: greenNotify,
@@ -89,44 +91,65 @@ const AdminLogin = () => {
     >
       <div className="login-form-main-wrapper">
         <div className="login-form-main">
-          <img className="logo-small-login" src={logoSmall} alt="login-small" />
-          <form
-            className="flex-gap-column-1 form-main-login"
-            onSubmit={form.onSubmit(handleSubmit)}
-          >
-            <div className="flex-center bold larger-text primary-font red-shade-colour">
-              Admin Login
-            </div>
-            <div className="flex-small-gap-column">
-              <div className="medium-text bolder text-light-grey">Username</div>
-              <Input
-                placeholder="Enter your username here!"
-                required
-                radius="lg"
-                size="lg"
-                {...form.getInputProps("email")}
+          <m.img
+            className="logo-small-login"
+            src={logoSmall}
+            alt="login-small"
+            variants={item}
+            animate={"show"}
+            initial={"hidden"}
+          />
+          <form onSubmit={form.onSubmit(handleSubmit)}>
+            <m.div
+              className="flex-gap-column-1 form-main-login"
+              variants={container}
+              animate={"show"}
+              initial={"hidden"}
+            >
+              <m.div
+                className="flex-center bold larger-text primary-font red-shade-colour"
+                variants={zoomItem}
+              >
+                Admin Login
+              </m.div>
+              <m.div className="flex-small-gap-column" variants={zoomItem}>
+                <div className="medium-text bolder text-light-grey">
+                  Username
+                </div>
+                <Input
+                  placeholder="Enter your username here!"
+                  required
+                  radius="lg"
+                  size="lg"
+                  {...form.getInputProps("email")}
+                />
+              </m.div>
+              <m.div
+                className="flex-small-gap-column small-margin-bottom"
+                variants={zoomItem}
+              >
+                <div className="medium-text bolder text-light-grey">
+                  Password
+                </div>
+                <PasswordInput
+                  placeholder="Enter your password here!"
+                  radius="lg"
+                  size="lg"
+                  {...form.getInputProps("password")}
+                />
+              </m.div>
+              <CustomButton
+                label="Log in"
+                category="landing"
+                type={"submit"}
+                size={"lg"}
+                radius={"xl"}
+                loading={loading}
               />
-            </div>
-            <div className="flex-small-gap-column small-margin-bottom">
-              <div className="medium-text bolder text-light-grey">Password</div>
-              <PasswordInput
-                placeholder="Enter your password here!"
-                radius="lg"
-                size="lg"
-                {...form.getInputProps("password")}
-              />
-            </div>
-            <CustomButton
-              label="Log in"
-              category="landing"
-              type={"submit"}
-              size={"lg"}
-              radius={"xl"}
-              loading={loading}
-            />
-            <div className="small-text bolder flex-end text-grey">
-              Forgot Password?
-            </div>
+              <div className="small-text bolder flex-end text-grey">
+                Forgot Password?
+              </div>
+            </m.div>
           </form>
         </div>
       </div>
