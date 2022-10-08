@@ -208,7 +208,7 @@ const ManageChapter = () => {
           />
         </div>
       </Modal>
-      <Header />
+      <Header customLink={"/adminDashboard"} />
       <div className="top-heading-admin-wrapper">
         <div className="top-heading-admin">
           <div className="bolder larger-text primary-font red-shade-colour">
