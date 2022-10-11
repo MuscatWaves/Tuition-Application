@@ -29,4 +29,11 @@ export const adminCards = (isLoggedIn) => [
     permission: checkPermission("chapter", isLoggedIn.access).readAccess,
     path: "/admin/manageChapter",
   },
+  {
+    id: 5,
+    title: "Manage Students",
+    description: "Create, Update & Delete any Student",
+    permission: checkPermission("student", isLoggedIn.access).readAccess,
+    path: "/admin/manageStudent",
+  },
 ];
