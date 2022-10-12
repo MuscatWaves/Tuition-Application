@@ -10,6 +10,7 @@ const CustomButton = ({
   category,
   variant,
   color,
+  leftIcon,
   rightIcon,
   maxWidth,
   disabled,
@@ -75,6 +76,7 @@ const CustomButton = ({
         color={color}
         variant={variant}
         rightIcon={rightIcon}
+        leftIcon={leftIcon}
         disabled={disabled}
         loading={loading}
       >

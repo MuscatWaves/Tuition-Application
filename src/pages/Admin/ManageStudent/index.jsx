@@ -6,14 +6,21 @@ import Header from "../../../components/Header";
 import CustomDataTable from "../../../components/CustomDataTable";
 import { ActionIcon } from "@mantine/core";
 import { Modal } from "@mantine/core";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import CreateUpdateSubject from "./CreateUpdateSubject";
+import {
+  AiFillCheckCircle,
+  AiOutlineDelete,
+  AiOutlineEdit,
+} from "react-icons/ai";
+import CreateUpdateSubject from "./CreateUpdateStudent";
 import BreadCrumb from "../../../components/BreadCrumb";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatesubject.css";
 import { checkPermission } from "../../../utilities";
+import moment from "moment";
+import { MdCancel } from "react-icons/md";
+import ManageSubjects from "./manageSubjects";
+import "./createupdatestudent.css";
 
 const ManageStudent = () => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -21,6 +28,7 @@ const ManageStudent = () => {
   const [loading, setLoading] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
+  const [isSubjectModal, subjectModal] = useState(false);
   const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
@@ -30,9 +38,9 @@ const ManageStudent = () => {
     isFetching,
     refetch,
   } = useQuery(
-    ["adminManageSubject", page],
+    ["adminManageStudent", page],
     () =>
-      axios.get(`/api/subject?page=${page}`, {
+      axios.get(`/api/adminstudent?page=${page}`, {
         headers: {
           Authorization: token,
         },
@@ -41,7 +49,7 @@ const ManageStudent = () => {
   );
 
   useEffect(() => {
-    document.title = "Admin - Manage Subject";
+    document.title = "Admin - Manage Student";
     // eslint-disable-next-line
   }, []);
 
@@ -53,34 +61,83 @@ const ManageStudent = () => {
     setPage(page);
   };
 
+  const updateSubject = () => {
+    subjectModal(true);
+  };
+
   const columns = [
     {
-      name: "Title",
-      selector: (row) => row.title,
+      name: "Name",
+      selector: (row) => row.name,
     },
     {
-      name: "Description",
-      selector: (row) => row.description,
+      name: "Email",
+      selector: (row) => row.email,
+    },
+    {
+      name: "Created At",
+      selector: (row) => moment(row.createdAt).format("DD/MM/YYYY"),
+    },
+    {
+      name: "isActive",
+      selector: (row) =>
+        row.isActive ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
+    },
+    {
+      name: "isAccess",
+      selector: (row) =>
+        row.isAccess ? (
+          <AiFillCheckCircle className="mid-large-text text-green" />
+        ) : (
+          <MdCancel className="mid-large-text text-red" />
+        ),
+    },
+    {
+      name: "Subjects",
+      selector: (row) => (
+        <div className="flex-small-gap-column ">
+          {row.access.map((subject) => (
+            <div key={subject.id}>{subject.title}</div>
+          ))}
+        </div>
+      ),
     },
     {
       name: "",
+      width: "450px",
       selector: (row) => (
         <div className="flex-small-gap">
-          {checkPermission("subject", user.access).editAccess && (
-            <ActionIcon
+          {checkPermission("student", user.access).editAccess && (
+            <CustomButton
               color="blue"
-              size="lg"
               radius="md"
-              variant="light"
-              onClick={() => {
+              variant="outline"
+              action={() => {
+                setUpdateData(row);
+                updateSubject();
+              }}
+              label="Manage Subjects"
+              leftIcon={<AiOutlineEdit style={{ fontSize: "22px" }} />}
+            />
+          )}
+          {checkPermission("student", user.access).editAccess && (
+            <CustomButton
+              color="blue"
+              radius="md"
+              variant="outline"
+              action={() => {
                 setUpdateData(row);
                 update();
               }}
-            >
-              <AiOutlineEdit style={{ fontSize: "22px" }} />
-            </ActionIcon>
+              label="Edit Student"
+              leftIcon={<AiOutlineEdit style={{ fontSize: "22px" }} />}
+            />
           )}
-          {checkPermission("subject", user.access).deleteAccess && (
+          {checkPermission("student", user.access).deleteAccess && (
             <ActionIcon
               color="red"
               size="lg"
@@ -107,8 +164,8 @@ const ManageStudent = () => {
     },
     {
       id: 1,
-      name: "Manage Subject",
-      url: "/admin/manageSubject",
+      name: "Manage Student",
+      url: "/admin/manageStudent",
       active: true,
     },
   ];
@@ -122,7 +179,7 @@ const ManageStudent = () => {
     var axios = require("axios");
     var config = {
       method: "delete",
-      url: `/api/subject/${deleteData.id}`,
+      url: `/api/adminstudent/${deleteData.id}`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -157,6 +214,14 @@ const ManageStudent = () => {
       <CreateUpdateSubject
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
+        data={updateData}
+        setData={setUpdateData}
+        token={token}
+        refetch={refetch}
+      />
+      <ManageSubjects
+        isModalOpen={isSubjectModal}
+        toggleModal={subjectModal}
         data={updateData}
         setData={setUpdateData}
         token={token}
