@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import Cookies from "universal-cookie";
 import axios from "axios";
+import Cookies from "universal-cookie";
 import Header from "../../../components/Header";
 import CustomDataTable from "../../../components/CustomDataTable";
 import { ActionIcon } from "@mantine/core";
@@ -19,10 +19,11 @@ import { redNotify, greenNotify } from "../../../notification";
 import { checkPermission } from "../../../utilities";
 import moment from "moment";
 import { MdCancel } from "react-icons/md";
-import ManageSubjects from "./manageSubjects";
+import { useNavigate } from "react-router-dom";
 import "./createupdatestudent.css";
 
 const ManageStudent = () => {
+  const navigateTo = useNavigate();
   const [isModalOpen, toggleModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -117,8 +118,7 @@ const ManageStudent = () => {
               radius="md"
               variant="outline"
               action={() => {
-                setUpdateData(row);
-                updateSubject();
+                navigateTo(`/admin/manageStudentSubject/${row.id}`);
               }}
               label="Manage Subjects"
               leftIcon={<AiOutlineEdit style={{ fontSize: "22px" }} />}
@@ -219,14 +219,6 @@ const ManageStudent = () => {
         token={token}
         refetch={refetch}
       />
-      <ManageSubjects
-        isModalOpen={isSubjectModal}
-        toggleModal={subjectModal}
-        data={updateData}
-        setData={setUpdateData}
-        token={token}
-        refetch={refetch}
-      />
       <Modal
         title={<div className="bolder large-text">Delete Subject</div>}
         opened={deleteModal}
@@ -265,17 +257,15 @@ const ManageStudent = () => {
           </div>
         </div>
       </div>
-      <div>
-        <CustomDataTable
-          data={data.data?.data}
-          columns={columns}
-          progressPending={isFetching}
-          pagination
-          paginationServer
-          paginationTotalRows={data.data?.Total}
-          onChangePage={handlePageChange}
-        />
-      </div>
+      <CustomDataTable
+        data={data.data?.data}
+        columns={columns}
+        progressPending={isFetching}
+        pagination
+        paginationServer
+        paginationTotalRows={data.data?.Total}
+        onChangePage={handlePageChange}
+      />
     </div>
   );
 };

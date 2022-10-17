@@ -15,7 +15,8 @@ const Header = ({ customLink }) => {
   const navigateTo = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get("token");
-  const user = jwtDecode(token);
+  const user = {};
+  // const user = jwtDecode(token);
   const logOut = () => {
     removeCookie(navigateTo);
   };

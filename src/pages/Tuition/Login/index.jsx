@@ -42,7 +42,7 @@ const TuitionLogin = () => {
       bodyFormData.append("password", Password);
       await axios({
         method: "POST",
-        url: `/api/login`,
+        url: `/api/student/login`,
         data: bodyFormData,
         headers: {
           Accept: "application/json",

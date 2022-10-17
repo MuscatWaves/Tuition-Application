@@ -9,3 +9,7 @@
   justify-content: flex-end;
   gap: 0.5rem;
 }
+
+.subManageSubject{
+  padding: 1rem;
+}
