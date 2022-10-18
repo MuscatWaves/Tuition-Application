@@ -3,7 +3,6 @@ import Footer from "../../../components/Footer";
 import { useForm } from "@mantine/form";
 import { m } from "framer-motion";
 import isEmail from "validator/lib/isEmail";
-import axios from "axios";
 import Cookies from "universal-cookie";
 import logoSmall from "../../../images/logo-small.png";
 import { useNavigate } from "react-router-dom";
@@ -37,18 +36,22 @@ const TuitionLogin = () => {
       setLoading(false);
       return;
     } else {
-      var bodyFormData = new FormData();
-      bodyFormData.append("username", Email);
-      bodyFormData.append("password", Password);
-      await axios({
-        method: "POST",
-        url: `/api/student/login`,
-        data: bodyFormData,
+      var axios = require("axios");
+      var data = JSON.stringify({
+        email: Email,
+        password: Password,
+      });
+
+      var config = {
+        method: "post",
+        url: "/api/student/login",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
-      })
+        data: data,
+      };
+
+      axios(config)
         .then(function (response) {
           if (response.status === 200 && response.data.token) {
             showNotification({
@@ -60,6 +63,7 @@ const TuitionLogin = () => {
               maxAge: 60 * 60 * 24 * 365,
             });
             setLoading(false);
+            navigate("/dashboard");
           } else {
             if (response.status === 201) {
               showNotification({
@@ -78,12 +82,12 @@ const TuitionLogin = () => {
             }
           }
         })
-        .catch(function (response) {
+        .catch(function (error) {
           setLoading(false);
           showNotification({
             title: "Login Error!",
             message:
-              response.response.data.error || "Something went terribly wrong",
+              error.response.data.error || "Something went terribly wrong",
             styles: redNotify,
           });
         });
@@ -133,7 +137,6 @@ const TuitionLogin = () => {
               size={"lg"}
               radius={"xl"}
               loading={loading}
-              action={() => navigate("/dashboard")}
             />
             <div className="small-text bolder flex-end text-grey">
               Forgot Password?
