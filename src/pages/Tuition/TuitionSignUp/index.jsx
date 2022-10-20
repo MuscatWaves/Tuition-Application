@@ -1,37 +1,107 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "../../../components/Footer";
 import TopNavigation from "../../../components/TopNavigation";
 import { useForm } from "@mantine/form";
-import { Select, MultiSelect, Input, PasswordInput } from "@mantine/core";
+import { Input, Modal, PasswordInput } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { m } from "framer-motion";
 import { container, zoomItem } from "../../../animation";
+import signUpStudyImage from "../../../images/studySignUpImage.svg";
 import "./tuitionSignUp.css";
+import { greenNotify, redNotify } from "../../../notification";
+import isEmail from "validator/lib/isEmail";
+import { showNotification } from "@mantine/notifications";
 
 const TuitionSignUp = () => {
+  const [loading, setLoading] = useState(false);
+  const [isSuccessModal, toggleSuccessModal] = useState(true);
+  const [isErrorModal, toggleErrorModal] = useState(false);
   const form = useForm({
     initialValues: {
-      first_name: "",
-      last_name: "",
-      country: "",
+      full_name: "",
       email: "",
       password: "",
-      grades: "",
-      subjects: [],
     },
-    validate: {
-      subjects: (value) =>
-        value.length < 1 ? "Please choose atleast 1 subject!" : null,
-    },
+    // validate: {
+    //   subjects: (value) =>
+    //     value.length < 1 ? "Please choose atleast 1 subject!" : null,
+    // },
   });
 
-  useEffect(() => {
-    form.setValues({
-      ...form.values,
-      subjects: [],
-    });
-    // eslint-disable-next-line
-  }, [form.values.grades]);
+  // useEffect(() => {
+  //   form.setValues({
+  //     ...form.values,
+  //     subjects: [],
+  //   });
+  //   // eslint-disable-next-line
+  // }, [form.values.grades]);
+
+  const handleSubmit = async (values) => {
+    const Email = values["email"];
+    const Password = values["password"];
+    setLoading(true);
+    if (!isEmail(Email)) {
+      showNotification({
+        title: "Sign Up Error",
+        message: "Please enter a valid Email!",
+        styles: redNotify,
+      });
+      setLoading(false);
+      return;
+    } else {
+      var axios = require("axios");
+      var data = JSON.stringify({
+        name: values.full_name,
+        email: Email,
+        password: Password,
+      });
+
+      var config = {
+        method: "post",
+        url: "/api/student/register",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+
+      axios(config)
+        .then(function (response) {
+          if (response.status === 200 && response.data.token) {
+            showNotification({
+              title: "Registration Successful!",
+              styles: greenNotify,
+            });
+            setLoading(false);
+          } else {
+            if (response.status === 201) {
+              showNotification({
+                title: "Sign Up Error!",
+                message: response.data.error,
+                styles: greenNotify,
+              });
+              setLoading(false);
+            } else {
+              showNotification({
+                title: "Login Error!",
+                message: `Ouch, Something went terribly wrong`,
+                styles: redNotify,
+              });
+              setLoading(false);
+            }
+          }
+        })
+        .catch(function (error) {
+          setLoading(false);
+          showNotification({
+            title: "Login Error!",
+            message:
+              error.response.data.error || "Something went terribly wrong",
+            styles: redNotify,
+          });
+        });
+    }
+  };
 
   return (
     <m.div
@@ -40,125 +110,109 @@ const TuitionSignUp = () => {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
+      <Modal
+        opened={isSuccessModal}
+        onClose={toggleSuccessModal}
+        title="Congratulations!"
+        centered
+      >
+        {isSuccessModal && (
+          <div className="bold text-grey">
+            The account has been successfully created. Please headover to your
+            mail to see the activation email.
+          </div>
+        )}
+      </Modal>
       <TopNavigation />
       <div className="tuitionSignUp-wrapper-body">
         <div className="tuitionSignUp-body">
-          <div className="red-shade-colour boldest primary-font larger-text">
-            Tuition Sign Up
+          <div className="tuitionSignUp-image">
+            <img src={signUpStudyImage} alt="Sign Up" />
           </div>
-          <div className="text-light-grey bold">
-            For face-to-face and online tuition contact us on (Phone Number)
-          </div>
-          <m.form
-            onSubmit={form.onSubmit((values) => console.log(values))}
-            className="tuitionSignUp-form"
-            variants={container}
-            animate={"show"}
-            initial={"hidden"}
-          >
-            <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-                <div>First Name</div>
-                <div className="text-red">*</div>
-              </div>
-              <div style={{ width: "100%" }}>
+          <div className="tuitionSignUp-form-body">
+            <div className="red-shade-colour boldest primary-font larger-text">
+              Tuition Sign Up
+            </div>
+            <div className="text-light-grey bold">
+              For face-to-face and online tuition contact us on (Phone Number)
+            </div>
+            <m.form
+              onSubmit={form.onSubmit(handleSubmit)}
+              className="tuitionSignUp-form"
+              variants={container}
+              animate={"show"}
+              initial={"hidden"}
+            >
+              <m.div variants={zoomItem}>
+                <div className="bold just-flex">
+                  <div className="text-grey">Full Name</div>
+                  <div className="text-red">*</div>
+                </div>
+                <div style={{ width: "100%" }}>
+                  <Input
+                    placeholder="Enter your full name"
+                    radius="lg"
+                    size="lg"
+                    {...form.getInputProps("full_name")}
+                    required
+                  />
+                </div>
+              </m.div>
+              <m.div variants={zoomItem}>
+                <div className="bold just-flex">
+                  <div className="text-grey">Email</div>
+                  <div className="text-red">*</div>
+                </div>
                 <Input
-                  placeholder="Enter your first name"
+                  placeholder="Enter your email"
                   radius="lg"
                   size="lg"
-                  {...form.getInputProps("first_name")}
+                  {...form.getInputProps("email")}
                   required
                 />
-              </div>
-            </m.div>
-            <m.div variants={zoomItem}>
+              </m.div>
+              <m.div variants={zoomItem}>
+                <div className="bold just-flex">
+                  <div className="text-grey">Password</div>
+                  <div className="text-red">*</div>
+                </div>
+                <PasswordInput
+                  placeholder="Enter your password"
+                  radius="lg"
+                  size="lg"
+                  {...form.getInputProps("password")}
+                  required
+                />
+              </m.div>
+              {/* <m.div variants={zoomItem}>
               <div className="bold just-flex">
-                <div>Last Name</div>
-                <div className="text-red">*</div>
-              </div>
-              <Input
-                placeholder="Enter your last name"
-                radius="lg"
-                size="lg"
-                {...form.getInputProps("last_name")}
-                required
-              />
-            </m.div>
-            <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-                <div>Country</div>
-                <div className="text-red">*</div>
+              <div>Grades</div>
+              <div className="text-red">*</div>
               </div>
               <Select
-                placeholder="Select your country"
-                data={[
-                  { label: "Grades", value: 1 },
-                  { label: "Subjects", value: 2 },
-                  { label: "Services", value: 3 },
-                ]}
-                radius="lg"
-                size="lg"
-                transitionDuration={150}
-                transition="pop-top-left"
-                transitionTimingFunction="ease"
-                {...form.getInputProps("country")}
-              />
-            </m.div>
-            <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-                <div>Email</div>
-                <div className="text-red">*</div>
-              </div>
-              <Input
-                placeholder="Enter your email"
-                radius="lg"
-                size="lg"
-                {...form.getInputProps("email")}
-                required
-              />
-            </m.div>
-            <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-                <div>Password</div>
-                <div className="text-red">*</div>
-              </div>
-              <PasswordInput
-                placeholder="Enter your password"
-                radius="lg"
-                size="lg"
-                {...form.getInputProps("password")}
-                required
-              />
-            </m.div>
-            <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-                <div>Grades</div>
-                <div className="text-red">*</div>
-              </div>
-              <Select
-                placeholder="Select your country"
-                data={[
-                  { label: "Grades", value: 1 },
-                  { label: "Subjects", value: 2 },
-                  { label: "Services", value: 3 },
-                ]}
-                radius="lg"
-                size="lg"
+              placeholder="Select your country"
+              data={[
+                { label: "Grades", value: 1 },
+                { label: "Subjects", value: 2 },
+                { label: "Services", value: 3 },
+              ]}
+              radius="lg"
+              size="lg"
                 transitionDuration={150}
                 transition="pop-top-left"
                 transitionTimingFunction="ease"
                 {...form.getInputProps("grades")}
-              />
-            </m.div>
-            <m.div style={{ gridColumn: "1/3" }} variants={zoomItem}>
+                />
+              </m.div> */}
+              {/* <m.div style={{ gridColumn: "1/3" }} variants={zoomItem}>
               <div className="bold just-flex">
-                <div>Subjects</div>
-                <div className="text-red">*</div>
+              <div>Subjects</div>
+              <div className="text-red">*</div>
               </div>
               <MultiSelect
-                data={[
-                  { value: "react", label: "React" },
-                  { value: "ng", label: "Angular" },
+              data={[
+                { value: "react", label: "React" },
+                { value: "ng", label: "Angular" },
                   { value: "svelte", label: "Svelte" },
                   { value: "vue", label: "Vue" },
                   { value: "riot", label: "Riot" },
@@ -173,27 +227,21 @@ const TuitionSignUp = () => {
                 transitionTimingFunction="ease"
                 {...form.getInputProps("subjects")}
               />
-            </m.div>
-            <m.div>
-              <div className="large-text primary-font boldest secondary-colour ">
-                Total Amount to be paid
+            </m.div> */}
+              <div style={{ marginTop: "10px" }}>
+                <CustomButton
+                  label="Create your account"
+                  category="landing"
+                  type={"submit"}
+                  size={"lg"}
+                  radius={"xl"}
+                  maxWidth
+                  loading={loading}
+                  // action={() => navigate("/login")}
+                />
               </div>
-              {(form.values.subjects.length > 0 && (
-                <m.div>Count of Subjects</m.div>
-              )) || <div className="text-red bolder">No Subjects Selected</div>}
-            </m.div>
-            <div style={{ gridColumn: `1/3` }}>
-              <CustomButton
-                label="Proceed to Checkout"
-                category="landing"
-                type={"submit"}
-                size={"lg"}
-                radius={"xl"}
-                maxWidth
-                // action={() => navigate("/login")}
-              />
-            </div>
-          </m.form>
+            </m.form>
+          </div>
         </div>
       </div>
       <Footer />
