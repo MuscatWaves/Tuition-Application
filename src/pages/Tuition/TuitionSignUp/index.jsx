@@ -15,7 +15,7 @@ import { showNotification } from "@mantine/notifications";
 const TuitionSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [isSuccessModal, toggleSuccessModal] = useState(true);
-  const [isErrorModal, toggleErrorModal] = useState(false);
+  // const [isErrorModal, toggleErrorModal] = useState(false);
   const form = useForm({
     initialValues: {
       full_name: "",
