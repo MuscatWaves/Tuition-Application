@@ -7,14 +7,15 @@ import CustomButton from "../../../components/Buttons";
 import { m } from "framer-motion";
 import { container, zoomItem } from "../../../animation";
 import signUpStudyImage from "../../../images/studySignUpImage.svg";
-import "./tuitionSignUp.css";
-import { greenNotify, redNotify } from "../../../notification";
+import { redNotify } from "../../../notification";
 import isEmail from "validator/lib/isEmail";
+import congratsImage from "../../../images/congrats_c.gif";
 import { showNotification } from "@mantine/notifications";
+import "./tuitionSignUp.css";
 
 const TuitionSignUp = () => {
   const [loading, setLoading] = useState(false);
-  const [isSuccessModal, toggleSuccessModal] = useState(true);
+  const [isSuccessModal, toggleSuccessModal] = useState(false);
   // const [isErrorModal, toggleErrorModal] = useState(false);
   const form = useForm({
     initialValues: {
@@ -67,29 +68,9 @@ const TuitionSignUp = () => {
 
       axios(config)
         .then(function (response) {
-          if (response.status === 200 && response.data.token) {
-            showNotification({
-              title: "Registration Successful!",
-              styles: greenNotify,
-            });
-            setLoading(false);
-          } else {
-            if (response.status === 201) {
-              showNotification({
-                title: "Sign Up Error!",
-                message: response.data.error,
-                styles: greenNotify,
-              });
-              setLoading(false);
-            } else {
-              showNotification({
-                title: "Login Error!",
-                message: `Ouch, Something went terribly wrong`,
-                styles: redNotify,
-              });
-              setLoading(false);
-            }
-          }
+          setLoading(false);
+          toggleSuccessModal(true);
+          form.reset();
         })
         .catch(function (error) {
           setLoading(false);
@@ -112,16 +93,22 @@ const TuitionSignUp = () => {
     >
       <Modal
         opened={isSuccessModal}
-        onClose={toggleSuccessModal}
-        title="Congratulations!"
+        onClose={() => toggleSuccessModal(false)}
         centered
+        padding={"lg"}
+        radius={"lg"}
       >
-        {isSuccessModal && (
+        <div className="flex-gap-column-1">
+          <img src={congratsImage} alt="Congratulations for registering" />
+          <div className="large-text bolder">Congratulations!!</div>
           <div className="bold text-grey">
+            Thank you for registering yourself with us!
+          </div>
+          <div className="bold text-green small-text">
             The account has been successfully created. Please headover to your
             mail to see the activation email.
           </div>
-        )}
+        </div>
       </Modal>
       <TopNavigation />
       <div className="tuitionSignUp-wrapper-body">
@@ -230,7 +217,7 @@ const TuitionSignUp = () => {
             </m.div> */}
               <div style={{ marginTop: "10px" }}>
                 <CustomButton
-                  label="Create your account"
+                  label="Register for free"
                   category="landing"
                   type={"submit"}
                   size={"lg"}

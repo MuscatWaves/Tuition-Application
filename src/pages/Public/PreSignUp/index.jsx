@@ -15,7 +15,6 @@ const PreSignUp = () => {
     {
       id: 1,
       name: "Tuition",
-      duration: "5 months",
       benefits: [
         "Custom Dashboard",
         "Topic Wise Notes",
@@ -29,7 +28,6 @@ const PreSignUp = () => {
     {
       id: 2,
       name: "IELTS",
-      duration: "1 month",
       benefits: [
         "Face to face classes",
         "Online Notes",
@@ -54,7 +52,7 @@ const PreSignUp = () => {
             Choose your package
           </div>
           <div className="bold red-shade-colour">
-            *Payments will be shown on next page
+            *Payment related will be available in your dashboard once registered
           </div>
           <m.div
             className="pre-sign-up__two-section"
@@ -71,7 +69,6 @@ const PreSignUp = () => {
                 <div className="larger-text bolder primary-colour">
                   {card.name}
                 </div>
-                <div className="bolder medium-text">{`Duration - ${card.duration}`}</div>
                 <div
                   style={{
                     display: "flex",

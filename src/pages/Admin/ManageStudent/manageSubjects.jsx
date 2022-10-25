@@ -104,9 +104,14 @@ const ManageSubjects = () => {
       url: "/adminDashboard",
     },
     {
-      id: 1,
+      id: 2,
       name: "Manage Student",
       url: "/admin/manageStudent",
+    },
+    {
+      id: 2,
+      name: `${data?.data[0]?.name} - Subjects`,
+      url: "",
       active: true,
     },
   ];
@@ -212,15 +217,17 @@ const ManageSubjects = () => {
           <div className="flex-between" style={{ width: "95vw" }}>
             <div>
               <div className="bolder">Name</div>
-              <div>{data.data[0].name}</div>
+              <div className="text-grey bold">{data.data[0].name}</div>
             </div>
             <div>
               <div className="bolder">Email</div>
-              <div>{data.data[0].email}</div>
+              <div className="text-grey bold">{data.data[0].email}</div>
             </div>
             <div>
               <div className="bolder">Is Active</div>
-              <div>{data.data[0].isActive ? "Yes" : "No"}</div>
+              <div className="text-grey bold">
+                {data.data[0].isActive ? "Yes" : "No"}
+              </div>
             </div>
             {/* <div>
               <div className="bolder">Number of Subjects Enrolled</div>
