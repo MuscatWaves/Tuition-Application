@@ -3,7 +3,9 @@ import Header from "../../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, m } from "framer-motion";
 import { cards, container, item } from "./constants";
-import { FaBook } from "react-icons/fa";
+import { FaBook, FaUserCircle } from "react-icons/fa";
+import { MdOutlineGrade } from "react-icons/md";
+import { FiMail } from "react-icons/fi";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -20,20 +22,75 @@ const Dashboard = () => {
 
   return (
     <m.div
-      className="main-dashboard"
+      className="tuition-dashboard-page"
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
-      <div>
-        <Header />
-        <div className="main-dashboard-wrapper">
-          <div className="larger-text bolder primary-font primary-colour flex-small-gap welcome-message">
-            <span>Welcome</span>
-            <span className="red-shade-colour">Test User!</span>
+      <Header />
+      <div className="mtd-wrapper">
+        <div className="mtd-info-box">
+          <div className="tuition-wt">
+            <div className="larger-text bold text-white-light">Welcome</div>
+            <FaUserCircle
+              style={{
+                width: "150px",
+                height: "150px",
+                color: "var(--red-shade-color)",
+                backgroundColor: "#fff",
+                borderRadius: "50%",
+              }}
+            />
+            <div className="large-text bolder text-white-light">
+              Prabin Kumar Pradeep
+            </div>
+            <div className="tuition-wt-inner">
+              <div className="flex-small-gap">
+                <FiMail
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    color: "var(--red-shade-color)",
+                  }}
+                />
+                <div className="small-text bold">
+                  prabinkumar1999@outlook.com
+                </div>
+              </div>
+              <div className="flex-small-gap">
+                <MdOutlineGrade
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    color: "var(--red-shade-color)",
+                  }}
+                />
+                <div className="small-text bold">Grade 2</div>
+              </div>
+            </div>
           </div>
-          <AnimatePresence>
+          <div className="bolder text-white-light">
+            &copy; Powered by Accadia Tuitions
+          </div>
+        </div>
+        <div className="mtd-main-box">
+          <div className="mtd-main-box__inner">
+            <div className="mtd-main-box__b-1">Personal Details</div>
+            <div className="mtd-main-box__b-2">Recent Purchases</div>
+            <div className="mtd-main-box__b-3">A buy icon</div>
+          </div>
+          <div>My Subjects</div>
+        </div>
+      </div>
+    </m.div>
+  );
+};
+
+export default Dashboard;
+
+{
+  /* <AnimatePresence>
             <m.div
               className={
                 checkNumberOfCards() > 4 ? "main-card grid-3" : "main-card"
@@ -65,12 +122,5 @@ const Dashboard = () => {
                   )
               )}
             </m.div>
-          </AnimatePresence>
-        </div>
-      </div>
-      <div>Footer</div>
-    </m.div>
-  );
-};
-
-export default Dashboard;
+          </AnimatePresence> */
+}

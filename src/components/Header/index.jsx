@@ -20,8 +20,6 @@ const Header = ({ customLink }) => {
     removeCookie(navigateTo);
   };
 
-  console.log(user);
-
   return (
     <div className="header-wrapper">
       <div className="header">
