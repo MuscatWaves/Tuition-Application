@@ -19,8 +19,9 @@ export const item = {
     delay: 0.7,
     transition: {
       type: "spring",
-      stiffness: 40,
-      damping: 9,
+      stiffness: 70,
+      damping: 10,
+      mass: 1.1,
     },
   },
 };
