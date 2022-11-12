@@ -1,17 +1,17 @@
-.tuition-dashboard-page{
+.tuition-dashboard-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.mtd-wrapper{
+.mtd-wrapper {
   flex: 1;
   padding: 0 2rem;
   display: flex;
   gap: 1rem;
 }
 
-.mtd-info-box{
+.mtd-info-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,11 +24,11 @@
   word-break: break-all;
 }
 
-.mtd-main-box{
+.mtd-main-box {
   flex: 1;
 }
 
-.tuition-wt{
+.tuition-wt {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,29 +37,43 @@
   flex: 1;
 }
 
-.tuition-wt-inner{
+.tuition-wt-inner {
   width: 270px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 1rem;
   background-color: rgba(240, 248, 255, 0.753);
   border-radius: 20px;
 }
 
-.mtd-main-box__inner{
+.mtd-main-box__inner {
   display: flex;
   gap: 1rem;
 }
 
-.mtd-main-box__b-1{
-  flex: 0.4;
+.mtd-main-box__inner > * {
+  background-color: rgba(240, 248, 255, 0.753);
+  padding: 1rem;
+  border-radius: 20px;
+  flex: 1;
+  border-top: 2px solid var(--red-shade-color);
 }
 
-.mtd-main-box__b-2{
-  flex: 0.4;
+.mtd-main-box__b-1 {
+  flex: 1.5;
+  flex-direction: column;
 }
 
-.mtd-main-box__b-3{
-  flex: 0.2;
+.mtd-main-box__b-2 {
+  flex: 1.5;
+}
+
+.mtd-main-box__b-3 {
+  flex: 1;
+}
+
+.mtd-main-box__b-1__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
