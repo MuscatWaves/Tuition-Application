@@ -10,3 +10,9 @@
   display: flex;
   justify-content: center;
 }
+
+.custom-right-rendering {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}

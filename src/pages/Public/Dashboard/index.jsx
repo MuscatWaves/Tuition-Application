@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../../components/Header";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 // import { cards, container, item } from "./constants";
 // FaBook,
@@ -19,10 +19,10 @@ const Dashboard = () => {
   // const [isLoggedIn, setLoggedIn] = useState({});
   const cookies = new Cookies();
   const token = cookies.get("token");
-  // const navigate = useNavigate();
-  // const navigateTo = (path) => {
-  //   navigate(path);
-  // };
+  const navigate = useNavigate();
+  const navigateTo = (path) => {
+    navigate(path);
+  };
 
   const test_subjects = [];
 
@@ -161,7 +161,10 @@ const Dashboard = () => {
                 ))}
               </div>
             </div>
-            <div className="mtd-main-box__b-3">
+            <div
+              className="mtd-main-box__b-3"
+              onClick={() => navigateTo("/shop")}
+            >
               <FaShopify className="mtd-main-box__shopping-icon" />
               <div className="bold large-text">Shop</div>
             </div>
