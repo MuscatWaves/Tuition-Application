@@ -34,7 +34,7 @@ const ManageStudent = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(isSubjectModal);
+  console.log(isSubjectModal, subjectModal);
   const {
     data = [],
     isFetching,
