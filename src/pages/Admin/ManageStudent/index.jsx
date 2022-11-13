@@ -34,6 +34,7 @@ const ManageStudent = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(isSubjectModal);
   const {
     data = [],
     isFetching,
@@ -62,9 +63,9 @@ const ManageStudent = () => {
     setPage(page);
   };
 
-  const updateSubject = () => {
-    subjectModal(true);
-  };
+  // const updateSubject = () => {
+  //   subjectModal(true);
+  // };
 
   const columns = [
     {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
 import {
-  Checkbox,
+  // Checkbox,
   Drawer,
-  Input,
-  PasswordInput,
+  // Input,
+  // PasswordInput,
   Select,
   Switch,
 } from "@mantine/core";
@@ -33,7 +33,7 @@ const CreateUpdateSubject = ({
     },
   });
 
-  const { data: filteredSubject = [], isFetching } = useQuery(
+  const { data: filteredSubject = [] } = useQuery(
     ["adminManageEachSubjectFilter"],
     () =>
       axios.get(`/api/subject`, {
