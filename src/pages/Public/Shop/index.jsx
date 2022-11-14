@@ -123,6 +123,7 @@ function Shop() {
   const handleClose = () => {
     setDeleteData(null);
     setDeleteModal(false);
+    setLoading(false);
   };
 
   return (

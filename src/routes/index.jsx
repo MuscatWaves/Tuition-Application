@@ -11,6 +11,9 @@ const Dashboard = lazy(() => import("../pages/Public/Dashboard"));
 const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
 const Shop = lazy(() => import("../pages/Public/Shop"));
 const Cart = lazy(() => import("../pages/Public/Cart"));
+const StudentEducationUpdate = lazy(() =>
+  import("../pages/Public/StudentEducationUpdate")
+);
 
 // IELTS
 const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
@@ -56,6 +59,10 @@ const Routing = () => {
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/shop" element={<Shop />}></Route>
                 <Route path="/shop/cart" element={<Cart />}></Route>
+                <Route
+                  path="/student/eduUpdate"
+                  element={<StudentEducationUpdate />}
+                ></Route>
                 <Route
                   path="/loader"
                   element={<Loader minHeight={"90vh"} />}

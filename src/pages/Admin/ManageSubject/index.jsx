@@ -59,11 +59,22 @@ const ManageSubject = () => {
       selector: (row) => row.title,
     },
     {
+      name: "Standard",
+      selector: (row) => row.standard,
+    },
+    {
+      name: "Price",
+      selector: (row) => row.price,
+    },
+    {
       name: "Description",
-      selector: (row) => row.description,
+      maxWidth: "500px",
+      ellipsis: true,
+      selector: "description",
     },
     {
       name: "",
+      width: "450px",
       selector: (row) => (
         <div className="flex-small-gap">
           {checkPermission("subject", user.access).editAccess && (

@@ -11,7 +11,7 @@ import jwtDecode from "jwt-decode";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Loader from "../../../components/Loader";
-import "../../Public/Dashboard/dashboard.css";
+import "./admin-dash.css";
 
 const AdminDash = () => {
   const navigateTo = useNavigate();

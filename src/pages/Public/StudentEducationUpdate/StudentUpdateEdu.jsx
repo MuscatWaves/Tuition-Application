@@ -4,9 +4,9 @@ import { Drawer, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatesubject.css";
+import "../../Admin/ManageAccess/manageacess.css";
 
-const CreateUpdateSubject = ({
+const StudentUpdateEdu = ({
   isModalOpen,
   toggleModal,
   data,
@@ -17,18 +17,22 @@ const CreateUpdateSubject = ({
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
-      title: "",
-      description: "",
-      standard: "",
-      price: "",
+      course: "",
+      specialization: "",
+      university: "",
+      location: "",
+      passingYear: "",
     },
   });
 
   useEffect(() => {
     if (data) {
       form.setValues({
-        title: data.title,
-        description: data.description,
+        course: data.course,
+        specialization: data.specialization,
+        university: data.university,
+        location: data.location,
+        passingYear: data.passingYear,
       });
     }
     // eslint-disable-next-line
@@ -39,21 +43,23 @@ const CreateUpdateSubject = ({
     var updateData = data
       ? JSON.stringify({
           id: data.id,
-          title: values.title,
-          description: values.description,
-          standard: values.standard,
-          price: values.price,
+          course: values.course,
+          specialization: values.specialization,
+          university: values.university,
+          location: values.location,
+          passingYear: values.passingYear,
         })
       : JSON.stringify({
-          title: values.title,
-          description: values.description,
-          standard: values.standard,
-          price: values.price,
+          course: values.course,
+          specialization: values.specialization,
+          university: values.university,
+          location: values.location,
+          passingYear: values.passingYear,
         });
 
     var config = {
       method: data ? "put" : "post",
-      url: "/api/subject",
+      url: "/api/studentprofile/education",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -77,7 +83,6 @@ const CreateUpdateSubject = ({
           message: error.response.data.error,
           styles: redNotify,
         });
-
         setLoading(false);
       });
   };
@@ -94,9 +99,9 @@ const CreateUpdateSubject = ({
       onClose={handleClose}
       title={
         data ? (
-          <div className="bolder large-text">Update Subject</div>
+          <div className="bolder large-text">Update Student Education Data</div>
         ) : (
-          <div className="bolder large-text">Create Subject</div>
+          <div className="bolder large-text">Create Student Education Data</div>
         )
       }
       padding="xl"
@@ -104,61 +109,65 @@ const CreateUpdateSubject = ({
       position="right"
     >
       <form
-        className="form-manage-access-subject"
+        className="form-manage-access-admin"
         onSubmit={form.onSubmit(handleSubmit)}
       >
-        <div className="flex-small-gap-column">
-          <div className="bold just-flex text-light-grey">
-            <div>Title</div>
-            <div className="text-red">*</div>
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bold just-flex text-grey">
+            <div>Course</div>
           </div>
           <Input
-            placeholder="Please enter the title of subject"
+            placeholder="Enter the name of the course"
             radius="lg"
             size="lg"
-            {...form.getInputProps("title")}
-            data-autofocus
-            required
+            {...form.getInputProps("course")}
           />
         </div>
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
-          <div className="bold text-light-grey">Small Description</div>
-          <Input
-            placeholder="Please enter the description of subject!"
-            radius="lg"
-            size="lg"
-            {...form.getInputProps("description")}
-          />
-        </div>
-        <div className="flex-small-gap-column">
-          <div className="bold just-flex text-light-grey">
-            <div>Standard</div>
-            <div className="text-red">*</div>
+          <div className="bold just-flex text-grey">
+            <div>Specialization</div>
           </div>
           <Input
-            placeholder="Please enter the standard for the subject"
+            placeholder="Enter the name of the specialization"
             radius="lg"
             size="lg"
-            {...form.getInputProps("standard")}
-            data-autofocus
-            required
+            {...form.getInputProps("specialization")}
           />
         </div>
-        <div className="flex-small-gap-column">
-          <div className="bold just-flex text-light-grey">
-            <div>Price</div>
-            <div className="text-red">*</div>
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bold just-flex text-grey">
+            <div>University</div>
           </div>
           <Input
-            placeholder="Please enter the price of subject"
+            placeholder="Enter the name of the university"
             radius="lg"
             size="lg"
-            {...form.getInputProps("price")}
-            data-autofocus
-            required
+            {...form.getInputProps("university")}
           />
         </div>
-        <div className="button-form-manage-subject">
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bold just-flex text-grey">
+            <div>Location</div>
+          </div>
+          <Input
+            placeholder="Enter the location of education institution"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("location")}
+          />
+        </div>
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bold just-flex text-grey">
+            <div>Passing Year</div>
+          </div>
+          <Input
+            placeholder="Enter passing year for the course"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("passingYear")}
+          />
+        </div>
+        <div className="button-form-manage-access">
           <CustomButton
             label={"Cancel"}
             size={"md"}
@@ -181,4 +190,4 @@ const CreateUpdateSubject = ({
   );
 };
 
-export default CreateUpdateSubject;
+export default StudentUpdateEdu;

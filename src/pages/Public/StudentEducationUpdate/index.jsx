@@ -7,15 +7,17 @@ import Cookies from "universal-cookie";
 import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
 import { showNotification } from "@mantine/notifications";
-import { FaBook, FaOpencart } from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
 import { container, item } from "../Dashboard/constants";
-import { CgRemove } from "react-icons/cg";
 import Spinner from "../../../components/Spinner";
 import { useQuery } from "react-query";
 import axios from "axios";
 import "../Shop/shop.css";
+import "../Dashboard/dashboard.css";
+import StudentUpdateEdu from "./StudentUpdateEdu";
+import { BiPlus } from "react-icons/bi";
 
-function Cart() {
+function StudentEducationUpdate() {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const [isDeleteData, setDeleteData] = useState(null);
@@ -24,47 +26,43 @@ function Cart() {
   const navigation = [
     { id: 0, name: "Dashboard", url: "/dashboard" },
     {
-      id: 12,
-      name: "Shop",
-      url: "/shop",
-    },
-    {
       id: 23,
-      name: "Cart",
+      name: "Education Update",
       active: true,
     },
   ];
+
+  //   Edit Functions
+
+  const [isEditModal, toggleEditModal] = useState(false);
+  const [isEditData, setEditData] = useState(null);
 
   useEffect(() => {
     document.title = "Tuition - Shopping Cart";
     // eslint-disable-next-line
   }, []);
 
-  const {
-    data = [],
-    isFetching,
-    refetch,
-  } = useQuery(
-    ["cartDetails"],
+  const { data, refetch, isFetching } = useQuery(
+    ["educationDetailsFetch"],
     () =>
-      axios.get(`/api/cart`, {
+      axios.get(`/api/studentprofile/education`, {
         headers: {
           Authorization: token,
         },
       }),
-    { refetchOnWindowFocus: false, select: (data) => data.data }
+    { refetchOnWindowFocus: false, select: (data) => data.data.data }
   );
 
-  const removeFromCart = () => {
+  const removeEducation = () => {
     setLoading(true);
     var axios = require("axios");
     var data = JSON.stringify({
-      cartId: Number(isDeleteData.id),
+      id: Number(isDeleteData.id),
     });
 
     var config = {
       method: "delete",
-      url: "/api/cart",
+      url: "/api/studentprofile/education",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -104,18 +102,26 @@ function Cart() {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
+      <StudentUpdateEdu
+        isModalOpen={isEditModal}
+        toggleModal={toggleEditModal}
+        data={isEditData}
+        setData={setEditData}
+        token={token}
+        refetch={refetch}
+      />
       <Modal
-        title={<div className="bolder large-text">Remove from Cart</div>}
+        title={<div className="bolder large-text">Delete Education Data</div>}
         opened={deleteModal}
         onClose={handleClose}
         centered
       >
-        <div>You are going to remove the subject from cart?</div>
+        <div>You are going to remove the education?</div>
         <div style={{ padding: "1rem 0" }} className="flex-small-gap">
           <CustomButton action={handleClose} label={"Cancel"} color={"gray"} />
           <CustomButton
             action={() => {
-              removeFromCart();
+              removeEducation();
             }}
             loading={loading}
             color={"red"}
@@ -127,11 +133,11 @@ function Cart() {
       <div className="shp-wrapper">
         <BreadCrumb items={navigation} />
         <div className="flex-center align-center medium-gap">
-          <FaOpencart
+          <SiGoogleclassroom
             style={{ fontSize: "4em", color: "var(--red-shade-color)" }}
           />
           <div className="large-text primary-colour bolder">
-            Your Shopping Cart
+            Education Update
           </div>
         </div>
         {isFetching ? (
@@ -146,40 +152,69 @@ function Cart() {
               initial="hidden"
               animate="show"
             >
-              {data.data.map((subject) => (
+              {data.map((education) => (
                 <m.div
-                  className="shp-list-main__each"
-                  key={subject.subjectId}
+                  className="education-normal"
+                  key={education.id}
                   variants={item}
                 >
-                  <FaBook className="shp-list-icn" />
                   <div className="flex-small-gap-column">
-                    <div className="large-text bold red-shade-colour">
-                      {subject.subjectTitle}
+                    <div className="small-text bold red-shade-colour">
+                      Course
                     </div>
-                    <div className="small-text bold primary-colour">
-                      {subject.subjectDescription}
+                    <div className="bold">
+                      {education.course || "Not Provided"}
                     </div>
                   </div>
                   <div className="flex-small-gap-column">
-                    <div className="small-text primary-colour bold">
-                      Standard
+                    <div className="small-text bold red-shade-colour">
+                      Specialization
                     </div>
-                    <div className="bolder">{subject.subjectStandard}</div>
+                    <div className="bold">
+                      {education.specialization || "Not Provided"}
+                    </div>
                   </div>
                   <div className="flex-small-gap-column">
-                    <div className="small-text primary-colour bold">Price</div>
-                    <div className="bolder">{subject.subjectPrice}</div>
+                    <div className="small-text bold red-shade-colour">
+                      University
+                    </div>
+                    <div className="bold">
+                      {education.university || "Not Provided"}
+                    </div>
                   </div>
-                  <CustomButton
-                    label={"Remove From Cart"}
-                    leftIcon={<CgRemove style={{ fontSize: "22px" }} />}
-                    color="red"
-                    action={() => {
-                      setDeleteData(subject);
-                      setDeleteModal(true);
-                    }}
-                  />
+                  <div className="flex-small-gap-column">
+                    <div className="small-text bold red-shade-colour">
+                      Location
+                    </div>
+                    <div className="bold">
+                      {education.location || "Not Provided"}
+                    </div>
+                  </div>
+                  <div className="flex-small-gap-column">
+                    <div className="small-text bold red-shade-colour">
+                      Passing Year
+                    </div>
+                    <div className="bold">
+                      {education.passingYear || "Not Provided"}
+                    </div>
+                  </div>
+                  <div className="flex-small-gap">
+                    <CustomButton
+                      label={"Edit"}
+                      action={() => {
+                        setEditData(education);
+                        toggleEditModal(true);
+                      }}
+                    />
+                    <CustomButton
+                      label={"Delete"}
+                      color="red"
+                      action={() => {
+                        setDeleteData(education);
+                        setDeleteModal(true);
+                      }}
+                    />
+                  </div>
                 </m.div>
               ))}
             </m.div>
@@ -189,23 +224,23 @@ function Cart() {
               initial={{ opacity: 0, y: "20px" }}
               transition={{ duration: "0.8" }}
             >
-              <div className="primary-colour">
-                {data.data.length + ` item('s) present within cart`}
+              <div className="bold primary-colour">{`${data.length} education('s) are present`}</div>
+              <div className="flex-small-gap">
+                <CustomButton
+                  label="Add more education"
+                  radius={"xl"}
+                  leftIcon={<BiPlus style={{ fontSize: "22px" }} />}
+                  action={() => {
+                    setEditData(null);
+                    toggleEditModal(true);
+                  }}
+                />
+                <CustomButton
+                  label="Go Back to Dashboard"
+                  color="teal"
+                  radius={"xl"}
+                />
               </div>
-              {data.ToatalAmount ? (
-                <div className="flex-gap bold">
-                  <div className="large-text">
-                    Amount to be paid : <span>{data.ToatalAmount}</span> OMR
-                  </div>
-                  <CustomButton
-                    label={"Proceed to checkout"}
-                    color="teal"
-                    radius={"xl"}
-                  />
-                </div>
-              ) : (
-                <div className="large-text">No Subjects in Cart</div>
-              )}
             </m.div>
           </>
         )}
@@ -214,4 +249,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default StudentEducationUpdate;

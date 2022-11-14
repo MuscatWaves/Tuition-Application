@@ -29,12 +29,10 @@ const ManageStudent = () => {
   const [loading, setLoading] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
-  const [isSubjectModal, subjectModal] = useState(false);
   const [page, setPage] = useState(1);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(isSubjectModal, subjectModal);
   const {
     data = [],
     isFetching,

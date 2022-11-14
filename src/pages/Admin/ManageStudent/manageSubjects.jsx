@@ -19,6 +19,7 @@ import { useState } from "react";
 import CreateUpdateSubject from "./createUpdateSubject";
 import { greenNotify, redNotify } from "../../../notification";
 import { showNotification } from "@mantine/notifications";
+import { useParams } from "react-router-dom";
 
 const ManageSubjects = () => {
   const cookies = new Cookies();
@@ -28,7 +29,7 @@ const ManageSubjects = () => {
   const [deleteData, setDeleteData] = useState(false);
   const [loading, setLoading] = useState(false);
   const token = cookies.get("token");
-  const id = 1;
+  const id = useParams().id;
 
   const {
     data = {},
@@ -109,8 +110,9 @@ const ManageSubjects = () => {
       url: "/admin/manageStudent",
     },
     {
-      id: 2,
-      name: `${data?.data[0]?.name} - Subjects`,
+      id: 4,
+      // name: `${data?.data[0]?.name} - Subjects`,
+      name: `Subjects`,
       url: "",
       active: true,
     },
