@@ -90,6 +90,8 @@ const Dashboard = () => {
 
   const basicDetails = {
     gender: basicDetApi[0]?.Gender || "Not Provided",
+    email: basicDetApi[0]?.email || "Not Provided",
+    name: basicDetApi[0]?.name || "Not Provided",
     createdAt:
       moment(basicDetApi[0]?.createdAt).format("DD MMM, YYYY") ||
       "Not Provided",
@@ -330,9 +332,13 @@ const Dashboard = () => {
                 borderRadius: "50%",
               }}
             />
-            <div className="large-text bolder text-white-light">Test User</div>
             <div className="tuition-wt-inner">
               <div>
+                <div className="small-text bold red-shade-colour">Name</div>
+                <div className="bold">{basicDetails.name}</div>
+              </div>
+              <div>
+                <div className="small-text bold red-shade-colour">Email</div>
                 <div className="flex-small-gap flex-center">
                   <FiMail
                     style={{
@@ -341,9 +347,8 @@ const Dashboard = () => {
                       color: "var(--red-shade-color)",
                     }}
                   />
-                  <div className="small-text bold red-shade-colour">Email</div>
+                  <div className="bold">{basicDetails.email}</div>
                 </div>
-                <div className="bold">test@outlook.com</div>
               </div>
               <div>
                 <div className="bold primary-colour">
