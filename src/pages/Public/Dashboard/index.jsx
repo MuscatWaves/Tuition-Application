@@ -90,7 +90,6 @@ const Dashboard = () => {
 
   const basicDetails = {
     gender: basicDetApi[0]?.Gender || "Not Provided",
-    email: basicDetApi[0]?.email || "Not Provided",
     name: basicDetApi[0]?.name || "Not Provided",
     createdAt:
       moment(basicDetApi[0]?.createdAt).format("DD MMM, YYYY") ||
@@ -347,7 +346,7 @@ const Dashboard = () => {
                       color: "var(--red-shade-color)",
                     }}
                   />
-                  <div className="bold">{basicDetails.email}</div>
+                  <div className="bold">{basicDetApi[0]?.email}</div>
                 </div>
               </div>
               <div>
@@ -454,7 +453,10 @@ const Dashboard = () => {
                 ) : (
                   <div className="mtd-subjects__list-container">
                     {subDetApi.map((subject) => (
-                      <div className="mtd-subjects__list-container__each">
+                      <div
+                        className="mtd-subjects__list-container__each"
+                        key={subject.id}
+                      >
                         <FaBook style={{ fontSize: "3em" }} />
                         <div>{subject.title}</div>
                       </div>

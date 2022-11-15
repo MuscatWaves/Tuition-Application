@@ -12,14 +12,16 @@ import { container, item } from "../Dashboard/constants";
 import Spinner from "../../../components/Spinner";
 import { useQuery } from "react-query";
 import axios from "axios";
-import "../Shop/shop.css";
-import "../Dashboard/dashboard.css";
 import StudentUpdateEdu from "./StudentUpdateEdu";
 import { BiPlus } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import "../Shop/shop.css";
+import "../Dashboard/dashboard.css";
 
 function StudentEducationUpdate() {
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const navigateTo = useNavigate();
   const [isDeleteData, setDeleteData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -239,6 +241,9 @@ function StudentEducationUpdate() {
                   label="Go Back to Dashboard"
                   color="teal"
                   radius={"xl"}
+                  action={() => {
+                    navigateTo("/dashboard");
+                  }}
                 />
               </div>
             </m.div>

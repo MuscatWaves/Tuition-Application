@@ -11,6 +11,7 @@ import { showNotification } from "@mantine/notifications";
 import { FaBook, FaShopify } from "react-icons/fa";
 import { container, item } from "../Dashboard/constants";
 import { BsPlusLg, BsFillCartCheckFill } from "react-icons/bs";
+import { AiOutlineCheck } from "react-icons/ai";
 import Spinner from "../../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import "./shop.css";
@@ -260,11 +261,17 @@ function Shop() {
                   {!subject.cartStatus && subject.subscriptionStatus && (
                     <CustomButton
                       label={"Subscribed"}
-                      leftIcon={<BsPlusLg />}
+                      leftIcon={<AiOutlineCheck />}
                       color="teal"
+                      action={() =>
+                        showNotification({
+                          title: "Already Subscribed",
+                          styles: greenNotify,
+                        })
+                      }
                     />
                   )}
-                  {!subject.cartStatus && (
+                  {!subject.cartStatus && !subject.subscriptionStatus && (
                     <CustomButton
                       label={"Add to Cart"}
                       leftIcon={<BsPlusLg />}
@@ -274,7 +281,7 @@ function Shop() {
                       }}
                     />
                   )}
-                  {subject.cartStatus && (
+                  {subject.cartStatus && !subject.subscriptionStatus && (
                     <CustomButton
                       label={"Added to Cart"}
                       color="orange"

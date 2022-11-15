@@ -76,8 +76,8 @@ const CreateUpdateSubject = ({
           access: values.access,
         })
       : JSON.stringify({
-          subjectId: values.subject,
-          studentId: studentId,
+          subject_id: values.subject,
+          student_id: studentId,
           access: values.access,
         });
 
