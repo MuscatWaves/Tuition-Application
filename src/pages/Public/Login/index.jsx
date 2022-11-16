@@ -13,6 +13,7 @@ import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
 import { removeUnderScore } from "../../../utilities";
 import "./login.css";
+import { useEffect } from "react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,10 @@ const Login = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    document.title = "Alamnii - Login";
+  }, []);
 
   const handleSubmit = async (values) => {
     const Email = values["email"];

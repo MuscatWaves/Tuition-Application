@@ -193,7 +193,7 @@ function Cart() {
                 {data.data.length + ` item('s) present within cart`}
               </div>
               {data.ToatalAmount ? (
-                <div className="flex-gap bold">
+                <div className="flex-gap bold shp-list-main__amount">
                   <div className="large-text">
                     Amount to be paid : <span>{data.ToatalAmount}</span> OMR
                   </div>

@@ -36,8 +36,10 @@ const Header = ({ customLink, CustomComponent }) => {
         <div className="custom-right-rendering">
           <div>{CustomComponent}</div>
           <div className="flex-small-gap">
-            <FiUser className="large-text text-light-grey" />
-            <div className="text-light-grey bolder">{user.name}</div>
+            <div className="header-name">
+              <FiUser className="large-text text-light-grey" />
+              <div className="text-light-grey bolder">{user.name}</div>
+            </div>
             <CustomButton
               color="red"
               radius="lg"

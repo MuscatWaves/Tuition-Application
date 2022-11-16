@@ -39,6 +39,7 @@ const AdminDash = () => {
   );
 
   useEffect(() => {
+    document.title = "Admin - Dashboard";
     localStorage.getItem("user") || refetch();
     // eslint-disable-next-line
   }, []);

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { container, item } from "../../../animation";
 import { m } from "framer-motion";
 import "./presignup.css";
+import { useEffect } from "react";
 
 const PreSignUp = () => {
   const navigate = useNavigate();
@@ -35,8 +36,13 @@ const PreSignUp = () => {
         "Explanatory Videos",
       ],
       path: "/signUp/IELTS",
+      disabled: true,
     },
   ];
+
+  useEffect(() => {
+    document.title = "Alamnii - Sign Up";
+  }, []);
 
   return (
     <m.div
@@ -103,6 +109,7 @@ const PreSignUp = () => {
                       radius={"md"}
                       action={() => navigate(card.path)}
                       rightIcon={<AiOutlineRight />}
+                      disabled={card.disabled}
                     />
                   </div>
                 </div>

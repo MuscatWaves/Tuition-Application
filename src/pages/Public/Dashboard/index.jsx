@@ -19,6 +19,8 @@ import "./dashboard.css";
 import { greenNotify, redNotify } from "../../../notification";
 import { showNotification } from "@mantine/notifications";
 import Spinner from "../../../components/Spinner";
+import { container, item, zoomItem } from "../../../animation";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   // const [isLoggedIn, setLoggedIn] = useState({});
@@ -39,14 +41,9 @@ const Dashboard = () => {
     },
   });
 
-  // const test_subjects = [
-  //   { id: 1, title: "Title 1", standard: "12" },
-  //   {
-  //     id: 2,
-  //     title: "Title 2 - Big Heading from a subject I guess",
-  //     standard: "10",
-  //   },
-  // ];
+  useEffect(() => {
+    document.title = "Student - Dashboard";
+  }, []);
 
   const {
     data: basicDetApi = [],
@@ -309,17 +306,33 @@ const Dashboard = () => {
       </Modal>
       <Header
         CustomComponent={
-          <CustomButton
-            label={"View Cart"}
-            radius={"xl"}
-            color="orange"
-            leftIcon={<BsFillCartCheckFill style={{ fontSize: "18px" }} />}
-            action={() => navigateTo("/shop/cart")}
-          />
+          basicDetApi[0]?.cartCount > 0 && (
+            <m.div
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              exit={{ opacity: 0 }}
+            >
+              <CustomButton
+                label={
+                  <div>{`${basicDetApi[0]?.cartCount} item('s) in cart`}</div>
+                }
+                radius={"xl"}
+                color="orange"
+                leftIcon={<BsFillCartCheckFill style={{ fontSize: "18px" }} />}
+                action={() => navigateTo("/shop/cart")}
+              />
+            </m.div>
+          )
         }
       />
-      <div className="mtd-wrapper">
-        <div className="mtd-info-box">
+      <m.div
+        className="mtd-wrapper"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <m.div className="mtd-info-box" variants={item}>
           <div className="tuition-wt">
             <div className="larger-text bold text-white-light">Welcome</div>
             <FaUserCircle
@@ -359,10 +372,10 @@ const Dashboard = () => {
           <div className="bolder text-white-light">
             &copy; Powered by Tuitions
           </div>
-        </div>
+        </m.div>
         <div className="mtd-main-box">
           <div className="mtd-main-box__inner">
-            <div className="mtd-main-box__b-1">
+            <m.div className="mtd-main-box__b-1" variants={zoomItem}>
               <div className="flex-between small-margin-bottom">
                 <div className="red-shade-colour large-text bold">
                   Basic Details
@@ -391,8 +404,8 @@ const Dashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="mtd-main-box__b-2">
+            </m.div>
+            <m.div className="mtd-main-box__b-2" variants={zoomItem}>
               <div className="flex-between small-margin-bottom">
                 <div className="red-shade-colour large-text bold">
                   Education Details
@@ -421,7 +434,7 @@ const Dashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </m.div>
             <div
               className="mtd-main-box__b-3"
               onClick={() => navigateTo("/shop")}
@@ -451,23 +464,27 @@ const Dashboard = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="mtd-subjects__list-container">
+                  <m.div
+                    className="mtd-subjects__list-container"
+                    variants={container}
+                  >
                     {subDetApi.map((subject) => (
-                      <div
+                      <m.div
                         className="mtd-subjects__list-container__each"
                         key={subject.id}
+                        variants={item}
                       >
                         <FaBook style={{ fontSize: "3em" }} />
                         <div>{subject.title}</div>
-                      </div>
+                      </m.div>
                     ))}
-                  </div>
+                  </m.div>
                 )}
               </>
             )}
           </div>
         </div>
-      </div>
+      </m.div>
     </m.div>
   );
 };

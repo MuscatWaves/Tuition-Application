@@ -18,6 +18,7 @@ import {
   zoomItem,
 } from "../../../animation";
 import "./landingpage.css";
+import { useEffect } from "react";
 
 const LandingPage = () => {
   let navigate = useNavigate();
@@ -39,6 +40,10 @@ const LandingPage = () => {
       },
     },
   };
+
+  useEffect(() => {
+    document.title = "Alamnii";
+  }, []);
 
   const executeScroll = () =>
     aboutRef.current.scrollIntoView({ behavior: "smooth", block: "center" });

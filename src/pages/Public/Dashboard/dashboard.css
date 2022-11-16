@@ -181,3 +181,14 @@
     grid-template-columns: repeat(1, auto);
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .mtd-wrapper {
+    flex-direction: column;
+  }
+
+  .mtd-info-box {
+    padding: 3rem 1rem;
+    gap: 2rem;
+  }
+}

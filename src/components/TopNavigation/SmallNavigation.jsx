@@ -4,6 +4,7 @@ import { container, item } from "../../animation";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
 import { m } from "framer-motion";
+import CustomButton from "../Buttons";
 
 const SmallNavigation = ({
   isSmallMenuOpen,
@@ -128,7 +129,22 @@ const SmallNavigation = ({
           </div>
         </m.div>
         <m.div variants={item}>
-          <div>Title</div>
+          <CustomButton
+            label="Login"
+            category="primary"
+            size={"md"}
+            radius={"md"}
+            action={() => navigateTo("/prelogin")}
+          />
+        </m.div>
+        <m.div variants={item}>
+          <CustomButton
+            label="Sign Up"
+            category="landing"
+            size={"md"}
+            radius={"md"}
+            action={() => navigateTo("/preSignUp")}
+          />
         </m.div>
       </m.div>
     </Drawer>

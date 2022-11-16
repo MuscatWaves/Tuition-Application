@@ -7,34 +7,42 @@
 }
 
 .tuitionSignUp-body {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 2rem;
+  justify-content: center;
   align-items: center;
   border-radius: 30px;
-  padding: 3rem 1rem;
+  padding: 2rem;
   background: #e8e8e8;
   box-shadow: inset 9px 9px 18px #c5c5c5, inset -9px -9px 18px #ffffff;
   height: 100%;
+  overflow: hidden;
+}
+
+.tuitionSignUp-image > img {
+  aspect-ratio: 1;
+  width: 600px;
+  overflow: hidden;
+}
+
+.tuitionSignUp-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  flex: 1;
+  background: #e8e8e8f5;
 }
 
 .tuitionSignUp-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.tuitionSignUp-image {
-  flex: 0.5;
-}
-
-.tuitionSignUp-image > img{
-  height: 300px;
-  object-fit: contain;
-}
-
-.tuitionSignUp-form-body{
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
-  flex: 0.5;
+@media only screen and (max-width: 1024px) {
+  .tuitionSignUp-image {
+    display: none;
+  }
 }

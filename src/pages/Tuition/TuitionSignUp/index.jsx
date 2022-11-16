@@ -12,30 +12,22 @@ import isEmail from "validator/lib/isEmail";
 import congratsImage from "../../../images/congrats_c.gif";
 import { showNotification } from "@mantine/notifications";
 import "./tuitionSignUp.css";
+import { useEffect } from "react";
 
 const TuitionSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [isSuccessModal, toggleSuccessModal] = useState(false);
-  // const [isErrorModal, toggleErrorModal] = useState(false);
   const form = useForm({
     initialValues: {
       full_name: "",
       email: "",
       password: "",
     },
-    // validate: {
-    //   subjects: (value) =>
-    //     value.length < 1 ? "Please choose atleast 1 subject!" : null,
-    // },
   });
 
-  // useEffect(() => {
-  //   form.setValues({
-  //     ...form.values,
-  //     subjects: [],
-  //   });
-  //   // eslint-disable-next-line
-  // }, [form.values.grades]);
+  useEffect(() => {
+    document.title = "Alamnii - Tuition Sign up";
+  }, []);
 
   const handleSubmit = async (values) => {
     const Email = values["email"];
@@ -171,50 +163,6 @@ const TuitionSignUp = () => {
                   required
                 />
               </m.div>
-              {/* <m.div variants={zoomItem}>
-              <div className="bold just-flex">
-              <div>Grades</div>
-              <div className="text-red">*</div>
-              </div>
-              <Select
-              placeholder="Select your country"
-              data={[
-                { label: "Grades", value: 1 },
-                { label: "Subjects", value: 2 },
-                { label: "Services", value: 3 },
-              ]}
-              radius="lg"
-              size="lg"
-                transitionDuration={150}
-                transition="pop-top-left"
-                transitionTimingFunction="ease"
-                {...form.getInputProps("grades")}
-                />
-              </m.div> */}
-              {/* <m.div style={{ gridColumn: "1/3" }} variants={zoomItem}>
-              <div className="bold just-flex">
-              <div>Subjects</div>
-              <div className="text-red">*</div>
-              </div>
-              <MultiSelect
-              data={[
-                { value: "react", label: "React" },
-                { value: "ng", label: "Angular" },
-                  { value: "svelte", label: "Svelte" },
-                  { value: "vue", label: "Vue" },
-                  { value: "riot", label: "Riot" },
-                  { value: "next", label: "Next.js" },
-                  { value: "blitz", label: "Blitz.js" },
-                ]}
-                placeholder="Please choose your subjects"
-                radius="lg"
-                size="lg"
-                transitionDuration={150}
-                transition="pop-top-left"
-                transitionTimingFunction="ease"
-                {...form.getInputProps("subjects")}
-              />
-            </m.div> */}
               <div style={{ marginTop: "10px" }}>
                 <CustomButton
                   label="Register for free"
@@ -224,7 +172,6 @@ const TuitionSignUp = () => {
                   radius={"xl"}
                   maxWidth
                   loading={loading}
-                  // action={() => navigate("/login")}
                 />
               </div>
             </m.form>

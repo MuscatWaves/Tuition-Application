@@ -71,3 +71,29 @@
   padding: 1rem 2rem;
   background-color: rgba(255, 255, 255, 0.699);
 }
+
+@media only screen and (max-width: 800px) {
+  .shp-list-main__each {
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .shp-list-main__total-amount {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .shp-list-main__amount {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

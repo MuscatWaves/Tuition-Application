@@ -40,7 +40,7 @@ function StudentEducationUpdate() {
   const [isEditData, setEditData] = useState(null);
 
   useEffect(() => {
-    document.title = "Tuition - Shopping Cart";
+    document.title = "Tuition - Education Update";
     // eslint-disable-next-line
   }, []);
 

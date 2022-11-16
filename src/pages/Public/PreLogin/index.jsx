@@ -7,6 +7,7 @@ import CustomButton from "../../../components/Buttons";
 import { AiOutlineRight } from "react-icons/ai";
 import Footer from "../../../components/Footer";
 import "../PreSignUp/presignup.css";
+import { useEffect } from "react";
 
 const PreLogin = () => {
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const PreLogin = () => {
       path: "/admin/login",
     },
   ];
+
+  useEffect(() => {
+    document.title = "Alamnii - Portal Login";
+  }, []);
 
   return (
     <m.div

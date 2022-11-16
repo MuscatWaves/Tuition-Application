@@ -42,6 +42,7 @@ function Shop() {
   });
 
   useEffect(() => {
+    document.title = "Student - Shop";
     shoppingListFetch({
       search: "",
       title: "",

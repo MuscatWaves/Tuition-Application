@@ -59,6 +59,7 @@ const CreateUpdateSubject = ({
   );
 
   useEffect(() => {
+    document.title = "Admin - Update Subject";
     if (data) {
       form.setValues({
         subject: { label: data.title, value: data.subjectId },

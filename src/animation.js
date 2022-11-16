@@ -15,13 +15,12 @@ export const item = {
   },
   show: {
     opacity: 1,
-    y: 0,
-    delay: 0.7,
+    y: "0px",
+    delay: 1,
     transition: {
       type: "spring",
-      stiffness: 70,
-      damping: 10,
-      mass: 1.1,
+      stiffness: 40,
+      damping: 9,
     },
   },
 };

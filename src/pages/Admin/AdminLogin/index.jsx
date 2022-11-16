@@ -12,6 +12,7 @@ import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
 import { container, item, zoomItem } from "../../../animation";
 import "../../Public/Login/login.css";
+import { useEffect } from "react";
 
 const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,10 @@ const AdminLogin = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    document.title = "Login - Admin";
+  }, []);
 
   const handleSubmit = async (values) => {
     const Email = values["email"];
