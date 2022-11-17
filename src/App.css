@@ -102,6 +102,10 @@ h1 {
   color: #51a6f5;
 }
 
+.text-yellow {
+  color: #ffae00;
+}
+
 .pointer {
   cursor: pointer;
 }

@@ -1,0 +1,41 @@
+.vst-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.vst-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.vst-body-image {
+  aspect-ratio: 1;
+  width: 300px;
+}
+
+.vst-body-small-image {
+  aspect-ratio: 1;
+  width: 100px;
+}
+
+.vst-text-wrapper {
+  margin-top: 2rem;
+}
+
+.vst-body--registered {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  max-width: 450px;
+  border-radius: 20px;
+  padding: 2rem 3rem;
+  background-color: rgba(255, 255, 255, 0.699);
+}

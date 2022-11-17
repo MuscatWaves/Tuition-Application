@@ -14,6 +14,7 @@ const Cart = lazy(() => import("../pages/Public/Cart"));
 const StudentEducationUpdate = lazy(() =>
   import("../pages/Public/StudentEducationUpdate")
 );
+const VerifyStudent = lazy(() => import("../pages/Public/VerifyStudent"));
 
 // IELTS
 const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
@@ -62,6 +63,10 @@ const Routing = () => {
                 <Route
                   path="/student/eduUpdate"
                   element={<StudentEducationUpdate />}
+                ></Route>
+                <Route
+                  path="/verify/student"
+                  element={<VerifyStudent />}
                 ></Route>
                 <Route
                   path="/loader"

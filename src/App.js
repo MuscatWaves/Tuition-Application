@@ -9,11 +9,9 @@ const App = () => {
   return (
     <NotificationsProvider position="bottom-right" zIndex={2077}>
       <div className="App">
-        <header className="App-header">
-          <QueryClientProvider client={queryClient}>
-            <Routing />
-          </QueryClientProvider>
-        </header>
+        <QueryClientProvider client={queryClient}>
+          <Routing />
+        </QueryClientProvider>
       </div>
     </NotificationsProvider>
   );
