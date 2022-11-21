@@ -473,6 +473,11 @@ const Dashboard = () => {
                         className="mtd-subjects__list-container__each"
                         key={subject.id}
                         variants={item}
+                        onClick={() => {
+                          navigateTo(
+                            `/dashboard/${subject.title.replaceAll(" ", "_")}`
+                          );
+                        }}
                       >
                         <FaBook style={{ fontSize: "3em" }} />
                         <div>{subject.title}</div>

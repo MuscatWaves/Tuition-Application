@@ -260,12 +260,21 @@ const LandingPage = () => {
                 >
                   {!cards[`card${card.id}`] && (
                     <div className="card--inactive larger-text bolder">
-                      <card.icon
-                        style={{
-                          fontSize: "80px",
-                          color: "var(--secondary-color)",
-                        }}
-                      />
+                      {card.icon && (
+                        <card.icon
+                          style={{
+                            fontSize: "80px",
+                            color: "#96858f",
+                          }}
+                        />
+                      )}
+                      {card.img && (
+                        <img
+                          src={card.img}
+                          style={{ width: "100px" }}
+                          alt={card.name}
+                        />
+                      )}
                       <div>{card.name}</div>
                     </div>
                   )}
