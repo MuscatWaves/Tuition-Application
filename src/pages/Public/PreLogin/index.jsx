@@ -16,8 +16,8 @@ const PreLogin = () => {
   const cards = [
     {
       id: 1,
-      name: "Tuition",
-      description: "Login for Tuition Students",
+      name: "Student",
+      description: "Login for Student Portal",
       path: "/tuition/login",
       icon: FaGraduationCap,
     },

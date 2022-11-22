@@ -15,12 +15,11 @@ const PreSignUp = () => {
   const cards = [
     {
       id: 1,
-      name: "Tuition",
+      name: "Student",
       benefits: [
-        "Custom Dashboard",
         "Topic Wise Notes",
         "Topic Wise Question Papers & Answer Papers",
-        "Videos for each section",
+        "Topic Wise Videos",
         "Student Enquiries",
         "Various Subjects",
       ],

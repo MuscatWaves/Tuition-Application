@@ -79,7 +79,7 @@ const ManageStudent = () => {
       selector: (row) => moment(row.createdAt).format("DD/MM/YYYY"),
     },
     {
-      name: "isActive",
+      name: "Active",
       selector: (row) =>
         row.isActive ? (
           <AiFillCheckCircle className="mid-large-text text-green" />
@@ -88,7 +88,7 @@ const ManageStudent = () => {
         ),
     },
     {
-      name: "isAccess",
+      name: "Access",
       selector: (row) =>
         row.isAccess ? (
           <AiFillCheckCircle className="mid-large-text text-green" />
@@ -240,7 +240,7 @@ const ManageStudent = () => {
       <div className="top-heading-admin-wrapper">
         <div className="top-heading-admin">
           <div className="bolder larger-text primary-font red-shade-colour">
-            Manage Subject
+            Manage Student
           </div>
           <div className="flex-between">
             <BreadCrumb items={nav} />
@@ -251,7 +251,7 @@ const ManageStudent = () => {
                 setUpdateData(null);
                 update();
               }}
-              show={checkPermission("subject", user.access).writeAccess}
+              show={checkPermission("student", user.access).writeAccess}
             />
           </div>
         </div>

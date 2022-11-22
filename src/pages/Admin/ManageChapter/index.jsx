@@ -76,7 +76,7 @@ const ManageChapter = () => {
 
   const columns = [
     {
-      name: "Title",
+      name: "Chapter Title",
       selector: (row) => row.title,
     },
     {
@@ -84,7 +84,7 @@ const ManageChapter = () => {
       selector: (row) => row.description,
     },
     {
-      name: "Chapter",
+      name: "Subject",
       selector: (row) =>
         subjectData.filter((subject) => subject.value === row.subjectId)[0]
           ?.label,

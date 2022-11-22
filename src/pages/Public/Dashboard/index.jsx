@@ -21,12 +21,16 @@ import { showNotification } from "@mantine/notifications";
 import Spinner from "../../../components/Spinner";
 import { container, item, zoomItem } from "../../../animation";
 import { useEffect } from "react";
+import { DatePicker } from "@mantine/dates";
+import StudentUpdateEdu from "../StudentEducationUpdate/StudentUpdateEdu";
 
 const Dashboard = () => {
   // const [isLoggedIn, setLoggedIn] = useState({});
   const [isViewAllEduModal, setViewAllEduModal] = useState(false);
   const [isUpdateModal, setUpdateModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isEduUpdate, setEduUpdate] = useState(false);
+  const [isEduUpdateData, setEduUpdateData] = useState(false);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const navigate = useNavigate();
@@ -63,6 +67,7 @@ const Dashboard = () => {
   const {
     data: eduDetApi = [],
     // isFetching,
+    refetch,
   } = useQuery(
     ["educationDetailsFetch"],
     () =>
@@ -97,9 +102,8 @@ const Dashboard = () => {
   };
 
   const educationDetail = {
-    course: eduDetApi[0]?.course || "Not Provided",
-    specialization: eduDetApi[0]?.specialization || "Not Provided",
-    university: eduDetApi[0]?.university || "Not Provided",
+    standard: eduDetApi[0]?.course || "Not Provided",
+    school: eduDetApi[0]?.university || "Not Provided",
     location: eduDetApi[0]?.location || "Not Provided",
     passingYear: eduDetApi[0]?.passingYear || "Not Provided",
   };
@@ -169,6 +173,14 @@ const Dashboard = () => {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
+      <StudentUpdateEdu
+        isModalOpen={isEduUpdate}
+        toggleModal={setEduUpdate}
+        data={isEduUpdateData}
+        setData={setEduUpdateData}
+        token={token}
+        refetch={refetch}
+      />
       <Modal
         title={<div className="bolder large-text">Update Basic Details</div>}
         opened={isUpdateModal}
@@ -201,13 +213,15 @@ const Dashboard = () => {
             <div className="bold just-flex text-grey">
               <div>DOB</div>
             </div>
-            <Input
-              placeholder="Enter your DOB in the format mentioned below!"
-              radius="lg"
-              size="lg"
+            <DatePicker
+              placeholder={
+                moment(basicDetApi[0]?.dob)
+                  ? moment(basicDetApi[0]?.dob).format("DD MMMM, YYYY")
+                  : "Please pick a date"
+              }
+              withAsterisk
               {...form.getInputProps("dob")}
             />
-            <div className="bold text-red small-text very-small-padding">{`Follow this format - YYYY-MM-DD (1989/11/02)`}</div>
           </div>
           <div className="flex-small-gap-column">
             <div className="bold just-flex text-grey">
@@ -411,16 +425,24 @@ const Dashboard = () => {
                   Education Details
                 </div>
                 <div className="flex-small-gap">
-                  <CustomButton
+                  {/* <CustomButton
                     label={"View All"}
                     radius="xl"
                     color="teal"
                     action={() => setViewAllEduModal(true)}
-                  />
+                  /> */}
                   <CustomButton
                     label={"Update"}
                     radius="xl"
-                    action={() => navigateTo("/student/eduUpdate")}
+                    action={() => {
+                      if (eduDetApi.length === 0) {
+                        setEduUpdateData(null);
+                        setEduUpdate(true);
+                      } else {
+                        setEduUpdateData(eduDetApi[0]);
+                        setEduUpdate(true);
+                      }
+                    }}
                   />
                 </div>
               </div>

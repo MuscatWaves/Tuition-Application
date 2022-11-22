@@ -103,13 +103,18 @@ const TuitionLogin = () => {
     >
       <div className="login-form-main-wrapper">
         <div className="login-form-main">
-          <img className="logo-small-login" src={logoSmall} alt="login-small" />
+          <img
+            className="logo-small-login pointer"
+            src={logoSmall}
+            alt="login-small"
+            onClick={() => navigate("/")}
+          />
           <form
             className="flex-gap-column-1 form-main-login"
             onSubmit={form.onSubmit(handleSubmit)}
           >
             <div className="flex-center bold larger-text primary-font red-shade-colour">
-              {`Tuition Login`}
+              {`Student Login`}
             </div>
             <div className="flex-small-gap-column">
               <div className="medium-text bolder text-light-grey">Email</div>
@@ -121,7 +126,7 @@ const TuitionLogin = () => {
                 {...form.getInputProps("email")}
               />
             </div>
-            <div className="flex-small-gap-column small-margin-bottom">
+            <div className="flex-small-gap-column">
               <div className="medium-text bolder text-light-grey">Password</div>
               <PasswordInput
                 placeholder="Enter your password here!"
@@ -129,6 +134,9 @@ const TuitionLogin = () => {
                 size="lg"
                 {...form.getInputProps("password")}
               />
+            </div>
+            <div className="small-text bolder flex-end text-grey">
+              Forgot Password?
             </div>
             <CustomButton
               label="Log in"
@@ -138,8 +146,14 @@ const TuitionLogin = () => {
               radius={"xl"}
               loading={loading}
             />
-            <div className="small-text bolder flex-end text-grey">
-              Forgot Password?
+            <div className="small-text bolder flex-center text-grey">
+              Don't have an account?
+              <span
+                className="bold red-shade-colour pointer"
+                onClick={() => navigate("/signUp/Tuition")}
+              >
+                Sign up
+              </span>
             </div>
           </form>
         </div>

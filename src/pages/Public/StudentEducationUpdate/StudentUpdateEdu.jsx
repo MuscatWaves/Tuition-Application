@@ -97,12 +97,15 @@ const StudentUpdateEdu = ({
     <Drawer
       opened={isModalOpen}
       onClose={handleClose}
+      // title={
+      //   data ? (
+      //     <div className="bolder large-text">Update Student Education Data</div>
+      //   ) : (
+      //     <div className="bolder large-text">Create Student Education Data</div>
+      //   )
+      // }
       title={
-        data ? (
-          <div className="bolder large-text">Update Student Education Data</div>
-        ) : (
-          <div className="bolder large-text">Create Student Education Data</div>
-        )
+        <div className="bolder large-text">Update Student Education Data</div>
       }
       padding="xl"
       size="xl"
@@ -114,16 +117,16 @@ const StudentUpdateEdu = ({
       >
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bold just-flex text-grey">
-            <div>Course</div>
+            <div>Standard</div>
           </div>
           <Input
-            placeholder="Enter the name of the course"
+            placeholder="Enter the name of the standard"
             radius="lg"
             size="lg"
             {...form.getInputProps("course")}
           />
         </div>
-        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+        {/* <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bold just-flex text-grey">
             <div>Specialization</div>
           </div>
@@ -133,13 +136,13 @@ const StudentUpdateEdu = ({
             size="lg"
             {...form.getInputProps("specialization")}
           />
-        </div>
+        </div> */}
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bold just-flex text-grey">
-            <div>University</div>
+            <div>School</div>
           </div>
           <Input
-            placeholder="Enter the name of the university"
+            placeholder="Enter the name of the school"
             radius="lg"
             size="lg"
             {...form.getInputProps("university")}
@@ -177,7 +180,8 @@ const StudentUpdateEdu = ({
             color={"gray"}
           />
           <CustomButton
-            label={data ? "Update" : "Create"}
+            // label={data ? "Update" : "Create"}
+            label={"Update"}
             category="landing"
             type={"submit"}
             size={"md"}

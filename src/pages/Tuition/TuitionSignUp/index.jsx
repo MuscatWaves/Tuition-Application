@@ -88,17 +88,23 @@ const TuitionSignUp = () => {
         onClose={() => toggleSuccessModal(false)}
         centered
         padding={"lg"}
+        title={
+          <div className="bolder small-text primary-colour">
+            Account Creation Successful
+          </div>
+        }
         radius={"lg"}
       >
         <div className="flex-gap-column-1">
           <img src={congratsImage} alt="Congratulations for registering" />
-          <div className="large-text bolder">Congratulations!!</div>
+          <div className="large-text bolder red-shade-colour">
+            Congratulations!!
+          </div>
           <div className="bold text-grey">
-            Thank you for registering yourself with us!
+            Thank you for registering with us!
           </div>
           <div className="bold text-green small-text">
-            The account has been successfully created. Please headover to your
-            mail to see the activation email.
+            Activation mail has been sent to your registered mail.
           </div>
         </div>
       </Modal>
