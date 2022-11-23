@@ -105,7 +105,6 @@ const AdminDash = () => {
           )}
         </div>
       </div>
-      <div>Footer</div>
     </m.div>
   );
 };

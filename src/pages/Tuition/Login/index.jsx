@@ -11,6 +11,7 @@ import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
 import { Input, PasswordInput } from "@mantine/core";
 import "./login.css";
+import { container, item, zoomItem } from "../../../animation";
 
 const TuitionLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -103,20 +104,26 @@ const TuitionLogin = () => {
     >
       <div className="login-form-main-wrapper">
         <div className="login-form-main">
-          <img
+          <m.img
             className="logo-small-login pointer"
             src={logoSmall}
             alt="login-small"
             onClick={() => navigate("/")}
+            variants={item}
+            animate={"show"}
+            initial={"hidden"}
           />
-          <form
+          <m.form
             className="flex-gap-column-1 form-main-login"
             onSubmit={form.onSubmit(handleSubmit)}
+            variants={container}
+            animate={"show"}
+            initial={"hidden"}
           >
             <div className="flex-center bold larger-text primary-font red-shade-colour">
               {`Student Login`}
             </div>
-            <div className="flex-small-gap-column">
+            <m.div className="flex-small-gap-column" variants={zoomItem}>
               <div className="medium-text bolder text-light-grey">Email</div>
               <Input
                 placeholder="Enter your mail here!"
@@ -125,8 +132,8 @@ const TuitionLogin = () => {
                 size="lg"
                 {...form.getInputProps("email")}
               />
-            </div>
-            <div className="flex-small-gap-column">
+            </m.div>
+            <m.div className="flex-small-gap-column" variants={zoomItem}>
               <div className="medium-text bolder text-light-grey">Password</div>
               <PasswordInput
                 placeholder="Enter your password here!"
@@ -134,7 +141,7 @@ const TuitionLogin = () => {
                 size="lg"
                 {...form.getInputProps("password")}
               />
-            </div>
+            </m.div>
             <div className="small-text bolder flex-end text-grey">
               Forgot Password?
             </div>
@@ -155,7 +162,7 @@ const TuitionLogin = () => {
                 Sign up
               </span>
             </div>
-          </form>
+          </m.form>
         </div>
       </div>
       <Footer />

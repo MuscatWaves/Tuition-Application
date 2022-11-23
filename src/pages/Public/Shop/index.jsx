@@ -3,7 +3,7 @@ import { AnimatePresence, m } from "framer-motion";
 import BreadCrumb from "../../../components/BreadCrumb";
 import Header from "../../../components/Header";
 import { useForm } from "@mantine/form";
-import { Input, Modal } from "@mantine/core";
+import { Divider, Input, Loader, Modal, Timeline } from "@mantine/core";
 import Cookies from "universal-cookie";
 import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
@@ -25,6 +25,9 @@ function Shop() {
   const [loading, setLoading] = useState(false);
   const [tableLoading, setTableLoading] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [subjectModal, setSubjectModal] = useState(false);
+  const [subjectData, setSubjectData] = useState(null);
+  const [subjectDataLoading, setSubjectDataLoading] = useState(false);
   const navigation = [
     { id: 0, name: "Dashboard", url: "/dashboard" },
     {
@@ -50,6 +53,34 @@ function Shop() {
     });
     // eslint-disable-next-line
   }, []);
+
+  const subjectDataFetch = (subjectId) => {
+    setSubjectDataLoading(true);
+    var axios = require("axios");
+
+    var config = {
+      method: "get",
+      url: `/api/student/subject/${subjectId}`,
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        setSubjectData(response.data.data[0]);
+        setSubjectDataLoading(false);
+      })
+      .catch(function (error) {
+        showNotification({
+          title: "List Error!",
+          message: error.response.data.error || "Something went terribly wrong",
+          styles: redNotify,
+        });
+        setSubjectData(null);
+        setSubjectModal(false);
+      });
+  };
 
   const shoppingListFetch = (values) => {
     setTableLoading(true);
@@ -155,6 +186,98 @@ function Shop() {
           />
         </div>
       </Modal>
+      <Modal
+        opened={subjectModal}
+        onClose={() => {
+          setSubjectModal(false);
+        }}
+        centered
+      >
+        {subjectDataLoading ? (
+          <div className="flex-small-gap">
+            <Loader />
+            <div className="bold primary-colour">Loading Data...</div>
+          </div>
+        ) : (
+          <div className="flex-gap-column-1">
+            <div className="flex-gap">
+              <FaBook className="shp-list-icn" />
+              <div className="bold">{subjectData?.title}</div>
+            </div>
+            <Divider
+              my="xs"
+              label={<div className="primary-colour bold">Description</div>}
+            />
+            <div className="small-text">{subjectData?.description}</div>
+            <Divider
+              my="xs"
+              label={<div className="primary-colour bold">Basic Details</div>}
+            />
+            <div className="sub-mod-basic__grid-3">
+              <div className="flex-small-gap-column">
+                <div className="small-text primary-colour bold">Standard</div>
+                <div className="bolder">{subjectData?.standard}</div>
+              </div>
+              <div className="flex-small-gap-column">
+                <div className="small-text primary-colour bold">Price</div>
+                <div className="bolder">{subjectData?.price}</div>
+              </div>
+              <div className="flex-small-gap-column">
+                <div className="bolder">
+                  {!subjectData?.cartStatus && subjectData?.subscriptionStatus && (
+                    <CustomButton
+                      label={"Subscribed"}
+                      leftIcon={<AiOutlineCheck />}
+                      color="teal"
+                      action={() =>
+                        showNotification({
+                          title: "Already Subscribed",
+                          styles: greenNotify,
+                        })
+                      }
+                    />
+                  )}
+                  {!subjectData?.cartStatus &&
+                    !subjectData?.subscriptionStatus && (
+                      <CustomButton
+                        label={"Add to Cart"}
+                        leftIcon={<BsPlusLg />}
+                        action={() => {
+                          setDeleteData(subjectData);
+                          setDeleteModal(true);
+                          setSubjectModal(false);
+                        }}
+                      />
+                    )}
+                  {subjectData?.cartStatus &&
+                    !subjectData?.subscriptionStatus && (
+                      <CustomButton
+                        label={"Added to Cart"}
+                        color="orange"
+                        leftIcon={
+                          <BsFillCartCheckFill style={{ fontSize: "18px" }} />
+                        }
+                        action={() => navigateTo("/shop/cart")}
+                      />
+                    )}
+                </div>
+              </div>
+            </div>
+            <Divider
+              my="xs"
+              label={<div className="primary-colour bold">Chapters</div>}
+            />
+            {(subjectData?.chapters?.length > 0 && (
+              <Timeline active={1}>
+                {subjectData.chapters?.map((data, index) => (
+                  <Timeline.Item className="bold">{data?.title}</Timeline.Item>
+                ))}
+              </Timeline>
+            )) ||
+              "No Chapters Listed, Will be filled soon"}
+          </div>
+        )}
+      </Modal>
       <Header
         CustomComponent={
           <CustomButton
@@ -259,6 +382,16 @@ function Shop() {
                     <div className="small-text primary-colour bold">Price</div>
                     <div className="bolder">{subject.price}</div>
                   </div>
+                  <CustomButton
+                    label={"Know More"}
+                    radius={"xl"}
+                    color="cyan"
+                    variant={"light"}
+                    action={() => {
+                      setSubjectModal(true);
+                      subjectDataFetch(subject.id);
+                    }}
+                  />
                   {!subject.cartStatus && subject.subscriptionStatus && (
                     <CustomButton
                       label={"Subscribed"}

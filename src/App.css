@@ -30,6 +30,10 @@ h1 {
   margin: 0;
 }
 
+body {
+  font-family: "Poppins", sans-serif, "Quicksand" !important;
+}
+
 .App {
   background: #e8e8e8;
   min-height: 100vh;
