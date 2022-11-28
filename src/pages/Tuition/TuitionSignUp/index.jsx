@@ -119,7 +119,7 @@ const TuitionSignUp = () => {
               Tuition Sign Up
             </div>
             <div className="text-light-grey bold">
-              For face-to-face and online tuition contact us on (Phone Number)
+              We are happy to have you on board with us!
             </div>
             <m.form
               onSubmit={form.onSubmit(handleSubmit)}

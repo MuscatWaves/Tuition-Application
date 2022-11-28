@@ -82,8 +82,8 @@ const Footer = ({ setActiveItem }) => {
               IELTS
             </div>
             <div className="flex-small-gap-column">
-              <div className="bolder text-black pointer">Grade</div>
-              <div className="bolder text-black pointer">Subject</div>
+              <div className="bolder text-black pointer-disabled">Subject</div>
+              <div className="bolder text-black pointer-disabled">Services</div>
             </div>
           </div>
           <div className="each-division-service-footer">
@@ -91,7 +91,13 @@ const Footer = ({ setActiveItem }) => {
               Summer Classes
             </div>
             <div className="flex-small-gap-column">
-              <div className="bolder text-black pointer">Grade</div>
+              <div className="bolder text-black pointer-disabled">
+                Languages
+              </div>
+              <div className="bolder text-black pointer-disabled">
+                Music & Art
+              </div>
+              <div className="bolder text-black pointer-disabled">Other</div>
             </div>
           </div>
         </div>

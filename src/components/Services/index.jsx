@@ -24,7 +24,7 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
             className="text-light-grey bold primary-font"
             style={{ fontSize: "3em" }}
           >
-            Here We Offer
+            Our Structure
           </div>
           <div className="services-left-menu-selection">
             {service.menu.map((menu) => (
@@ -99,11 +99,16 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
                       className="services-right-section-image"
                       alt="menu.id"
                     />
-                    <div
-                      className="bolder secondary-colour"
-                      style={{ fontSize: "42px" }}
-                    >
-                      {menu.name}
+                    <div>
+                      <div
+                        className="bolder red-shade-colour"
+                        style={{ fontSize: "42px" }}
+                      >
+                        {menu.name}
+                      </div>
+                      <div className="small-margin secondary-colour">
+                        {menu?.description}
+                      </div>
                     </div>
                   </m.div>
                   <m.div
@@ -118,7 +123,10 @@ const Services = ({ service, activeMenu, setActiveMenu }) => {
                         className="services-right-section-card"
                         variants={item}
                       >
-                        <div>{inner.name}</div>
+                        <div className="bolder">{inner.name}</div>
+                        <div className="small-text bold">
+                          {inner?.description}
+                        </div>
                       </m.div>
                     ))}
                   </m.div>

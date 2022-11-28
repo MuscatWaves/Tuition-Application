@@ -91,14 +91,13 @@ const LandingPage = () => {
                 className="text primary-font text-white-light primary-header-text"
                 variants={zoomItem}
               >
-                Something will be Happening
+                Looking forward to ACE your year?
               </m.div>
               <m.div
                 className="text-white-light landing-description-text"
                 variants={zoomItem}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                sit amet molestie est, vel condimentum lorem.
+                We’re here to help you achieve just that.
               </m.div>
               <m.div className="flex-small-gap" variants={zoomItem}>
                 <CustomButton
@@ -159,13 +158,11 @@ const LandingPage = () => {
                 initial={"rightHidden"}
                 viewport={{ margin: "-80px" }}
               >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised.
+                <span className="red-shade-colour">Alamnii</span> aims to make
+                student's studies easier and more fun. We provide students with
+                all the required resources to help them in their academic year,
+                whether you're in elementary school, middle school or high
+                school, Alamnii is here to help.
               </m.div>
             </div>
           </m.div>
@@ -192,7 +189,8 @@ const LandingPage = () => {
               className="we-work-landing-desc primary-font large-text bolder text-colour"
               variants={item}
             >
-              We Work for your sucess Lorem Ipsum is simply dummy text.
+              We work for providing you with the best materials for you to be
+              successful.
             </m.div>
             <img
               src={howWeWorkImage}

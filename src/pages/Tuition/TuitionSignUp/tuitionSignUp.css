@@ -33,6 +33,7 @@
   padding: 2rem;
   flex: 1;
   background: #e8e8e8f5;
+  min-width: 500px;
 }
 
 .tuitionSignUp-form {
@@ -41,8 +42,21 @@
   gap: 1rem;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1250px) {
   .tuitionSignUp-image {
     display: none;
+  }
+
+  .tuitionSignUp-body {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0.5rem;
+    margin: 1rem;
+  }
+
+  .tuitionSignUp-form-body {
+    padding: 1rem;
+    min-width: auto;
+    background: none;
   }
 }

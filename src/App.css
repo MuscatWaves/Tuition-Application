@@ -114,6 +114,11 @@ body {
   cursor: pointer;
 }
 
+.pointer-disabled {
+  /* cursor: no-drop; */
+  cursor: not-allowed;
+}
+
 .primary-header-text {
   font-size: 45px;
   font-weight: 700;
@@ -214,6 +219,14 @@ body {
 
 .medium-margin-top {
   margin-top: 1.5rem;
+}
+
+.small-margin {
+  margin: 0.5rem;
+}
+
+.normal-margin {
+  margin: 1rem;
 }
 
 .copyright {

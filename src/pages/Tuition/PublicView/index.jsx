@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Services from "../../../components/Services";
 import TopNavigation from "../../../components/TopNavigation";
 import Footer from "../../../components/Footer";
@@ -28,6 +28,8 @@ const Tuition = () => {
       {
         id: 1,
         name: "Grades",
+        description:
+          "If you are in elementary, middle or high school then you are in the right place. Here we offer studies for the following grades",
         data: {
           icon: gradesImage,
           innerData: [
@@ -49,6 +51,7 @@ const Tuition = () => {
       {
         id: 2,
         name: "Subjects",
+        description: "Need help in the following subjects?",
         data: {
           icon: subjectsImage,
           innerData: [
@@ -64,21 +67,56 @@ const Tuition = () => {
       {
         id: 3,
         name: "Services",
+        description: "Get the benefit of all that we offer you today",
         data: {
           icon: servicesImage,
           innerData: [
-            { id: 1, name: "Face to Face tuition" },
-            { id: 2, name: "Online tuition" },
-            { id: 3, name: "Topic-wise notes" },
-            { id: 4, name: "Topic-wise QP & AP" },
-            { id: 5, name: "Explanatory Videos" },
-            { id: 6, name: "Student Enquiries" },
+            {
+              id: 1,
+              name: "Face to Face tuition",
+              description:
+                "Looking for someone to help with your studies and prefer physical interaction? Contact us today to find your tutor.",
+            },
+            {
+              id: 2,
+              name: "Online tuition",
+              description:
+                "Need help with your studies and prefer having your classes online? Contact us today to find your tutor.",
+            },
+            {
+              id: 3,
+              name: "Topic-wise notes",
+              description:
+                "Why waste time taking notes when you can use that time to study them?",
+            },
+            {
+              id: 4,
+              name: "Topic-wise QP & AP",
+              description:
+                "Want to test yourself on your topics? Get various QP’s with their answers on here!",
+            },
+            {
+              id: 5,
+              name: "Explanatory Videos",
+              description:
+                "Are you a visual learner? Our in-depth explanatory videos will help you out!",
+            },
+            {
+              id: 6,
+              name: "Student Enquiries",
+              description:
+                "Stuck on a question? Ask us and we’ll help you out!",
+            },
           ],
         },
       },
     ],
     path: "/signUp/Tuition",
   };
+
+  useEffect(() => {
+    document.title = "Alamnii";
+  }, []);
 
   return (
     <m.div
