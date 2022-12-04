@@ -19,21 +19,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  /* background-image: linear-gradient(
-    to left top,
-    #6d7993,
-    #727292,
-    #7a698d,
-    #836083,
-    #8c5676,
-    #8c536d,
-    #8c5064,
-    #8a4e5c,
-    #83515b,
-    #7b535a,
-    #735559,
-    #6b5759
-  ); */
+  min-height: 70vh;
   background-image: linear-gradient(
     to right bottom,
     #6b5759,
@@ -387,6 +373,10 @@
 
 @media screen and (max-width: 500px) {
   .landing-body {
+    text-align: center;
+  }
+
+  .landing-description-text {
     text-align: center;
   }
 }

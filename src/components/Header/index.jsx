@@ -1,5 +1,4 @@
 import React from "react";
-import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import Authentication from "../../components/Authentication";
 import { AiOutlinePoweroff } from "react-icons/ai";
@@ -8,6 +7,7 @@ import { FiUser } from "react-icons/fi";
 import { m } from "framer-motion";
 import CustomButton from "../Buttons";
 import { removeCookie } from "../../utilities";
+import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
 import "./header.css";
 

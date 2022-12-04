@@ -4,7 +4,7 @@ import { container, item } from "../../animation";
 import { useNavigate } from "react-router-dom";
 import "./gridLayoutDash.css";
 
-const GridLayoutDash = ({ cards, isLoggedIn, subject }) => {
+const GridLayoutDash = ({ cards, isLoggedIn, subject, user }) => {
   const navigateTo = useNavigate();
   const checkNumberOfCards = () =>
     cards(isLoggedIn).filter((card) => card?.permission).length;
@@ -20,13 +20,15 @@ const GridLayoutDash = ({ cards, isLoggedIn, subject }) => {
           initial="hidden"
           animate="show"
         >
-          {cards(isLoggedIn, subject).map(
+          {cards(isLoggedIn, subject, user).map(
             (card, index) =>
               card.permission && (
                 <m.div
                   key={card.id}
                   className="card"
-                  onClick={() => navigateTo(card.path)}
+                  onClick={
+                    card.action ? card.action : () => navigateTo(card.path)
+                  }
                   variants={item}
                 >
                   <div className="dash-card-icon">

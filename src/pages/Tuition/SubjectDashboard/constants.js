@@ -4,8 +4,9 @@ import { MdOutlineOndemandVideo } from "react-icons/md";
 import { IoPieChartSharp } from "react-icons/io5";
 import { BiPaperPlane } from "react-icons/bi";
 import { FaBook } from "react-icons/fa";
+import { removeUnderScore } from "../../../utilities";
 
-export const cards = (isLoggedIn, subject) => [
+export const cards = (isLoggedIn, subject, user) => [
   {
     id: 1,
     name: "card1",
@@ -40,7 +41,20 @@ export const cards = (isLoggedIn, subject) => [
     title: "Student Enquiries",
     description: "Specify your query with an Simple Email.",
     permission: true,
-    path: "/create/workerPersonalDetail",
+    action: () => {
+      const esubject = encodeURIComponent(
+        `Enquiry Email - ${removeUnderScore(subject)} | ${user}`
+      );
+      const body = encodeURIComponent(
+        `Greetings Alamnii,\n\nHope you are doing great, I have an enquiry in "${removeUnderScore(
+          subject
+        )} topic."\n\nPlease explain your question here!\n\nRegards,\n${user}`
+      );
+      window.open(
+        `mailto:a3lamnii@gmail.com?subject=${esubject}&body=${body}`,
+        "_blank"
+      );
+    },
   },
   {
     id: 5,

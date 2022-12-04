@@ -66,6 +66,11 @@
   border-color: #ff0000;
 }
 
+.instagram-icon:hover {
+  color: #bc2a8d;
+  border-color: #bc2a8d;
+}
+
 .each-division-service-footer {
   min-height: 150px;
 }

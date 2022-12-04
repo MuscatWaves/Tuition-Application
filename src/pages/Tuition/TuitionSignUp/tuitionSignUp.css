@@ -60,3 +60,15 @@
     background: none;
   }
 }
+
+@media only screen and (max-width: 700px) {
+  .tuitionSignUp-wrapper-body {
+    padding-top: 120px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .tuitionSignUp-wrapper-body {
+    padding-top: 130px;
+  }
+}

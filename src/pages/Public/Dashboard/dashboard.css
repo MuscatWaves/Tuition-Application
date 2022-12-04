@@ -191,4 +191,8 @@
     padding: 3rem 1rem;
     gap: 2rem;
   }
+
+  .tuition-wt-inner {
+    width: auto;
+  }
 }

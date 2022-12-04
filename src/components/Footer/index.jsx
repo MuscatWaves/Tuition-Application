@@ -1,6 +1,6 @@
 import React from "react";
 import { RiWhatsappFill } from "react-icons/ri";
-import { AiFillYoutube } from "react-icons/ai";
+import { AiFillYoutube, AiFillInstagram } from "react-icons/ai";
 import { GrMail } from "react-icons/gr";
 import { BsFacebook } from "react-icons/bs";
 import logo from "../../images/logo.png";
@@ -106,10 +106,19 @@ const Footer = ({ setActiveItem }) => {
             Contact Us
           </div>
           <div className="flex-small-gap">
-            <GrMail className="icon-footer mail-icon" />
+            <GrMail
+              className="icon-footer mail-icon"
+              onClick={() => window.open("mailto:a3lamnii@gmail.com", "_blank")}
+            />
             <RiWhatsappFill className="icon-footer whatsapp-icon" />
             <BsFacebook className="icon-footer facebook-icon" />
             <AiFillYoutube className="icon-footer youtube-icon" />
+            <AiFillInstagram
+              className="icon-footer instagram-icon"
+              onClick={() =>
+                window.open("https://www.instagram.com/alamnii.om/", "_blank")
+              }
+            />
           </div>
         </div>
       </div>
