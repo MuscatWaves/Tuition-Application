@@ -361,6 +361,12 @@ function Cart() {
                   </div>
                   <div className="flex-small-gap-column">
                     <div className="small-text primary-colour bold">
+                      Subject
+                    </div>
+                    <div className="bolder">{subject.subjectId}</div>
+                  </div>
+                  <div className="flex-small-gap-column">
+                    <div className="small-text primary-colour bold">
                       Standard
                     </div>
                     <div className="bolder">{subject.subjectStandard}</div>
