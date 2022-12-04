@@ -80,6 +80,41 @@
   gap: 1rem;
 }
 
+.order-sucessful {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.order-unsucessful {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.success-icn {
+  background-color: #1fc264;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.unsuccess-icn {
+  background-color: #ff4c41;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
 @media only screen and (max-width: 800px) {
   .shp-list-main__each {
     flex-direction: column;
