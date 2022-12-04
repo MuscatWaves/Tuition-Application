@@ -10,6 +10,7 @@ const PreSignUp = lazy(() => import("../pages/Public/PreSignUp"));
 const Dashboard = lazy(() => import("../pages/Public/Dashboard"));
 const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
 const Shop = lazy(() => import("../pages/Public/Shop"));
+const SubjectShop = lazy(() => import("../pages/Public/SubjectShop"));
 const Cart = lazy(() => import("../pages/Public/Cart"));
 const StudentEducationUpdate = lazy(() =>
   import("../pages/Public/StudentEducationUpdate")
@@ -37,6 +38,7 @@ const AdminDash = lazy(() => import("../pages/Admin/Dashboard"));
 const ManageAccess = lazy(() => import("../pages/Admin/ManageAccess"));
 const ManageSubject = lazy(() => import("../pages/Admin/ManageSubject"));
 const ManageChapter = lazy(() => import("../pages/Admin/ManageChapter"));
+const ManageTopic = lazy(() => import("../pages/Admin/ManageTopic"));
 const ManageAccount = lazy(() => import("../pages/Admin/ManageAccount"));
 const AdminLogin = lazy(() => import("../pages/Admin/AdminLogin"));
 const ManageStudent = lazy(() => import("../pages/Admin/ManageStudent"));
@@ -58,7 +60,8 @@ const Routing = () => {
                 <Route path="/" element={<LandingPage />}></Route>
                 <Route path="/prelogin" element={<PreLogin />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
-                <Route path="/shop" element={<Shop />}></Route>
+                <Route path="/shop" element={<SubjectShop />}></Route>
+                <Route path="/shop/:name/:id" element={<Shop />}></Route>
                 <Route path="/shop/cart" element={<Cart />}></Route>
                 <Route
                   path="/student/eduUpdate"
@@ -86,6 +89,10 @@ const Routing = () => {
                 <Route
                   path="/admin/manageChapter"
                   element={<ManageChapter />}
+                ></Route>
+                <Route
+                  path="/admin/manageTopic"
+                  element={<ManageTopic />}
                 ></Route>
                 <Route
                   path="/admin/manageAccount"

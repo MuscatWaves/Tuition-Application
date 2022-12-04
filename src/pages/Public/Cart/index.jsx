@@ -43,7 +43,7 @@ function Cart() {
     { id: 0, name: "Dashboard", url: "/dashboard" },
     {
       id: 12,
-      name: "Shop",
+      name: "Subject Shop",
       url: "/shop",
     },
     {

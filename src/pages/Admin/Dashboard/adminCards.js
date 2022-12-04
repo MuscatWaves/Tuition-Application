@@ -31,6 +31,13 @@ export const adminCards = (isLoggedIn) => [
   },
   {
     id: 5,
+    title: "Manage Topic",
+    description: "Create, Update & Delete any topic",
+    permission: checkPermission("topic", isLoggedIn?.access)?.readAccess,
+    path: "/admin/manageTopic",
+  },
+  {
+    id: 6,
     title: "Manage Students",
     description: "Create, Update & Delete any Student",
     permission: checkPermission("student", isLoggedIn?.access)?.readAccess,

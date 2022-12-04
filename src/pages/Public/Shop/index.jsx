@@ -13,13 +13,15 @@ import { container, item } from "../Dashboard/constants";
 import { BsPlusLg, BsFillCartCheckFill } from "react-icons/bs";
 import { AiOutlineCheck } from "react-icons/ai";
 import Spinner from "../../../components/Spinner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./shop.css";
+import { removeUnderScore } from "../../../utilities";
 
 function Shop() {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const navigateTo = useNavigate();
+  const dataParams = useParams();
   const [shoppingListData, setShoppingListData] = useState([]);
   const [isDeleteData, setDeleteData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,8 +32,9 @@ function Shop() {
   const [subjectDataLoading, setSubjectDataLoading] = useState(false);
   const navigation = [
     { id: 0, name: "Dashboard", url: "/dashboard" },
+    { id: 1, name: "Subject Shop", url: "/shop" },
     {
-      id: 1,
+      id: 2,
       name: "Shop",
       active: true,
     },
@@ -88,7 +91,7 @@ function Shop() {
 
     var config = {
       method: "get",
-      url: `/api/student/subject?search=${values.search}&title=${values.title}&standard=${values.standard}`,
+      url: `/api/student/chapter?search=${values.search}&title=${values.title}&standard=${values.standard}&subjectId=${dataParams.id}`,
       headers: {
         Authorization: token,
       },
@@ -173,7 +176,7 @@ function Shop() {
         onClose={handleClose}
         centered
       >
-        <div>You are going to add the subject to cart</div>
+        <div>You are going to add the chapter to cart</div>
         <div style={{ padding: "1rem 0" }} className="flex-small-gap">
           <CustomButton action={handleClose} label={"Cancel"} color={"gray"} />
           <CustomButton
@@ -224,19 +227,20 @@ function Shop() {
               </div>
               <div className="flex-small-gap-column">
                 <div className="bolder">
-                  {!subjectData?.cartStatus && subjectData?.subscriptionStatus && (
-                    <CustomButton
-                      label={"Subscribed"}
-                      leftIcon={<AiOutlineCheck />}
-                      color="teal"
-                      action={() =>
-                        showNotification({
-                          title: "Already Subscribed",
-                          styles: greenNotify,
-                        })
-                      }
-                    />
-                  )}
+                  {!subjectData?.cartStatus &&
+                    subjectData?.subscriptionStatus && (
+                      <CustomButton
+                        label={"Subscribed"}
+                        leftIcon={<AiOutlineCheck />}
+                        color="teal"
+                        action={() =>
+                          showNotification({
+                            title: "Already Subscribed",
+                            styles: greenNotify,
+                          })
+                        }
+                      />
+                    )}
                   {!subjectData?.cartStatus &&
                     !subjectData?.subscriptionStatus && (
                       <CustomButton
@@ -345,6 +349,15 @@ function Shop() {
             />
           </form>
         </div>
+        <Divider
+          my="xs"
+          labelPosition="center"
+          label={
+            <div className="primary-colour bold large-text">
+              {removeUnderScore(dataParams.name)}
+            </div>
+          }
+        />
         {tableLoading ? (
           <div className="shp-loader">
             <Spinner />
@@ -383,6 +396,7 @@ function Shop() {
                     <div className="bolder">{subject.price}</div>
                   </div>
                   <CustomButton
+                    style={{ cursor: "not-allowed" }}
                     label={"Know More"}
                     radius={"xl"}
                     color="cyan"
@@ -391,6 +405,7 @@ function Shop() {
                       setSubjectModal(true);
                       subjectDataFetch(subject.id);
                     }}
+                    disabled
                   />
                   {!subject.cartStatus && subject.subscriptionStatus && (
                     <CustomButton

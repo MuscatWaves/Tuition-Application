@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@mantine/form";
-import { Drawer, Input } from "@mantine/core";
+import { Drawer, Select, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatesubject.css";
+import "./createupdatetopic.css";
 
-const CreateUpdateSubject = ({
+const CreateUpdateTopic = ({
   isModalOpen,
   toggleModal,
   data,
   setData,
   token,
+  chapterData = [],
   refetch,
 }) => {
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
-      subjectName: "",
+      subject: "",
+      title: "",
+      description: "",
     },
   });
 
   useEffect(() => {
     if (data) {
       form.setValues({
-        subjectName: data.subjectName,
+        subject: data.subjectId,
+        title: data.title,
+        description: data.description,
       });
     }
     // eslint-disable-next-line
@@ -35,15 +40,19 @@ const CreateUpdateSubject = ({
     var updateData = data
       ? JSON.stringify({
           id: data.id,
-          subjectName: values.subjectName,
+          subjectId: values.subject,
+          title: values.title,
+          description: values.description,
         })
       : JSON.stringify({
-          subjectName: values.subjectName,
+          subjectId: values.subject,
+          title: values.title,
+          description: values.description,
         });
 
     var config = {
       method: data ? "put" : "post",
-      url: "/api/subject",
+      url: "/api/topic",
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -84,9 +93,9 @@ const CreateUpdateSubject = ({
       onClose={handleClose}
       title={
         data ? (
-          <div className="bolder large-text">Update Subject</div>
+          <div className="bolder large-text">Update Topic</div>
         ) : (
-          <div className="bolder large-text">Create Subject</div>
+          <div className="bolder large-text">Create Topic</div>
         )
       }
       padding="xl"
@@ -94,9 +103,25 @@ const CreateUpdateSubject = ({
       position="right"
     >
       <form
-        className="form-manage-access-subject"
+        className="form-manage-access-topic"
         onSubmit={form.onSubmit(handleSubmit)}
       >
+        <div className="flex-small-gap-column">
+          <div className="bold just-flex text-light-grey">
+            <div>Chapter</div>
+            <div className="text-red">*</div>
+          </div>
+          <Select
+            placeholder="Select your chapter"
+            data={chapterData}
+            radius="lg"
+            size="lg"
+            transitionDuration={150}
+            transition="pop-top-left"
+            transitionTimingFunction="ease"
+            {...form.getInputProps("subject")}
+          />
+        </div>
         <div className="flex-small-gap-column">
           <div className="bold just-flex text-light-grey">
             <div>Title</div>
@@ -106,12 +131,20 @@ const CreateUpdateSubject = ({
             placeholder="Please enter the title of subject"
             radius="lg"
             size="lg"
-            {...form.getInputProps("subjectName")}
-            data-autofocus
+            {...form.getInputProps("title")}
             required
           />
         </div>
-        <div className="button-form-manage-subject">
+        <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
+          <div className="bolder text-light-grey">Small Description</div>
+          <Input
+            placeholder="Please enter the description of subject"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("description")}
+          />
+        </div>
+        <div className="button-form-manage-topic">
           <CustomButton
             label={"Cancel"}
             size={"md"}
@@ -134,4 +167,4 @@ const CreateUpdateSubject = ({
   );
 };
 
-export default CreateUpdateSubject;
+export default CreateUpdateTopic;

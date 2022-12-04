@@ -44,7 +44,7 @@ const ManageChapter = () => {
   const { data: subjectData = [] } = useQuery(
     ["adminManageSubjectTemp1"],
     () =>
-      axios.get(`/api/open/subject`, {
+      axios.get(`/api/subject`, {
         headers: {
           Authorization: token,
         },
@@ -53,7 +53,7 @@ const ManageChapter = () => {
       refetchOnWindowFocus: false,
       select: (data) => {
         const newData = data.data.data.map((item) => ({
-          label: item.title,
+          label: item.subjectName,
           value: item.id,
         }));
         return newData;
@@ -80,17 +80,27 @@ const ManageChapter = () => {
       selector: (row) => row.title,
     },
     {
-      name: "Description",
-      selector: (row) => row.description,
-    },
-    {
       name: "Subject",
       selector: (row) =>
         subjectData.filter((subject) => subject.value === row.subjectId)[0]
           ?.label,
     },
     {
+      name: "Standard",
+      selector: (row) => row.standard,
+    },
+    {
+      name: "Price",
+      selector: (row) => row.price,
+    },
+    {
+      name: "Description",
+      maxWidth: "500px",
+      selector: (row) => row.description,
+    },
+    {
       name: "",
+      maxWidth: "150px",
       selector: (row) => (
         <div className="flex-small-gap">
           {checkPermission("chapter", user.access).editAccess && (

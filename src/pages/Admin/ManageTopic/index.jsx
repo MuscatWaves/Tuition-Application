@@ -7,15 +7,15 @@ import CustomDataTable from "../../../components/CustomDataTable";
 import { ActionIcon } from "@mantine/core";
 import { Modal } from "@mantine/core";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import CreateUpdateSubject from "./CreateUpdateSubject";
+import CreateUpdateTopic from "./CreateUpdateTopic";
 import BreadCrumb from "../../../components/BreadCrumb";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
 import { redNotify, greenNotify } from "../../../notification";
-import "./createupdatesubject.css";
 import { checkPermission } from "../../../utilities";
+import "./createupdatetopic.css";
 
-const ManageSubject = () => {
+const ManageTopic = () => {
   const [isModalOpen, toggleModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,14 +25,15 @@ const ManageSubject = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const user = JSON.parse(localStorage.getItem("user"));
+
   const {
     data = [],
     isFetching,
     refetch,
   } = useQuery(
-    ["adminManageSubject", page],
+    ["adminManageTopic", page],
     () =>
-      axios.get(`/api/subject?page=${page}`, {
+      axios.get(`/api/topic?page=${page}`, {
         headers: {
           Authorization: token,
         },
@@ -40,19 +41,28 @@ const ManageSubject = () => {
     { refetchOnWindowFocus: false }
   );
 
-  const { data: userData = [] } = useQuery(
-    ["adminUsers", page],
+  const { data: subjectData = [] } = useQuery(
+    ["adminManageSubjectTemp1"],
     () =>
-      axios.get(`/api/open/account`, {
+      axios.get(`/api/open/subject`, {
         headers: {
           Authorization: token,
         },
       }),
-    { refetchOnWindowFocus: false, select: (data) => data.data.data }
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => {
+        const newData = data.data.data.map((item) => ({
+          label: item.title,
+          value: item.id,
+        }));
+        return newData;
+      },
+    }
   );
 
   useEffect(() => {
-    document.title = "Admin - Manage Subject";
+    document.title = "Admin - Manage Topic";
     // eslint-disable-next-line
   }, []);
 
@@ -66,20 +76,24 @@ const ManageSubject = () => {
 
   const columns = [
     {
-      name: "Title",
-      selector: (row) => row.subjectName,
+      name: "Chapter Title",
+      selector: (row) => row.title,
     },
     {
-      name: "Created By",
+      name: "Description",
+      selector: (row) => row.description,
+    },
+    {
+      name: "Chapter",
       selector: (row) =>
-        userData?.filter((user) => user.id === row.createdBy)[0]?.name,
+        subjectData.filter((subject) => subject.value === row.subjectId)[0]
+          ?.label,
     },
     {
       name: "",
-      width: "450px",
       selector: (row) => (
         <div className="flex-small-gap">
-          {checkPermission("subject", user.access).editAccess && (
+          {checkPermission("topic", user.access).editAccess && (
             <ActionIcon
               color="blue"
               size="lg"
@@ -93,7 +107,7 @@ const ManageSubject = () => {
               <AiOutlineEdit style={{ fontSize: "22px" }} />
             </ActionIcon>
           )}
-          {checkPermission("subject", user.access).deleteAccess && (
+          {checkPermission("topic", user.access).deleteAccess && (
             <ActionIcon
               color="red"
               size="lg"
@@ -120,8 +134,8 @@ const ManageSubject = () => {
     },
     {
       id: 1,
-      name: "Manage Subject",
-      url: "/admin/manageSubject",
+      name: "Manage Topic",
+      url: "/admin/manageTopic",
       active: true,
     },
   ];
@@ -135,7 +149,7 @@ const ManageSubject = () => {
     var axios = require("axios");
     var config = {
       method: "delete",
-      url: `/api/subject/${deleteData.id}`,
+      url: `/api/topic/${deleteData.id}`,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -167,16 +181,17 @@ const ManageSubject = () => {
 
   return (
     <div>
-      <CreateUpdateSubject
+      <CreateUpdateTopic
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
         data={updateData}
         setData={setUpdateData}
         token={token}
+        subjectData={subjectData}
         refetch={refetch}
       />
       <Modal
-        title={<div className="bolder large-text">Delete Subject</div>}
+        title={<div className="bolder large-text">Delete Chapter</div>}
         opened={deleteModal}
         onClose={handleClose}
       >
@@ -197,7 +212,7 @@ const ManageSubject = () => {
       <div className="top-heading-admin-wrapper">
         <div className="top-heading-admin">
           <div className="bolder larger-text primary-font red-shade-colour">
-            Manage Subject
+            Manage Topic
           </div>
           <div className="flex-between">
             <BreadCrumb items={nav} />
@@ -208,7 +223,7 @@ const ManageSubject = () => {
                 setUpdateData(null);
                 update();
               }}
-              show={checkPermission("subject", user.access).writeAccess}
+              show={checkPermission("topic", user.access).writeAccess}
             />
           </div>
         </div>
@@ -228,4 +243,4 @@ const ManageSubject = () => {
   );
 };
 
-export default ManageSubject;
+export default ManageTopic;

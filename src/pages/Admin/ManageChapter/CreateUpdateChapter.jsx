@@ -20,6 +20,8 @@ const CreateUpdateChapter = ({
     initialValues: {
       subject: "",
       title: "",
+      standard: "",
+      price: "",
       description: "",
     },
   });
@@ -30,6 +32,8 @@ const CreateUpdateChapter = ({
         subject: data.subjectId,
         title: data.title,
         description: data.description,
+        standard: data.standard,
+        price: data.price,
       });
     }
     // eslint-disable-next-line
@@ -43,11 +47,15 @@ const CreateUpdateChapter = ({
           subjectId: values.subject,
           title: values.title,
           description: values.description,
+          standard: values.standard,
+          price: values.price,
         })
       : JSON.stringify({
           subjectId: values.subject,
           title: values.title,
           description: values.description,
+          standard: values.standard,
+          price: values.price,
         });
 
     var config = {
@@ -132,6 +140,34 @@ const CreateUpdateChapter = ({
             radius="lg"
             size="lg"
             {...form.getInputProps("title")}
+            required
+          />
+        </div>
+        <div className="flex-small-gap-column">
+          <div className="bold just-flex text-light-grey">
+            <div>Standard</div>
+            <div className="text-red">*</div>
+          </div>
+          <Input
+            placeholder="Please enter the standard for the subject"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("standard")}
+            data-autofocus
+            required
+          />
+        </div>
+        <div className="flex-small-gap-column">
+          <div className="bold just-flex text-light-grey">
+            <div>Price</div>
+            <div className="text-red">*</div>
+          </div>
+          <Input
+            placeholder="Please enter the price of subject"
+            radius="lg"
+            size="lg"
+            {...form.getInputProps("price")}
+            data-autofocus
             required
           />
         </div>
