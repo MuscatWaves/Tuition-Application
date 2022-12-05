@@ -82,7 +82,7 @@ const Dashboard = () => {
   const { data: subDetApi = [], isFetching: subDetFetch } = useQuery(
     ["subjectDetailsFetch"],
     () =>
-      axios.get(`/api/student/subject/subscription`, {
+      axios.get(`/api/subs/subject`, {
         headers: {
           Authorization: token,
         },

@@ -14,9 +14,9 @@ import Spinner from "../../../components/Spinner";
 import { BiErrorCircle } from "react-icons/bi";
 import { useQuery } from "react-query";
 import axios from "axios";
-import "../Shop/shop.css";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from "react-router";
+import "../Shop/shop.css";
 
 function Cart() {
   const navigateTo = useNavigate();
@@ -309,6 +309,12 @@ function Cart() {
             </m.div>
           ))}
         </m.div>
+        <Divider my="lg" label={""} />
+        <div className="shp-list-main__total-amount">
+          <div className="bold primary-colour">{`${list.length} item('s) purchased`}</div>
+          <div className="bold">{`Total Amount paid is $${amount}`}</div>
+        </div>
+        <Divider my="lg" label={""} />
         <div
           style={{ padding: "1rem 0" }}
           className="flex-small-gap flex-center"
@@ -353,27 +359,27 @@ function Cart() {
                   <FaBook className="shp-list-icn" />
                   <div className="flex-small-gap-column">
                     <div className="large-text bold red-shade-colour">
-                      {subject.subjectTitle}
+                      {subject.chapterTitle}
                     </div>
                     <div className="small-text bold primary-colour">
-                      {subject.subjectDescription}
+                      {subject.chapterDescription}
                     </div>
                   </div>
                   <div className="flex-small-gap-column">
                     <div className="small-text primary-colour bold">
                       Subject
                     </div>
-                    <div className="bolder">{subject.subjectId}</div>
+                    <div className="bolder">{subject.subjectName}</div>
                   </div>
                   <div className="flex-small-gap-column">
                     <div className="small-text primary-colour bold">
                       Standard
                     </div>
-                    <div className="bolder">{subject.subjectStandard}</div>
+                    <div className="bolder">{subject.chapterStandard}</div>
                   </div>
                   <div className="flex-small-gap-column">
                     <div className="small-text primary-colour bold">Price</div>
-                    <div className="bolder">{subject.subjectPrice}</div>
+                    <div className="bolder">{subject.chapterPrice}</div>
                   </div>
                   <CustomButton
                     label={"Remove From Cart"}
@@ -408,7 +414,7 @@ function Cart() {
               </m.div>
             ) : (
               <m.div
-                className="shp-list-main__total-amount"
+                className="shp-list-main__total-amount small-margin-bottom"
                 animate={{ opacity: 1, y: "0" }}
                 initial={{ opacity: 0, y: "20px" }}
                 transition={{ duration: "0.8" }}

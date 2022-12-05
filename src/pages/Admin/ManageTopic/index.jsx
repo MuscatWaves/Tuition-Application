@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import Cookies from "universal-cookie";
+import { useQuery } from "react-query";
 import axios from "axios";
 import Header from "../../../components/Header";
 import CustomDataTable from "../../../components/CustomDataTable";
@@ -53,11 +53,25 @@ const ManageTopic = () => {
       refetchOnWindowFocus: false,
       select: (data) => {
         const newData = data.data.data.map((item) => ({
-          label: item.title,
+          label: item.subjectName,
           value: item.id,
         }));
         return newData;
       },
+    }
+  );
+
+  const { data: chapterData = [] } = useQuery(
+    ["adminManageChapterTemp1"],
+    () =>
+      axios.get(`/api/open/chapter`, {
+        headers: {
+          Authorization: token,
+        },
+      }),
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => data.data.data,
     }
   );
 
@@ -76,7 +90,7 @@ const ManageTopic = () => {
 
   const columns = [
     {
-      name: "Chapter Title",
+      name: "Topic Title",
       selector: (row) => row.title,
     },
     {
@@ -86,8 +100,7 @@ const ManageTopic = () => {
     {
       name: "Chapter",
       selector: (row) =>
-        subjectData.filter((subject) => subject.value === row.subjectId)[0]
-          ?.label,
+        chapterData.filter((chapter) => chapter.id === row.subjectId)[0]?.title,
     },
     {
       name: "",

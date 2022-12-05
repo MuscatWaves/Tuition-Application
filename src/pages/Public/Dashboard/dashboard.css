@@ -195,4 +195,8 @@
   .tuition-wt-inner {
     width: auto;
   }
+
+  .mtd-subject-container {
+    text-align: center;
+  }
 }

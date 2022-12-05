@@ -3,6 +3,8 @@ import { useForm } from "@mantine/form";
 import { Drawer, Select, Input } from "@mantine/core";
 import CustomButton from "../../../components/Buttons";
 import { showNotification } from "@mantine/notifications";
+import { useQuery } from "react-query";
+import axios from "axios";
 import { redNotify, greenNotify } from "../../../notification";
 import "./createupdatetopic.css";
 
@@ -12,22 +14,43 @@ const CreateUpdateTopic = ({
   data,
   setData,
   token,
-  chapterData = [],
+  subjectData = [],
   refetch,
 }) => {
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
       subject: "",
+      chapter: "",
       title: "",
       description: "",
     },
   });
 
+  const { data: chapterData = [], isFetching } = useQuery(
+    ["adminManageSubjectTemp12", form.values.subject],
+    () =>
+      axios.get(`/api/open/chapter`, {
+        headers: {
+          Authorization: token,
+        },
+      }),
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => {
+        const newData = data.data.data.map((item) => ({
+          label: item.title,
+          value: item.id,
+        }));
+        return newData;
+      },
+    }
+  );
+
   useEffect(() => {
     if (data) {
       form.setValues({
-        subject: data.subjectId,
+        chapter: data.subjectId,
         title: data.title,
         description: data.description,
       });
@@ -35,17 +58,26 @@ const CreateUpdateTopic = ({
     // eslint-disable-next-line
   }, [data]);
 
+  useEffect(() => {
+    if (form.values.subject) {
+      form.setValues({
+        chapter: "",
+      });
+    }
+    // eslint-disable-next-line
+  }, [form.values.subject]);
+
   const handleSubmit = (values) => {
     var axios = require("axios");
     var updateData = data
       ? JSON.stringify({
           id: data.id,
-          subjectId: values.subject,
+          subjectId: values.chapter,
           title: values.title,
           description: values.description,
         })
       : JSON.stringify({
-          subjectId: values.subject,
+          subjectId: values.chapter,
           title: values.title,
           description: values.description,
         });
@@ -108,18 +140,41 @@ const CreateUpdateTopic = ({
       >
         <div className="flex-small-gap-column">
           <div className="bold just-flex text-light-grey">
-            <div>Chapter</div>
+            <div>Subject</div>
             <div className="text-red">*</div>
           </div>
           <Select
-            placeholder="Select your chapter"
-            data={chapterData}
+            placeholder="Select the subject"
+            data={subjectData}
+            searchable
             radius="lg"
             size="lg"
             transitionDuration={150}
             transition="pop-top-left"
             transitionTimingFunction="ease"
             {...form.getInputProps("subject")}
+          />
+        </div>
+        <div className="flex-small-gap-column">
+          <div className="bold just-flex text-light-grey">
+            <div>Chapter</div>
+            <div className="text-red">*</div>
+          </div>
+          <Select
+            placeholder={
+              isFetching
+                ? "Loading the data...Please wait!!"
+                : "Select the chapter"
+            }
+            data={chapterData}
+            searchable
+            radius="lg"
+            size="lg"
+            transitionDuration={150}
+            transition="pop-top-left"
+            transitionTimingFunction="ease"
+            disabled={isFetching}
+            {...form.getInputProps("chapter")}
           />
         </div>
         <div className="flex-small-gap-column">

@@ -44,7 +44,7 @@ const ManageChapter = () => {
   const { data: subjectData = [] } = useQuery(
     ["adminManageSubjectTemp1"],
     () =>
-      axios.get(`/api/subject`, {
+      axios.get(`/api/open/subject`, {
         headers: {
           Authorization: token,
         },
