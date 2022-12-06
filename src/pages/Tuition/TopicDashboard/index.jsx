@@ -10,7 +10,7 @@ import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
 import "./dashboard.css";
 
-const SubjectDashboard = () => {
+const TopicDashboard = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const user = jwtDecode(token);
@@ -18,11 +18,15 @@ const SubjectDashboard = () => {
   const isLoggedIn = {};
 
   const navigation = [
-    { id: 1, title: "Dashboard", to: "/dashboard" },
+    { id: 0, name: "Dashboard", url: "/dashboard" },
+    {
+      id: 1,
+      name: removeUnderScore(data.subject),
+      url: `/dashboard/student/${data.subject}/${data.subjectId}/chapters/`,
+    },
     {
       id: 2,
-      title: removeUnderScore(data.subject),
-      to: `/dashboard/${data.subject}`,
+      name: removeUnderScore(data.chapter),
       active: true,
     },
   ];
@@ -43,13 +47,12 @@ const SubjectDashboard = () => {
         <GridLayoutDash
           cards={cards}
           isLoggedIn={isLoggedIn}
-          subject={data.subject}
+          subject={data.chapter}
           user={user.name}
         />
       </div>
-      <div>Footer</div>
     </m.div>
   );
 };
 
-export default SubjectDashboard;
+export default TopicDashboard;

@@ -1,50 +1,10 @@
 import React from "react";
 import { removeUnderScore } from "../../utilities";
-import { useNavigate } from "react-router-dom";
-import { FaLongArrowAltRight, FaLongArrowAltDown } from "react-icons/fa";
+import BreadCrumb from "../BreadCrumb";
 import { m } from "framer-motion";
 import "./innerheader.css";
 
 const InnerHeader = ({ navigation, data, customHeading, customDesc }) => {
-  const navigateTo = useNavigate();
-  const items = navigation.map((item, index) => (
-    <div
-      key={item.id}
-      className={item.active ? "link--active" : "link"}
-      onClick={() => navigateTo(item.to)}
-    >
-      {item.title}
-    </div>
-  ));
-
-  for (let i = 0; i < items.length; i++) {
-    if (i % 2 !== 0) {
-      items.splice(
-        i,
-        0,
-        <div className="bolder" key={i + 10 * i + 1}>
-          <FaLongArrowAltRight
-            style={{
-              fontSize: "18px",
-              marginTop: "8px",
-              color: "var(--red-shade-color)",
-            }}
-            className="innerHeader-right-icon"
-          />
-          <FaLongArrowAltDown
-            style={{
-              fontSize: "18px",
-              marginTop: "8px",
-              color: "var(--red-shade-color)",
-            }}
-            className="innerHeader-down-icon"
-          />
-        </div>
-      );
-      items.join();
-    }
-  }
-
   return (
     <m.div
       className="innerHeader-main medium-gap"
@@ -55,15 +15,10 @@ const InnerHeader = ({ navigation, data, customHeading, customDesc }) => {
     >
       {(customHeading && customHeading) || (
         <div className="larger-text bolder primary-font-2 red-shade-colour">
-          {removeUnderScore(data.subject)}
+          {removeUnderScore(data.chapter)}
         </div>
       )}
-      <div className="innerHeader-navigation">{items.map((item) => item)}</div>
-      {(customDesc && customDesc) || (
-        <div className="primary-font bold primary-colour">
-          A start of something good
-        </div>
-      )}
+      <BreadCrumb items={navigation} />
     </m.div>
   );
 };

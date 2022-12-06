@@ -24,9 +24,10 @@ const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
 const TuitionLogin = lazy(() => import("../pages/Tuition/Login"));
 const TuitionPublic = lazy(() => import("../pages/Tuition/PublicView"));
 const TuitionSignUp = lazy(() => import("../pages/Tuition/TuitionSignUp"));
-const SubjectDashboard = lazy(() =>
-  import("../pages/Tuition/SubjectDashboard")
+const ChapterDashboard = lazy(() =>
+  import("../pages/Tuition/ChapterDashboard")
 );
+const TopicDashboard = lazy(() => import("../pages/Tuition/TopicDashboard"));
 const TopicWiseNotes = lazy(() => import("../pages/Tuition/TopicWiseNotes"));
 const ExplanatoryVideo = lazy(() =>
   import("../pages/Tuition/ExplanatoryVideo")
@@ -117,8 +118,12 @@ const Routing = () => {
                 <Route path="/signUp/IELTS" element={<IELTSSignUp />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route
-                  path="/dashboard/:subject"
-                  element={<SubjectDashboard />}
+                  path="/dashboard/student/:subject/:subjectId/chapters"
+                  element={<ChapterDashboard />}
+                ></Route>
+                <Route
+                  path="/dashboard/student/:subject/:subjectId/:chapter/:chapterId"
+                  element={<TopicDashboard />}
                 ></Route>
                 <Route
                   path="/tuition/:subject/topicWiseNotes"

@@ -490,27 +490,23 @@ const Dashboard = () => {
                     className="mtd-subjects__list-container"
                     variants={container}
                   >
-                    {subDetApi.map(
-                      (subject) =>
-                        subject.subscriptionStatus && (
-                          <m.div
-                            className="mtd-subjects__list-container__each pointer"
-                            key={subject.id}
-                            variants={item}
-                            onClick={() => {
-                              navigateTo(
-                                `/dashboard/${subject.title.replaceAll(
-                                  " ",
-                                  "_"
-                                )}`
-                              );
-                            }}
-                          >
-                            <FaBook style={{ fontSize: "3em" }} />
-                            <div>{subject.title}</div>
-                          </m.div>
-                        )
-                    )}
+                    {subDetApi.map((subject) => (
+                      <m.div
+                        className="mtd-subjects__list-container__each pointer"
+                        key={subject.id}
+                        variants={item}
+                        onClick={() => {
+                          navigateTo(
+                            `/dashboard/student/${subject.subjectName
+                              .replaceAll(" ", "_")
+                              .toLowerCase()}/${subject.id}/chapters/`
+                          );
+                        }}
+                      >
+                        <FaBook style={{ fontSize: "3em" }} />
+                        <div>{subject.subjectName}</div>
+                      </m.div>
+                    ))}
                   </m.div>
                 )}
               </>

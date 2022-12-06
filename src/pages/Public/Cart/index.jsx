@@ -286,25 +286,29 @@ function Cart() {
           {list?.map((subject) => (
             <m.div
               className="shp-list-main__each"
-              key={subject.subjectId}
+              key={subject.id}
               variants={item}
             >
               <FaBook className="shp-list-icn" />
               <div className="flex-small-gap-column">
                 <div className="large-text bold red-shade-colour">
-                  {subject.subjectTitle}
+                  {subject.chapterTitle}
                 </div>
                 <div className="small-text bold primary-colour">
-                  {subject.subjectDescription}
+                  {subject.chapterDescription}
                 </div>
+              </div>
+              <div className="flex-small-gap-column">
+                <div className="small-text primary-colour bold">Subject</div>
+                <div className="bolder">{subject.subjectName}</div>
               </div>
               <div className="flex-small-gap-column">
                 <div className="small-text primary-colour bold">Standard</div>
-                <div className="bolder">{subject.subjectStandard}</div>
+                <div className="bolder">{subject.chapterStandard}</div>
               </div>
               <div className="flex-small-gap-column">
                 <div className="small-text primary-colour bold">Price</div>
-                <div className="bolder">{subject.subjectPrice}</div>
+                <div className="bolder">{subject.chapterPrice}</div>
               </div>
             </m.div>
           ))}
@@ -353,7 +357,7 @@ function Cart() {
               {cartData.data.map((subject) => (
                 <m.div
                   className="shp-list-main__each"
-                  key={subject.subjectId}
+                  key={subject.id}
                   variants={item}
                 >
                   <FaBook className="shp-list-icn" />
