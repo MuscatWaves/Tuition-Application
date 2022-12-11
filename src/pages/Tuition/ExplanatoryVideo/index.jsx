@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { m } from "framer-motion";
 import Header from "../../../components/Header";
@@ -9,14 +9,28 @@ import GridInnerPage from "../../../components/GridInnerPage";
 const ExplanatoryVideo = () => {
   const data = useParams();
   const navigation = [
-    { id: 1, title: "Dashboard", to: "/dashboard" },
+    { id: 0, name: "Dashboard", url: "/dashboard" },
+    {
+      id: 1,
+      name: removeUnderScore(data.subject),
+      url: `/dashboard/student/${data.subject}/${data.subjectId}/chapters/`,
+    },
     {
       id: 2,
-      title: removeUnderScore(data.subject),
-      to: `/dashboard/${data.subject}`,
+      name: removeUnderScore(data.chapter),
+      url: `/dashboard/student/${data.subject}/${data.subjectId}/${data.chapter}/${data.chapterId}`,
     },
-    { id: 3, title: "Explanatory Videos", to: "", active: true },
+    {
+      id: 3,
+      name: `Explanatory Videos`,
+      active: true,
+    },
   ];
+
+  useEffect(() => {
+    document.title = `${removeUnderScore(data.chapter)} - Explanatory Video`;
+    // eslint-disable-next-line
+  }, []);
 
   const testData = [
     {

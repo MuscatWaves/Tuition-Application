@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 import GridLayoutDash from "../../../components/GridLayoutDash";
@@ -31,6 +31,11 @@ const TopicDashboard = () => {
     },
   ];
 
+  useEffect(() => {
+    document.title = removeUnderScore(data.chapter);
+    // eslint-disable-next-line
+  }, []);
+
   // https://img.youtube.com/vi/sUwD3GRPJos/maxresdefault.jpg
 
   return (
@@ -47,7 +52,7 @@ const TopicDashboard = () => {
         <GridLayoutDash
           cards={cards}
           isLoggedIn={isLoggedIn}
-          subject={data.chapter}
+          data={data}
           user={user.name}
         />
       </div>

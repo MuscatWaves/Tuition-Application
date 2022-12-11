@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { m } from "framer-motion";
 import Header from "../../../components/Header";
@@ -9,15 +9,30 @@ import "./topicwisenotes.css";
 
 const TopicWiseNotes = () => {
   const data = useParams();
+
   const navigation = [
-    { id: 1, title: "Dashboard", to: "/dashboard" },
+    { id: 0, name: "Dashboard", url: "/dashboard" },
+    {
+      id: 1,
+      name: removeUnderScore(data.subject),
+      url: `/dashboard/student/${data.subject}/${data.subjectId}/chapters/`,
+    },
     {
       id: 2,
-      title: removeUnderScore(data.subject),
-      to: `/dashboard/${data.subject}`,
+      name: removeUnderScore(data.chapter),
+      url: `/dashboard/student/${data.subject}/${data.subjectId}/${data.chapter}/${data.chapterId}`,
     },
-    { id: 3, title: "Topic Wise Notes", to: "#", active: true },
+    {
+      id: 3,
+      name: `Topic Wise Notes`,
+      active: true,
+    },
   ];
+
+  useEffect(() => {
+    document.title = `${removeUnderScore(data.chapter)} - Topic Wise Notes`;
+    // eslint-disable-next-line
+  }, []);
 
   const testData = [
     {

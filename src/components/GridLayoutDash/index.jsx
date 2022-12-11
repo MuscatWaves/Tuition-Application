@@ -4,7 +4,7 @@ import { container, item } from "../../animation";
 import { useNavigate } from "react-router-dom";
 import "./gridLayoutDash.css";
 
-const GridLayoutDash = ({ cards, isLoggedIn, subject, user }) => {
+const GridLayoutDash = ({ cards, isLoggedIn, data, user }) => {
   const navigateTo = useNavigate();
   const checkNumberOfCards = () =>
     cards(isLoggedIn).filter((card) => card?.permission).length;
@@ -20,9 +20,9 @@ const GridLayoutDash = ({ cards, isLoggedIn, subject, user }) => {
           initial="hidden"
           animate="show"
         >
-          {cards(isLoggedIn, subject, user).map(
+          {cards(isLoggedIn, data, user).map(
             (card, index) =>
-              card.permission && (
+              card?.permission && (
                 <m.div
                   key={card.id}
                   className="card"

@@ -6,6 +6,9 @@ import ScrollToTop from "./ScrollToTop";
 
 const LandingPage = lazy(() => import("../pages/Public/LandingPage"));
 const PageNotFound = lazy(() => import("../components/NoPageFound"));
+const PageUnderConstruction = lazy(() =>
+  import("../components/PageUnderConstruction")
+);
 const PreSignUp = lazy(() => import("../pages/Public/PreSignUp"));
 const Dashboard = lazy(() => import("../pages/Public/Dashboard"));
 const PreLogin = lazy(() => import("../pages/Public/PreLogin"));
@@ -60,6 +63,10 @@ const Routing = () => {
                 {/* Public */}
                 <Route path="/" element={<LandingPage />}></Route>
                 <Route path="/prelogin" element={<PreLogin />}></Route>
+                <Route
+                  path="/pageUnderConstruction"
+                  element={<PageUnderConstruction />}
+                ></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
                 <Route path="/shop" element={<SubjectShop />}></Route>
                 <Route path="/shop/:name/:id" element={<Shop />}></Route>
@@ -126,15 +133,15 @@ const Routing = () => {
                   element={<TopicDashboard />}
                 ></Route>
                 <Route
-                  path="/tuition/:subject/topicWiseNotes"
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseNotes"
                   element={<TopicWiseNotes />}
                 ></Route>
                 <Route
-                  path="/tuition/:subject/explanatoryVideo"
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/explanatoryVideo"
                   element={<ExplanatoryVideo />}
                 ></Route>
                 <Route
-                  path="/tuition/:subject/topicWiseQPAP"
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseQPAP"
                   element={<TopicWiseQPAP />}
                 ></Route>
               </Routes>

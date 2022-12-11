@@ -1,12 +1,12 @@
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import React, { useEffect } from "react";
-import pageNotFound from "../../images/page_not_found.svg";
+import pageNotFound from "../../images/under_construction.svg";
 import { container, item } from "../../animation";
 import "./page.css";
 
-const PageNotFound = () => {
+const PageUnderConstruction = () => {
   useEffect(() => {
-    document.title = "Page not found";
+    document.title = "Page Under Construction";
   }, []);
 
   return (
@@ -24,7 +24,10 @@ const PageNotFound = () => {
           className="no-page-found-image"
         />
         <m.div variants={item} className="larger-text red-shade-colour bold">
-          Page Not Found
+          Page is Under Construction!
+        </m.div>
+        <m.div variants={item} className="medium-text primary-colour bold">
+          Please visit this page later
         </m.div>
         <m.div
           variants={item}
@@ -37,4 +40,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default PageUnderConstruction;

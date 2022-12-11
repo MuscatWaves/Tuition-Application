@@ -13,8 +13,10 @@ const InnerHeader = ({ navigation, data, customHeading, customDesc }) => {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
-      {(customHeading && customHeading) || (
-        <div className="larger-text bolder primary-font-2 red-shade-colour">
+      {(customHeading && (
+        <div className="small-margin-bottom">{customHeading}</div>
+      )) || (
+        <div className="larger-text bolder primary-font-2 red-shade-colour small-margin-bottom">
           {removeUnderScore(data.chapter)}
         </div>
       )}

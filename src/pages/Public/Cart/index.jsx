@@ -31,7 +31,6 @@ function Cart() {
   const [ErrorMessage, setErrorMessage] = useState("");
   const [payer, setPayer] = useState({});
   const [orderID, setOrderID] = useState(false);
-  const [checkoutProceed, setCheckoutProceed] = useState(false);
   const [list, setList] = useState([]);
   const PayPalOptions = {
     "client-id":
@@ -153,7 +152,6 @@ function Cart() {
     return actions.order.capture().then(function (details) {
       const { payer } = details;
       setPayer(payer);
-      setCheckoutProceed(false);
       setStatusError(true);
       setErrorMessage(
         "An Error occured with your payment. Please try again after sometime!"
@@ -397,51 +395,50 @@ function Cart() {
                 </m.div>
               ))}
             </m.div>
-            {checkoutProceed ? (
+            {cartData.ToatalAmount ? (
               <m.div
                 className="shp-list-main__total-amount"
                 animate={{ opacity: 1, y: "0" }}
                 initial={{ opacity: 0, y: "20px" }}
                 transition={{ duration: "0.8" }}
               >
-                <div className="mid-large-text bold">
-                  Choose your payment method
+                <div>
+                  <div className="mid-large-text bold">
+                    Choose your payment method
+                  </div>
+                  <div className="primary-colour">
+                    {cartData.data.length + ` item('s) present within cart`}
+                  </div>
                 </div>
-                <PayPalScriptProvider options={PayPalOptions}>
-                  <PayPalButtons
-                    style={{ layout: "vertical" }}
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    onError={onError}
-                  />
-                </PayPalScriptProvider>
+                <div className="shp-list-main__each small-padding">
+                  <div>
+                    <div className="small-text primary-colour">
+                      Total Amount
+                    </div>
+                    <div className="large-text bold">
+                      {cartData.ToatalAmount}
+                    </div>
+                  </div>
+                  <PayPalScriptProvider options={PayPalOptions}>
+                    <PayPalButtons
+                      style={{ layout: "vertical" }}
+                      createOrder={createOrder}
+                      onApprove={onApprove}
+                      onError={onError}
+                    />
+                  </PayPalScriptProvider>
+                </div>
               </m.div>
             ) : (
               <m.div
-                className="shp-list-main__total-amount small-margin-bottom"
+                className="small-margin-bottom"
                 animate={{ opacity: 1, y: "0" }}
                 initial={{ opacity: 0, y: "20px" }}
                 transition={{ duration: "0.8" }}
               >
-                <div className="primary-colour">
-                  {cartData.data.length + ` item('s) present within cart`}
+                <div className="large-text flex-center">
+                  <p className="bold">No Subjects in Cart</p>
                 </div>
-                {cartData.ToatalAmount ? (
-                  <div className="flex-gap bold shp-list-main__amount">
-                    <div className="large-text">
-                      Amount to be paid : <span>{cartData.ToatalAmount}</span>{" "}
-                      OMR
-                    </div>
-                    <CustomButton
-                      label={"Proceed to checkout"}
-                      color="teal"
-                      radius={"xl"}
-                      action={() => setCheckoutProceed(true)}
-                    />
-                  </div>
-                ) : (
-                  <div className="large-text">No Subjects in Cart</div>
-                )}
               </m.div>
             )}
           </>
