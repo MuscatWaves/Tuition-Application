@@ -30,11 +30,14 @@ const CreateUpdateTopic = ({
   const { data: chapterData = [], isFetching } = useQuery(
     ["adminManageSubjectTemp12", form.values.subject],
     () =>
-      axios.get(`/api/open/chapter`, {
-        headers: {
-          Authorization: token,
-        },
-      }),
+      axios.get(
+        `/api/open/chapter?search=&title=&standard&subjectId=${form.values.subject}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      ),
     {
       refetchOnWindowFocus: false,
       select: (data) => {

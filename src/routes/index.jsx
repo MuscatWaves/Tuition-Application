@@ -19,6 +19,7 @@ const StudentEducationUpdate = lazy(() =>
   import("../pages/Public/StudentEducationUpdate")
 );
 const VerifyStudent = lazy(() => import("../pages/Public/VerifyStudent"));
+const ResetPassword = lazy(() => import("../pages/Public/ResetPassword"));
 
 // IELTS
 const IELTSSignUp = lazy(() => import("../pages/IELTS/IELTSSignUp"));
@@ -80,6 +81,10 @@ const Routing = () => {
                   element={<VerifyStudent />}
                 ></Route>
                 <Route
+                  path="/resetpassword/student"
+                  element={<ResetPassword />}
+                ></Route>
+                <Route
                   path="/loader"
                   element={<Loader minHeight={"90vh"} />}
                 ></Route>
@@ -111,7 +116,7 @@ const Routing = () => {
                   element={<ManageStudent />}
                 ></Route>
                 <Route
-                  path="/admin/manageStudentSubject/:id"
+                  path="/admin/manageStudentChapter/:id"
                   element={<ManageStudentSubject />}
                 ></Route>
                 {/* Tuition */}

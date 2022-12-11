@@ -1,0 +1,26 @@
+.login-form-main-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 2rem;
+  border-radius: 30px;
+  background: #e8e8e8;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+
+.logo-small-login {
+  width: 100px;
+  height: 100px;
+  padding: 1rem;
+}

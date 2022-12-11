@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { showNotification } from "@mantine/notifications";
 import CustomButton from "../../../components/Buttons";
 import { greenNotify, redNotify } from "../../../notification";
-import { Input, PasswordInput } from "@mantine/core";
+import { Input, Modal, PasswordInput } from "@mantine/core";
 import "./login.css";
 import { container, item, zoomItem } from "../../../animation";
 
@@ -23,6 +23,48 @@ const TuitionLogin = () => {
       password: "",
     },
   });
+  const form2 = useForm({
+    initialValues: {
+      email: "",
+    },
+  });
+  const [isResetPassword, toggleResetPassword] = useState(false);
+  const [passwordLoading, setPasswordLoading] = useState(false);
+
+  const handleResetPassword = async (values) => {
+    setPasswordLoading(true);
+    var axios = require("axios");
+    var updateData = JSON.stringify({
+      email: values.email,
+    });
+
+    var config = {
+      method: "post",
+      url: "/api/student/forgot",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: updateData,
+    };
+    axios(config)
+      .then(function (response) {
+        showNotification({
+          title: "Reset Password sent to your mail",
+          styles: greenNotify,
+        });
+        setPasswordLoading(false);
+        toggleResetPassword(false);
+        form2.reset();
+      })
+      .catch(function (error) {
+        showNotification({
+          title: "Error!",
+          message: error.response.data.error,
+          styles: redNotify,
+        });
+        setPasswordLoading(false);
+      });
+  };
 
   const handleSubmit = async (values) => {
     const Email = values["email"];
@@ -102,6 +144,45 @@ const TuitionLogin = () => {
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
     >
+      <Modal
+        opened={isResetPassword}
+        onClose={() => toggleResetPassword(false)}
+        centered
+        padding={"lg"}
+        title={
+          <div className="bolder small-text primary-colour">
+            Account Password Reset
+          </div>
+        }
+        radius={"lg"}
+      >
+        <form
+          className="flex-gap-column-1 form-main-login"
+          onSubmit={form2.onSubmit(handleResetPassword)}
+          variants={container}
+          animate={"show"}
+          initial={"hidden"}
+        >
+          <m.div className="flex-small-gap-column" variants={zoomItem}>
+            <div className="medium-text bolder text-light-grey">Email</div>
+            <Input
+              placeholder="Enter your mail here!"
+              required
+              radius="lg"
+              size="lg"
+              {...form2.getInputProps("email")}
+            />
+          </m.div>
+          <CustomButton
+            label="Send Reset Password Mail"
+            category="landing"
+            type={"submit"}
+            size={"lg"}
+            radius={"xl"}
+            loading={passwordLoading}
+          />
+        </form>
+      </Modal>
       <div className="login-form-main-wrapper">
         <div className="login-form-main">
           <m.img
@@ -142,7 +223,13 @@ const TuitionLogin = () => {
                 {...form.getInputProps("password")}
               />
             </m.div>
-            <div className="small-text bolder flex-end text-grey">
+            <div
+              className="small-text bolder flex-end text-grey pointer"
+              onClick={() => {
+                form2.reset();
+                toggleResetPassword(true);
+              }}
+            >
               Forgot Password?
             </div>
             <CustomButton

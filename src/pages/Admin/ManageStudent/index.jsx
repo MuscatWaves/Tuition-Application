@@ -97,7 +97,7 @@ const ManageStudent = () => {
         ),
     },
     {
-      name: "Subjects",
+      name: "Chapters",
       selector: (row) => (
         <div className="flex-small-gap-column ">
           {row.access.map((subject) => (
@@ -117,9 +117,9 @@ const ManageStudent = () => {
               radius="md"
               variant="outline"
               action={() => {
-                navigateTo(`/admin/manageStudentSubject/${row.id}`);
+                navigateTo(`/admin/manageStudentChapter/${row.id}`);
               }}
-              label="Manage Subjects"
+              label="Manage Chapters"
               leftIcon={<AiOutlineEdit style={{ fontSize: "22px" }} />}
             />
           )}

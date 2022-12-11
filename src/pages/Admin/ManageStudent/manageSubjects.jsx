@@ -111,8 +111,7 @@ const ManageSubjects = () => {
     },
     {
       id: 4,
-      // name: `${data?.data[0]?.name} - Subjects`,
-      name: `Subjects`,
+      name: `Manage Subject`,
       url: "",
       active: true,
     },
@@ -165,7 +164,7 @@ const ManageSubjects = () => {
             <BreadCrumb items={nav} />
             <CustomButton
               category={"landing"}
-              label={"+ Add Subject"}
+              label={"+ Add Chapter"}
               action={() => {
                 setUpdateData(null);
                 update();

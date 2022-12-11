@@ -28,10 +28,43 @@ const CreateUpdateSubject = ({
   const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
-      subject: null,
+      subject: "",
+      chapter: "",
       access: false,
     },
   });
+
+  const { data: chapterData = [], isFetching } = useQuery(
+    ["adminManageSubjectTemp12", form.values.subject],
+    () =>
+      axios.get(
+        `/api/open/chapter?search=&title=&standard&subjectId=${form.values.subject}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      ),
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => {
+        const newData = data.data.data.map((item) => ({
+          label: item.title,
+          value: item.id,
+        }));
+        return newData;
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (form.values.subject) {
+      form.setValues({
+        chapter: "",
+      });
+    }
+    // eslint-disable-next-line
+  }, [form.values.subject]);
 
   const { data: filteredSubject = [] } = useQuery(
     ["adminManageEachSubjectFilter"],
@@ -50,7 +83,7 @@ const CreateUpdateSubject = ({
           });
         });
         const newData = filteredData.map((subject) => ({
-          label: subject.title,
+          label: subject.subjectName,
           value: subject.id,
         }));
         return newData;
@@ -62,7 +95,7 @@ const CreateUpdateSubject = ({
     document.title = "Admin - Update Subject";
     if (data) {
       form.setValues({
-        subject: { label: data.title, value: data.subjectId },
+        subject: { label: data.title, value: data.chapterId },
         access: data.access,
       });
     }
@@ -77,7 +110,7 @@ const CreateUpdateSubject = ({
           access: values.access,
         })
       : JSON.stringify({
-          subject_id: values.subject,
+          chapter_id: values.chapter,
           student_id: studentId,
           access: values.access,
         });
@@ -149,7 +182,7 @@ const CreateUpdateSubject = ({
         {!data && (
           <div className="flex-small-gap-column">
             <div className="bold just-flex text-light-grey">
-              <div>Name</div>
+              <div>Subject</div>
             </div>
             <Select
               placeholder="Select your subject"
@@ -160,6 +193,30 @@ const CreateUpdateSubject = ({
               transition="pop-top-left"
               transitionTimingFunction="ease"
               {...form.getInputProps("subject")}
+            />
+          </div>
+        )}
+        {!data && (
+          <div className="flex-small-gap-column">
+            <div className="bold just-flex text-light-grey">
+              <div>Chapter</div>
+              <div className="text-red">*</div>
+            </div>
+            <Select
+              placeholder={
+                isFetching
+                  ? "Loading the data...Please wait!!"
+                  : "Select the chapter"
+              }
+              data={chapterData}
+              searchable
+              radius="lg"
+              size="lg"
+              transitionDuration={150}
+              transition="pop-top-left"
+              transitionTimingFunction="ease"
+              disabled={isFetching}
+              {...form.getInputProps("chapter")}
             />
           </div>
         )}
