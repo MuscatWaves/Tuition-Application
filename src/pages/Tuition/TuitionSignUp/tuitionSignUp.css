@@ -15,7 +15,7 @@
   border-radius: 30px;
   padding: 2rem;
   background: #e8e8e8;
-  box-shadow: inset 9px 9px 18px #c5c5c5, inset -9px -9px 18px #ffffff;
+  /* box-shadow: inset 9px 9px 18px #c5c5c5, inset -9px -9px 18px #ffffff; */
   height: 100%;
   overflow: hidden;
 }
