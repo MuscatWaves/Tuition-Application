@@ -158,7 +158,7 @@ const ManageSubjects = () => {
       <div className="top-heading-admin-wrapper">
         <div className="top-heading-admin">
           <div className="bolder larger-text primary-font red-shade-colour">
-            Manage Subject - Student
+            Manage Chapter - Student
           </div>
           <div className="flex-between">
             <BreadCrumb items={nav} />
@@ -194,7 +194,7 @@ const ManageSubjects = () => {
             studentId={data.data[0].id}
           />
           <Modal
-            title={<div className="bolder large-text">Delete Subject</div>}
+            title={<div className="bolder large-text">Delete Chapter</div>}
             opened={deleteModal}
             onClose={handleClose}
           >
@@ -236,7 +236,7 @@ const ManageSubjects = () => {
             </div> */}
           </div>
           <div className="flex-small-gap-column" style={{ padding: "0.5rem" }}>
-            <div className="bolder">Subjects Enrolled</div>
+            <div className="bolder">Chapters Enrolled</div>
             <div>
               <CustomDataTable
                 data={data.access}

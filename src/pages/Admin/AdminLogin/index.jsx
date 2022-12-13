@@ -151,8 +151,8 @@ const AdminLogin = () => {
                 radius={"xl"}
                 loading={loading}
               />
-              <div className="small-text bolder flex-end text-grey">
-                Forgot Password?
+              <div className="small-text bolder flex-end text-light-grey">
+                Only for Admins & Teachers
               </div>
             </m.div>
           </form>

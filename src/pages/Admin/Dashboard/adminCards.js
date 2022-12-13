@@ -38,6 +38,13 @@ export const adminCards = (isLoggedIn) => [
   },
   {
     id: 6,
+    title: "Upload File",
+    description: "Create, Update & Delete any file related to chapters",
+    permission: checkPermission("upload", isLoggedIn?.access)?.readAccess,
+    path: "/admin/uploadFile",
+  },
+  {
+    id: 7,
     title: "Manage Students",
     description: "Create, Update & Delete any Student",
     permission: checkPermission("student", isLoggedIn?.access)?.readAccess,

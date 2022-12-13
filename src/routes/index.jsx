@@ -47,6 +47,7 @@ const ManageTopic = lazy(() => import("../pages/Admin/ManageTopic"));
 const ManageAccount = lazy(() => import("../pages/Admin/ManageAccount"));
 const AdminLogin = lazy(() => import("../pages/Admin/AdminLogin"));
 const ManageStudent = lazy(() => import("../pages/Admin/ManageStudent"));
+const AdminUploadFile = lazy(() => import("../pages/Admin/AdminUploadFile"));
 const ManageStudentSubject = lazy(() =>
   import("../pages/Admin/ManageStudent/manageSubjects")
 );
@@ -114,6 +115,10 @@ const Routing = () => {
                 <Route
                   path="/admin/manageStudent"
                   element={<ManageStudent />}
+                ></Route>
+                <Route
+                  path="/admin/uploadFile"
+                  element={<AdminUploadFile />}
                 ></Route>
                 <Route
                   path="/admin/manageStudentChapter/:id"

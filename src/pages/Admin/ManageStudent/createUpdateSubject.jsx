@@ -158,9 +158,9 @@ const CreateUpdateSubject = ({
       onClose={handleClose}
       title={
         data ? (
-          <div className="bolder large-text">Update Subject - Student</div>
+          <div className="bolder large-text">Update Chapter - Student</div>
         ) : (
-          <div className="bolder large-text">Create Subject - Student</div>
+          <div className="bolder large-text">Create Chapter - Student</div>
         )
       }
       padding="xl"
