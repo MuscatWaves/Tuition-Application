@@ -36,6 +36,8 @@ const TopicWiseNotes = lazy(() => import("../pages/Tuition/TopicWiseNotes"));
 const ExplanatoryVideo = lazy(() =>
   import("../pages/Tuition/ExplanatoryVideo")
 );
+const TopicWiseQP = lazy(() => import("../pages/Tuition/TopicWiseQP"));
+const TopicWiseAP = lazy(() => import("../pages/Tuition/TopicWiseAP"));
 const TopicWiseQPAP = lazy(() => import("../pages/Tuition/TopicWiseQPAP"));
 
 // Admin
@@ -151,8 +153,16 @@ const Routing = () => {
                   element={<ExplanatoryVideo />}
                 ></Route>
                 <Route
-                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseQPAP"
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseQPAPselection"
                   element={<TopicWiseQPAP />}
+                ></Route>
+                <Route
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseQPAP/questions"
+                  element={<TopicWiseQP />}
+                ></Route>
+                <Route
+                  path="/tuition/:subject/:subjectId/:chapter/:chapterId/topicWiseQPAP/answers"
+                  element={<TopicWiseAP />}
                 ></Route>
               </Routes>
             </LazyMotion>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import logo from "../../../images/logo.png";
 import logoSmall from "../../../images/logo-small.png";
 import { BsCheckCircleFill, BsInfoCircleFill } from "react-icons/bs";
@@ -12,6 +12,7 @@ import { showNotification } from "@mantine/notifications";
 
 const VerifyStudent = () => {
   const [searchParams] = useSearchParams();
+  const navigateTo = useNavigate();
   const [status, setStatus] = useState("ld");
 
   const getStatus = () => {
@@ -27,9 +28,10 @@ const VerifyStudent = () => {
 
     axios(config)
       .then(function (response) {
-        if (response.data.message === "Your Account is already Activated!")
-          setStatus("ad");
-        else setStatus("rd");
+        console.log(response);
+        response.data.message === "Your Account is already Activated!"
+          ? setStatus("ad")
+          : setStatus("rd");
       })
       .catch(function (error) {
         showNotification({
@@ -78,7 +80,9 @@ const VerifyStudent = () => {
           <div className="primary-colour">
             As part of our entire team, We are grateful to have you.
           </div>
-          <Button radius="xl">Go to Dashboard</Button>
+          <Button radius="xl" onClick={() => navigateTo("/tuition/login")}>
+            Go to Login
+          </Button>
         </m.div>
       );
     }
@@ -101,7 +105,12 @@ const VerifyStudent = () => {
           <div className="primary-colour">
             Please contact our administrator through email
           </div>
-          <Button radius="xl">Go to Dashboard</Button>
+          <Button
+            radius="xl"
+            onClick={() => window.open("mailto:a3lamnii@gmail.com", "_blank")}
+          >
+            Write a Mail!
+          </Button>
         </m.div>
       );
     }
@@ -125,7 +134,9 @@ const VerifyStudent = () => {
             Welcome to <span className="red-shade-colour">Alamnii!!</span>. As
             part of our entire team, We are grateful to have you.
           </div>
-          <Button radius="xl">Go to Dashboard</Button>
+          <Button radius="xl" onClick={() => navigateTo("/tuition/login")}>
+            Go to Dashboard
+          </Button>
         </m.div>
       );
     }

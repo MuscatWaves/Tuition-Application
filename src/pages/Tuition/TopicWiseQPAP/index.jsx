@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { m } from "framer-motion";
+import { useNavigate, useParams } from "react-router-dom";
+import { AnimatePresence, m } from "framer-motion";
 import Header from "../../../components/Header";
+import { container, item } from "../../../animation";
 import InnerHeader from "../../../components/InnerHeader";
 import { removeUnderScore } from "../../../utilities";
-import GridInnerPage from "../../../components/GridInnerPage";
+import "../TopicWiseNotes/topicwisenotes.css";
+import { CgNotes } from "react-icons/cg";
 
 const TopicWiseQPAP = () => {
   const data = useParams();
+  const navigateTo = useNavigate();
   const navigation = [
     { id: 0, name: "Dashboard", url: "/dashboard" },
     {
@@ -32,36 +35,13 @@ const TopicWiseQPAP = () => {
     // eslint-disable-next-line
   }, []);
 
-  const testData = [
-    {
-      id: 1,
-      name: "Information 1",
-      resources: [
-        { id: 1, name: "Test Link 1" },
-        { id: 2, name: "Test Link 2" },
-        { id: 3, name: "Test Link 3" },
-        { id: 4, name: "Test Link 3" },
-        { id: 5, name: "Test Link 3" },
-        { id: 6, name: "Test Link 3" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Information 2",
-      resources: [
-        { id: 1, name: "Test Link 1" },
-        { id: 2, name: "Test Link 2" },
-        { id: 3, name: "Test Link 3" },
-      ],
-    },
-  ];
-
   return (
     <m.div
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
+      className="tt-inner-notes-whole"
     >
       <Header />
       <div>
@@ -81,7 +61,41 @@ const TopicWiseQPAP = () => {
             )} course.`}</div>
           }
         />
-        <GridInnerPage data={testData} view={"two-list"} />
+      </div>
+      <div className="tt-inner-grid-wrapper">
+        <AnimatePresence>
+          <m.div
+            className="std-chp-dash-list-main"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            <m.div
+              className="std-chp-dash-list-main__each pointer"
+              variants={item}
+              onClick={() =>
+                navigateTo(
+                  `/tuition/${data.subject}/${data.subjectId}/${data.chapter}/${data.chapterId}/topicWiseQPAP/questions`
+                )
+              }
+            >
+              <CgNotes style={{ fontSize: "3em" }} />
+              <div className="large-text bold">Question Papers</div>
+            </m.div>
+            <m.div
+              className="std-chp-dash-list-main__each pointer"
+              variants={item}
+              onClick={() =>
+                navigateTo(
+                  `/tuition/${data.subject}/${data.subjectId}/${data.chapter}/${data.chapterId}/topicWiseQPAP/answers`
+                )
+              }
+            >
+              <CgNotes style={{ fontSize: "3em" }} />
+              <div className="large-text bold">Answer Papers</div>
+            </m.div>
+          </m.div>
+        </AnimatePresence>
       </div>
     </m.div>
   );

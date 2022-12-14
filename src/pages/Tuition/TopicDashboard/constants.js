@@ -24,7 +24,7 @@ export const cards = (isLoggedIn, data, user) => [
     title: "Topic Wise QP & AP",
     description: "Question papers & Answers for each topic.",
     permission: true,
-    path: `/tuition/${data?.subject}/${data?.subjectId}/${data?.chapter}/${data?.chapterId}/topicWiseQPAP`,
+    path: `/tuition/${data?.subject}/${data?.subjectId}/${data?.chapter}/${data?.chapterId}/topicWiseQPAPselection`,
   },
   {
     id: 3,

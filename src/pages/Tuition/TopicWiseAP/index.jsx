@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AnimatePresence, m } from "framer-motion";
 import Header from "../../../components/Header";
-import InnerHeader from "../../../components/InnerHeader";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Spinner from "../../../components/Spinner";
@@ -10,14 +9,14 @@ import Cookies from "universal-cookie";
 import { container, item } from "../../../animation";
 import { TbNotes } from "react-icons/tb";
 import CustomButton from "../../../components/Buttons";
+import InnerHeader from "../../../components/InnerHeader";
 import { removeUnderScore } from "../../../utilities";
-import "./topicwisenotes.css";
+import "../TopicWiseNotes/topicwisenotes.css";
 
-const TopicWiseNotes = () => {
+const TopicWiseAP = () => {
   const data = useParams();
   const cookies = new Cookies();
   const token = cookies.get("token");
-
   const navigation = [
     { id: 0, name: "Dashboard", url: "/dashboard" },
     {
@@ -32,20 +31,25 @@ const TopicWiseNotes = () => {
     },
     {
       id: 3,
-      name: `Topic Wise Notes`,
+      name: "QP/AP",
+      url: `/tuition/${data.subject}/${data.subjectId}/${data.chapter}/${data.chapterId}/topicWiseQPAPselection`,
+    },
+    {
+      id: 4,
+      name: `Topic Wise Answers`,
       active: true,
     },
   ];
 
   useEffect(() => {
-    document.title = `${removeUnderScore(data.chapter)} - Topic Wise Notes`;
+    document.title = `${removeUnderScore(data.chapter)} - Topic Wise Answers`;
     // eslint-disable-next-line
   }, []);
 
   const { data: notesDetAPI = [], isFetching } = useQuery(
-    [`studentNotes${data.chapter}`],
+    [`studentNotes${data.chapter}answers`],
     () =>
-      axios.get(`/api/subs/file?id=${data.chapterId}&type=notes`, {
+      axios.get(`/api/subs/file?id=${data.chapterId}&type=answers`, {
         headers: {
           Authorization: token,
         },
@@ -70,7 +74,7 @@ const TopicWiseNotes = () => {
               <span className="red-shade-colour">
                 {removeUnderScore(`${data.subject} : `)}
               </span>
-              <span className="secondary-colour">Topic Wise Notes</span>
+              <span className="secondary-colour">{`Topic Wise Answer Papers`}</span>
             </div>
           }
           customDesc={
@@ -130,4 +134,4 @@ const TopicWiseNotes = () => {
   );
 };
 
-export default TopicWiseNotes;
+export default TopicWiseAP;
