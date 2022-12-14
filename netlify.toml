@@ -1,12 +1,4 @@
 [[redirects]]
-  from = "/api/:path*"
-  to = "https://tution.muscatwave.com/api/:path*"
+  from = "/*"
+  to = "/"
   status = 200
-  force = true
-
-
-[[redirects]]
-  from = "/api/:path*"
-  to = "https://tution.muscatwave.com/api/:path*/"
-  status = 200
-  force = true
