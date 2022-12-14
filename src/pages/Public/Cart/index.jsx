@@ -114,36 +114,45 @@ function Cart() {
   };
 
   // creates a paypal order
-  const createOrder = (data, actions) => {
+  const createOrder = async (data, actions) => {
     setList(cartData.data);
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            description: "Sunflower",
-            amount: {
-              currency_code: "USD",
-              value: amount,
-            },
-          },
-        ],
-        // not needed if a shipping address is actually needed
-        application_context: {
-          shipping_preference: "NO_SHIPPING",
-        },
-      })
-      .then((orderID) => {
-        setOrderID(orderID);
-        return orderID;
-      });
+    return axios({
+      method: "post",
+      url: "/api/pay/crerateorder",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      return response?.data?.id;
+    });
   };
 
   // check Approval
-  const onApprove = (data, actions) => {
-    return actions.order.capture().then(function (details) {
-      const { payer } = details;
+  const onApprove = async (data, actions) => {
+    var bodyFormData = new FormData();
+    bodyFormData.append("order", data.orderID);
+    return axios({
+      method: "post",
+      url: "/api/pay/capturepayment",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      data: bodyFormData,
+    }).then(function (orderData) {
+      // Successful capture! For dev/demo purposes:
+      const orderId = orderData.data.id;
+      const payer = orderData.data.payer;
+      setOrderID(orderId);
       setPayer(payer);
       setSuccess(true);
+
+      // When ready to go live, remove the alert and show a success message within this page. For example:
+      // var element = document.getElementById('paypal-button-container');
+      // element.innerHTML = '';
+      // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+      // Or go to another URL:  actions.redirect('thank_you.html');
     });
   };
 

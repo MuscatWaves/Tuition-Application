@@ -28,7 +28,6 @@ const VerifyStudent = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(response);
         response.data.message === "Your Account is already Activated!"
           ? setStatus("ad")
           : setStatus("rd");

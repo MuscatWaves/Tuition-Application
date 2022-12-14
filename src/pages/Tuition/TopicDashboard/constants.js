@@ -7,7 +7,6 @@ import { FaBook } from "react-icons/fa";
 import { removeUnderScore } from "../../../utilities";
 
 export const cards = (isLoggedIn, data, user) => [
-  console.log(data),
   {
     id: 1,
     name: "card1",

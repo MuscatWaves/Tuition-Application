@@ -12,6 +12,7 @@ import { container, item } from "../../../animation";
 import "../TopicWiseNotes/topicwisenotes.css";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import CustomButton from "../../../components/Buttons";
+import "video-react/dist/video-react.css";
 import { Player } from "video-react";
 import { Modal } from "@mantine/core";
 
