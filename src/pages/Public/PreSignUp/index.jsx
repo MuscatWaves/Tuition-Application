@@ -56,9 +56,6 @@ const PreSignUp = () => {
           <div className="larger-text bolder primary-font">
             Choose your package
           </div>
-          <div className="bold red-shade-colour">
-            *Payment related will be available in your dashboard once registered
-          </div>
           <m.div
             className="pre-sign-up__two-section"
             variants={container}

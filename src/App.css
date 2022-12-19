@@ -414,12 +414,6 @@ body {
   }
 }
 
-@media screen and (max-width: 380px) {
-  .primary-header-text {
-    font-size: 32px;
-  }
-}
-
 @media screen and (max-width: 550px) {
   .description-text {
     text-align: center;
@@ -427,6 +421,8 @@ body {
 
   .flex-small-gap {
     justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
   .form-main-login {

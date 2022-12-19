@@ -1,8 +1,7 @@
 import React from "react";
 import { RiWhatsappFill } from "react-icons/ri";
-import { AiFillYoutube, AiFillInstagram } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
 import { GrMail } from "react-icons/gr";
-import { BsFacebook } from "react-icons/bs";
 import logo from "../../images/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./footer.css";
@@ -111,8 +110,8 @@ const Footer = ({ setActiveItem }) => {
               onClick={() => window.open("mailto:a3lamnii@gmail.com", "_blank")}
             />
             <RiWhatsappFill className="icon-footer whatsapp-icon" />
-            <BsFacebook className="icon-footer facebook-icon" />
-            <AiFillYoutube className="icon-footer youtube-icon" />
+            {/* <BsFacebook className="icon-footer facebook-icon" /> */}
+            {/* <AiFillYoutube className="icon-footer youtube-icon" /> */}
             <AiFillInstagram
               className="icon-footer instagram-icon"
               onClick={() =>

@@ -5,19 +5,19 @@ import pencilPic from "../../../images/pencil.png";
 export const cardList = [{
     id: 1,
     name: "Tution Classes",
-    description: "Guess it's something related to Tution Classes",
+    description: "We're here to help!",
     icon: FaGraduationCap,
     link: "/tuition"
 },{
     id: 2,
     name: "IELTS",
-    description: "Guess it's something related to Tution Classes",
+    description: "Coming Soon!",
     img: handPic,
     link: "/"
 },{
     id: 3,
     name: "Summer Classes",
-    description: "Guess it's something related to Tution Classes",
+    description: "Coming Soon",
     img: pencilPic,
     link: "/"
 }]

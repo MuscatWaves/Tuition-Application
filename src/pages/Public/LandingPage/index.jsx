@@ -189,8 +189,8 @@ const LandingPage = () => {
               className="we-work-landing-desc primary-font large-text bolder text-colour"
               variants={item}
             >
-              We work for providing you with the best materials for you to be
-              successful.
+              We work to provide you with the best materials to excel in your
+              studies.
             </m.div>
             <img
               src={howWeWorkImage}
