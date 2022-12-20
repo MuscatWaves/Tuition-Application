@@ -17,7 +17,7 @@ export const cardList = [{
 },{
     id: 3,
     name: "Summer Classes",
-    description: "Coming Soon",
+    description: "Coming Soon!",
     img: pencilPic,
     link: "/"
 }]

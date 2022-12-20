@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  min-height: 70vh;
+  height: auto;
   background-image: linear-gradient(
     to right bottom,
     #6b5759,
@@ -49,13 +49,12 @@
 }
 
 .first-section-content {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: fit-content;
   width: 70vw;
-  grid-gap: 4rem;
+  gap: 4rem;
   overflow: hidden;
 }
 
@@ -148,8 +147,7 @@
 
 .about-section-desc {
   margin: 2rem 0;
-  display: grid;
-  grid-template-columns: 25% 65%;
+  display: flex;
   justify-content: center;
   padding: 1rem;
   align-items: center;
@@ -158,8 +156,8 @@
 }
 
 .third-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  align-items: center;
   align-items: flex-end;
   margin: 6vh 0;
 }
@@ -171,12 +169,13 @@
 }
 
 .how-we-work-image {
+  flex: 0.5;
   /* background: url("../../images/how_we_work_image.jpg"); */
   background: var(--secondary-color);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100%;
+  height: 500px;
   border-radius: 20px;
   position: relative;
 }
@@ -270,16 +269,13 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 0.5;
 }
 
 @media screen and (max-width: 1800px) {
   .first-section-image > img {
     width: 500px;
     height: 500px;
-  }
-
-  .about-section-desc {
-    grid-template-columns: 40% 60%;
   }
 
   .stairs-sv {
@@ -306,27 +302,23 @@
     height: 300px;
   }
 
-  .about-section-desc {
-    grid-template-columns: 40% 60%;
-  }
-
   .stairs-sv {
     top: -2rem;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .about-section-desc {
     display: flex;
     flex-direction: column;
     margin: 0;
     margin-bottom: 3rem;
+    text-align: center;
   }
 
   .first-section-content {
     display: flex;
     flex-direction: column-reverse;
-    grid-gap: 0;
     gap: 1rem;
   }
 
@@ -363,6 +355,7 @@
   }
 
   .how-we-work-image {
+    flex: none;
     height: 400px;
     width: 80vw;
   }
