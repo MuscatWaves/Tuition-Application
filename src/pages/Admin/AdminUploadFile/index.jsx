@@ -294,7 +294,7 @@ const AdminUploadFile = () => {
             <BreadCrumb items={nav} />
             <CustomButton
               category={"landing"}
-              label={"+ Create"}
+              label={"+ Upload"}
               action={() => {
                 setUpdateData(null);
                 update();

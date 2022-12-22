@@ -136,7 +136,7 @@ const CreateUpdateChapter = ({
             <div className="text-red">*</div>
           </div>
           <Input
-            placeholder="Please enter the title of subject"
+            placeholder="Please enter the title of chapter"
             radius="lg"
             size="lg"
             {...form.getInputProps("title")}
@@ -149,7 +149,7 @@ const CreateUpdateChapter = ({
             <div className="text-red">*</div>
           </div>
           <Input
-            placeholder="Please enter the standard for the subject"
+            placeholder="Please enter the standard for the chapter"
             radius="lg"
             size="lg"
             {...form.getInputProps("standard")}
@@ -163,7 +163,7 @@ const CreateUpdateChapter = ({
             <div className="text-red">*</div>
           </div>
           <Input
-            placeholder="Please enter the price of subject"
+            placeholder="Please enter the price of chapter"
             radius="lg"
             size="lg"
             {...form.getInputProps("price")}
@@ -174,7 +174,7 @@ const CreateUpdateChapter = ({
         <div className="flex-small-gap-column" style={{ gridColumn: "1/3" }}>
           <div className="bolder text-light-grey">Small Description</div>
           <Input
-            placeholder="Please enter the description of subject"
+            placeholder="Please enter the description of chapter"
             radius="lg"
             size="lg"
             {...form.getInputProps("description")}

@@ -204,7 +204,7 @@ const ManageTopic = () => {
         refetch={refetch}
       />
       <Modal
-        title={<div className="bolder large-text">Delete Chapter</div>}
+        title={<div className="bolder large-text">Delete Topic</div>}
         opened={deleteModal}
         onClose={handleClose}
       >
